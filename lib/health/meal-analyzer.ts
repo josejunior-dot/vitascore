@@ -486,7 +486,39 @@ export class MealAnalyzer {
       };
     }
 
-    // Análise nutricional (mock por agora — produção usa Claude Vision)
+    // Tentar análise real via API (Claude Vision)
+    const aiResult = await this.callAiApi(photoBase64);
+    if (aiResult) {
+      // API respondeu — usar resultado real
+      // Se a IA detectou foto de tela, adicionar flag
+      if (aiResult.isScreenPhoto) {
+        antifraud.passed = false;
+        antifraud.score = Math.min(antifraud.score, 30);
+        antifraud.checks.isNotScreenPhoto = false;
+        antifraud.flags.push("IA detectou foto de tela ou impressão");
+      }
+
+      const confidence = Math.round(aiResult.confidence * (antifraud.score / 100));
+
+      return {
+        isFood: aiResult.isFood,
+        hasVegetables: aiResult.hasVegetables,
+        hasProtein: aiResult.hasProtein,
+        hasWholeGrains: aiResult.hasWholeGrains,
+        hasFruit: aiResult.hasFruit,
+        isProcessed: aiResult.isProcessed,
+        isDeepFried: aiResult.isDeepFried,
+        portionSize: aiResult.portionSize,
+        colorVariety: aiResult.colorVariety,
+        hydration: aiResult.hydration,
+        description: aiResult.description,
+        mealScore: aiResult.isFood ? aiResult.mealScore : 0,
+        confidence,
+        antifraud,
+      };
+    }
+
+    // Fallback: análise mock local (quando API não está configurada)
     const imageSize = photoBase64.length;
     const seed = imageSize % 100;
 
@@ -525,7 +557,6 @@ export class MealAnalyzer {
 
     const description = this.generateDescription({ hasVegetables, hasProtein, hasWholeGrains, hasFruit, isProcessed, isDeepFried, portionSize });
 
-    // Confiança ajustada pelo score anti-fraude
     const baseConfidence = rand(75, 95);
     const confidence = Math.round(baseConfidence * (antifraud.score / 100));
 
@@ -536,6 +567,29 @@ export class MealAnalyzer {
       description, mealScore: score, confidence,
       antifraud,
     };
+  }
+
+  /**
+   * Chama a API de IA para análise real da foto.
+   * Retorna null se a API não estiver configurada ou falhar.
+   */
+  private static async callAiApi(photoBase64: string): Promise<any | null> {
+    try {
+      const { getApiUrl } = await import("./api-config");
+      const apiUrl = await getApiUrl();
+      if (!apiUrl) return null;
+
+      const response = await fetch(`${apiUrl}/analyze-meal`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ image: photoBase64 }),
+      });
+
+      if (!response.ok) return null;
+      return await response.json();
+    } catch {
+      return null; // API indisponível, usar mock
+    }
   }
 
   private static generateDescription(attrs: {

@@ -341,15 +341,6 @@ export class WeightMonitor {
   }> {
     const flags: string[] = [];
 
-    // --- Mock: gera peso pseudo-aleatório baseado no tamanho da imagem ---
-    // Usa o tamanho do base64 como seed para variação determinística
-    const seed = photoBase64.length % 350; // 0-349
-    const weightKg = Math.round((60 + (seed / 350) * 35) * 10) / 10; // 60-95 kg
-    const confidence = 80 + (seed % 16); // 80-95
-
-    // Verificação de frescura do timestamp
-    // (em produção, comparar EXIF timestamp com hora atual)
-
     // Verificação de foto duplicada via hash
     const photoHash = await generateHash(photoBase64.slice(0, 2000));
     const profile = await this.getProfile();
@@ -359,6 +350,36 @@ export class WeightMonitor {
     if (isDuplicate) {
       flags.push("Foto possivelmente reutilizada");
     }
+
+    // Tentar leitura real via API (Claude Vision OCR)
+    try {
+      const { getApiUrl } = await import("./api-config");
+      const apiUrl = await getApiUrl();
+      if (apiUrl) {
+        const response = await fetch(`${apiUrl}/read-scale`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ image: photoBase64 }),
+        });
+        if (response.ok) {
+          const reading = await response.json();
+          if (reading.isScreenPhoto) flags.push("IA detectou foto de tela");
+          if (!reading.isScale) flags.push("IA não identificou uma balança");
+          return {
+            weightKg: reading.weightKg || 0,
+            confidence: reading.confidence || 0,
+            flags: [...flags, ...(reading.flags || [])],
+          };
+        }
+      }
+    } catch {
+      // API indisponível, usar mock
+    }
+
+    // Fallback mock
+    const seed = photoBase64.length % 350;
+    const weightKg = Math.round((60 + (seed / 350) * 35) * 10) / 10;
+    const confidence = 80 + (seed % 16);
 
     return { weightKg, confidence, flags };
   }
