@@ -27,9 +27,9 @@ export default function ChallengeCard({ challenge }: ChallengeCardProps) {
     <motion.div
       className="rounded-2xl p-4"
       style={{
-        backgroundColor: "#1C1C1E",
+        backgroundColor: "#F8F9FA",
         borderLeft: `4px solid ${color}`,
-        border: `1px solid rgba(255,255,255,0.08)`,
+        border: `1px solid #DADCE0`,
         borderLeftColor: color,
         borderLeftWidth: 4,
       }}
@@ -40,8 +40,8 @@ export default function ChallengeCard({ challenge }: ChallengeCardProps) {
       <div className="flex items-start gap-3">
         <span className="text-2xl">{icon}</span>
         <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-semibold text-white">{title}</h3>
-          <p className="text-xs text-white/50 mt-0.5 leading-relaxed">
+          <h3 className="text-sm font-semibold text-[#202124]">{title}</h3>
+          <p className="text-xs text-[#5F6368] mt-0.5 leading-relaxed">
             {description}
           </p>
         </div>
@@ -49,7 +49,7 @@ export default function ChallengeCard({ challenge }: ChallengeCardProps) {
 
       <div className="mt-3">
         <div className="flex items-center justify-between mb-1.5">
-          <span className="text-xs text-white/70">
+          <span className="text-xs text-[#5F6368]">
             {progress}/{total} dias
           </span>
           <span className="text-xs font-semibold" style={{ color }}>
@@ -57,7 +57,7 @@ export default function ChallengeCard({ challenge }: ChallengeCardProps) {
           </span>
         </div>
 
-        <div className="h-2 rounded-full bg-white/10 overflow-hidden">
+        <div className="h-2 rounded-full bg-[#E8EAED] overflow-hidden">
           <motion.div
             className="h-full rounded-full"
             style={{ backgroundColor: color }}
@@ -69,7 +69,7 @@ export default function ChallengeCard({ challenge }: ChallengeCardProps) {
       </div>
 
       {daysLeft > 0 && (
-        <p className="text-xs text-white/40 mt-2">
+        <p className="text-xs text-[#9AA0A6] mt-2">
           {daysLeft} {daysLeft === 1 ? "dia restante" : "dias restantes"}
         </p>
       )}

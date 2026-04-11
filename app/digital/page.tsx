@@ -108,16 +108,16 @@ export default function DigitalPage() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="sticky top-0 z-50 backdrop-blur-xl bg-black/70 border-b border-white/[0.06] px-4 py-4"
+          className="sticky top-0 z-50 backdrop-blur-xl bg-white shadow-sm border-b border-[#DADCE0] px-4 py-4"
         >
           <div className="flex items-center gap-2">
             <Link href="/home" className="p-1 -ml-1">
-              <ChevronLeft className="w-5 h-5 text-white/70" />
+              <ChevronLeft className="w-5 h-5 text-[#5F6368]" />
             </Link>
-            <h1 className="text-lg font-semibold text-white">
+            <h1 className="text-lg font-semibold text-[#202124]">
               Bem-estar Digital
             </h1>
-            <Smartphone className="w-4.5 h-4.5 text-white/40 ml-auto" />
+            <Smartphone className="w-4.5 h-4.5 text-[#9AA0A6] ml-auto" />
           </div>
         </motion.header>
 
@@ -128,7 +128,7 @@ export default function DigitalPage() {
             variants={sectionVariants}
             initial="hidden"
             animate="visible"
-            className="relative rounded-2xl backdrop-blur-xl bg-white/5 border border-white/[0.08] p-6 overflow-hidden"
+            className="relative rounded-2xl backdrop-blur-xl bg-[#F8F9FA] border border-[#DADCE0] p-6 overflow-hidden"
             style={{ boxShadow: `0 0 40px ${getScoreGlow(score)}` }}
           >
             <div
@@ -138,16 +138,16 @@ export default function DigitalPage() {
 
             {loading ? (
               <div className="flex flex-col items-center gap-3 animate-pulse">
-                <div className="h-16 w-32 bg-white/10 rounded-xl" />
-                <div className="h-5 w-24 bg-white/10 rounded-lg" />
-                <div className="h-3 w-40 bg-white/10 rounded-lg" />
-                <div className="h-4 w-full bg-white/10 rounded-full mt-3" />
+                <div className="h-16 w-32 bg-[#E8EAED] rounded-xl" />
+                <div className="h-5 w-24 bg-[#E8EAED] rounded-lg" />
+                <div className="h-3 w-40 bg-[#E8EAED] rounded-lg" />
+                <div className="h-4 w-full bg-[#E8EAED] rounded-full mt-3" />
               </div>
             ) : (
               <div className="relative flex flex-col items-center gap-2">
                 <ScoreCounter
                   value={score}
-                  className="text-6xl font-bold text-white leading-none"
+                  className="text-6xl font-bold text-[#202124] leading-none"
                 />
                 <span
                   className="text-sm font-semibold"
@@ -155,7 +155,7 @@ export default function DigitalPage() {
                 >
                   {scoreLabel}
                 </span>
-                <span className="text-xs text-white/40">
+                <span className="text-xs text-[#9AA0A6]">
                   de 200 pontos possiveis
                 </span>
 
@@ -180,7 +180,7 @@ export default function DigitalPage() {
                         className="w-2 h-2 rounded-full"
                         style={{ backgroundColor: seg.color }}
                       />
-                      <span className="text-[10px] text-white/40">
+                      <span className="text-[10px] text-[#9AA0A6]">
                         {seg.label}
                       </span>
                     </div>
@@ -197,7 +197,7 @@ export default function DigitalPage() {
             initial="hidden"
             animate="visible"
           >
-            <h2 className="text-xs font-semibold text-white/50 mb-3 uppercase tracking-wider">
+            <h2 className="text-xs font-semibold text-[#5F6368] mb-3 uppercase tracking-wider">
               Metricas de Hoje
             </h2>
 
@@ -206,17 +206,17 @@ export default function DigitalPage() {
                 {[0, 1, 2, 3].map((i) => (
                   <div
                     key={i}
-                    className="rounded-2xl bg-[#1C1C1E] border border-white/[0.08] p-4 animate-pulse"
+                    className="rounded-2xl bg-[#F8F9FA] border border-[#DADCE0] p-4 animate-pulse"
                   >
-                    <div className="h-4 w-16 bg-white/10 rounded mb-3" />
-                    <div className="h-7 w-20 bg-white/10 rounded" />
+                    <div className="h-4 w-16 bg-[#E8EAED] rounded mb-3" />
+                    <div className="h-7 w-20 bg-[#E8EAED] rounded" />
                   </div>
                 ))}
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-3">
                 {/* Tempo de tela */}
-                <div className="rounded-2xl bg-[#1C1C1E] border border-white/[0.08] p-4">
+                <div className="rounded-2xl bg-[#F8F9FA] border border-[#DADCE0] p-4">
                   <div className="flex items-center gap-1.5 mb-2">
                     <Smartphone
                       className="w-3.5 h-3.5"
@@ -227,7 +227,7 @@ export default function DigitalPage() {
                         ),
                       }}
                     />
-                    <span className="text-[11px] text-white/40">
+                    <span className="text-[11px] text-[#9AA0A6]">
                       Tempo de tela
                     </span>
                   </div>
@@ -245,7 +245,7 @@ export default function DigitalPage() {
                 </div>
 
                 {/* Sessoes */}
-                <div className="rounded-2xl bg-[#1C1C1E] border border-white/[0.08] p-4">
+                <div className="rounded-2xl bg-[#F8F9FA] border border-[#DADCE0] p-4">
                   <div className="flex items-center gap-1.5 mb-2">
                     <Unlock
                       className="w-3.5 h-3.5"
@@ -256,7 +256,7 @@ export default function DigitalPage() {
                         ),
                       }}
                     />
-                    <span className="text-[11px] text-white/40">Sessoes</span>
+                    <span className="text-[11px] text-[#9AA0A6]">Sessoes</span>
                   </div>
                   <span
                     className="font-mono-score text-xl font-bold"
@@ -272,7 +272,7 @@ export default function DigitalPage() {
                 </div>
 
                 {/* Uso noturno */}
-                <div className="rounded-2xl bg-[#1C1C1E] border border-white/[0.08] p-4">
+                <div className="rounded-2xl bg-[#F8F9FA] border border-[#DADCE0] p-4">
                   <div className="flex items-center gap-1.5 mb-2">
                     <Moon
                       className="w-3.5 h-3.5"
@@ -283,7 +283,7 @@ export default function DigitalPage() {
                         ),
                       }}
                     />
-                    <span className="text-[11px] text-white/40">
+                    <span className="text-[11px] text-[#9AA0A6]">
                       Uso noturno
                     </span>
                   </div>
@@ -301,7 +301,7 @@ export default function DigitalPage() {
                 </div>
 
                 {/* Maior sessao */}
-                <div className="rounded-2xl bg-[#1C1C1E] border border-white/[0.08] p-4">
+                <div className="rounded-2xl bg-[#F8F9FA] border border-[#DADCE0] p-4">
                   <div className="flex items-center gap-1.5 mb-2">
                     <Clock
                       className="w-3.5 h-3.5"
@@ -312,7 +312,7 @@ export default function DigitalPage() {
                         ),
                       }}
                     />
-                    <span className="text-[11px] text-white/40">
+                    <span className="text-[11px] text-[#9AA0A6]">
                       Maior sessao
                     </span>
                   </div>
@@ -339,16 +339,16 @@ export default function DigitalPage() {
             initial="hidden"
             animate="visible"
           >
-            <h2 className="text-xs font-semibold text-white/50 mb-3 uppercase tracking-wider">
+            <h2 className="text-xs font-semibold text-[#5F6368] mb-3 uppercase tracking-wider">
               Pontuacao Detalhada
             </h2>
-            <div className="rounded-2xl bg-[#1C1C1E] border border-white/[0.08] p-5">
+            <div className="rounded-2xl bg-[#F8F9FA] border border-[#DADCE0] p-5">
               {loading ? (
                 <div className="flex flex-col gap-4 animate-pulse">
                   {[0, 1, 2, 3, 4].map((i) => (
                     <div key={i}>
-                      <div className="h-3 w-24 bg-white/10 rounded mb-2" />
-                      <div className="h-2.5 w-full bg-white/10 rounded-full" />
+                      <div className="h-3 w-24 bg-[#E8EAED] rounded mb-2" />
+                      <div className="h-2.5 w-full bg-[#E8EAED] rounded-full" />
                     </div>
                   ))}
                 </div>
@@ -360,14 +360,14 @@ export default function DigitalPage() {
                     return (
                       <div key={i}>
                         <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-xs text-white/60">
+                          <span className="text-xs text-[#5F6368]">
                             {item.label}
                           </span>
-                          <span className="text-xs font-mono-score text-white/80">
+                          <span className="text-xs font-mono-score text-[#202124]">
                             {item.pts}/{item.max}
                           </span>
                         </div>
-                        <div className="h-2.5 w-full bg-white/[0.06] rounded-full overflow-hidden">
+                        <div className="h-2.5 w-full bg-[#F1F3F4] rounded-full overflow-hidden">
                           <motion.div
                             initial={{ width: 0 }}
                             animate={{ width: `${pct}%` }}
@@ -396,7 +396,7 @@ export default function DigitalPage() {
             animate="visible"
           >
             <div className="flex items-center gap-2 mb-3">
-              <h2 className="text-xs font-semibold text-white/50 uppercase tracking-wider">
+              <h2 className="text-xs font-semibold text-[#5F6368] uppercase tracking-wider">
                 Tendencia Semanal
               </h2>
               {weeklyTrend && (
@@ -417,8 +417,8 @@ export default function DigitalPage() {
                     </>
                   ) : (
                     <>
-                      <Minus className="w-3.5 h-3.5 text-white/40" />
-                      <span className="text-[11px] text-white/40 font-medium">
+                      <Minus className="w-3.5 h-3.5 text-[#9AA0A6]" />
+                      <span className="text-[11px] text-[#9AA0A6] font-medium">
                         Estavel
                       </span>
                     </>
@@ -427,16 +427,16 @@ export default function DigitalPage() {
               )}
             </div>
 
-            <div className="rounded-2xl bg-[#1C1C1E] border border-white/[0.08] p-5">
+            <div className="rounded-2xl bg-[#F8F9FA] border border-[#DADCE0] p-5">
               {loading ? (
                 <div className="flex items-end justify-between gap-2 h-32 animate-pulse">
                   {[0, 1, 2, 3, 4, 5, 6].map((i) => (
                     <div key={i} className="flex-1 flex flex-col items-center">
                       <div
-                        className="w-full bg-white/10 rounded-t-md"
+                        className="w-full bg-[#E8EAED] rounded-t-md"
                         style={{ height: `${30 + Math.random() * 70}%` }}
                       />
-                      <div className="h-3 w-6 bg-white/10 rounded mt-2" />
+                      <div className="h-3 w-6 bg-[#E8EAED] rounded mt-2" />
                     </div>
                   ))}
                 </div>
@@ -469,14 +469,14 @@ export default function DigitalPage() {
                             style={{
                               backgroundColor: isToday
                                 ? "#0A84FF"
-                                : "rgba(255,255,255,0.10)",
+                                : "#E8EAED",
                             }}
                           />
                           <span
                             className={`text-[10px] mt-2 ${
                               isToday
                                 ? "text-[#0A84FF] font-semibold"
-                                : "text-white/30"
+                                : "text-[#9AA0A6]"
                             }`}
                           >
                             {dayLabel}
@@ -497,10 +497,10 @@ export default function DigitalPage() {
             initial="hidden"
             animate="visible"
           >
-            <div className="rounded-2xl bg-[#1C1C1E] border border-white/[0.08] p-5">
+            <div className="rounded-2xl bg-[#F8F9FA] border border-[#DADCE0] p-5">
               <div className="flex items-center gap-2 mb-4">
                 <Shield className="w-4 h-4 text-[#0A84FF]" />
-                <h3 className="text-sm font-semibold text-white">
+                <h3 className="text-sm font-semibold text-[#202124]">
                   Dicas de Saude Digital
                 </h3>
               </div>
@@ -525,7 +525,7 @@ export default function DigitalPage() {
                 ].map((tip, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <tip.icon className="w-4 h-4 text-[#0A84FF] mt-0.5 flex-shrink-0" />
-                    <p className="text-xs text-white/60">{tip.text}</p>
+                    <p className="text-xs text-[#5F6368]">{tip.text}</p>
                   </div>
                 ))}
               </div>

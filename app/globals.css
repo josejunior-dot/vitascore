@@ -55,55 +55,58 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* VitaScore Custom Colors */
-  --color-vita-blue: #1877F2;
-  --color-vita-blue-dark: #0866FF;
-  --color-vita-bg: #0A0A0A;
-  --color-vita-surface: #1C1C1E;
-  --color-vita-surface2: #2C2C2E;
-  --color-vita-border: #3A3A3C;
-  --color-vita-text: #FFFFFF;
-  --color-vita-text-secondary: rgba(235, 235, 245, 0.6);
-  --color-vita-text-tertiary: rgba(235, 235, 245, 0.3);
-  --color-vita-green: #30D158;
-  --color-vita-amber: #FF9F0A;
-  --color-vita-red: #FF453A;
-  --color-vita-gold: #FFD60A;
+  /* VitaScore — Google Fit Light Theme */
+  --color-vita-blue: #1A73E8;
+  --color-vita-blue-dark: #1967D2;
+  --color-vita-teal: #00897B;
+  --color-vita-accent: #4285F4;
+  --color-vita-bg: #FFFFFF;
+  --color-vita-surface: #FFFFFF;
+  --color-vita-surface2: #F8F9FA;
+  --color-vita-border: #DADCE0;
+  --color-vita-text: #202124;
+  --color-vita-text-secondary: #5F6368;
+  --color-vita-text-tertiary: #9AA0A6;
+  --color-vita-green: #34A853;
+  --color-vita-amber: #FBBC04;
+  --color-vita-red: #EA4335;
+  --color-vita-gold: #FBBC04;
+  --color-vita-ring-outer: #E8F0FE;
 }
 
 :root {
-  --background: #0A0A0A;
-  --foreground: #FFFFFF;
-  --card: #1C1C1E;
-  --card-foreground: #FFFFFF;
-  --popover: #1C1C1E;
-  --popover-foreground: #FFFFFF;
-  --primary: #1877F2;
+  --background: #FFFFFF;
+  --foreground: #202124;
+  --card: #FFFFFF;
+  --card-foreground: #202124;
+  --popover: #FFFFFF;
+  --popover-foreground: #202124;
+  --primary: #1A73E8;
   --primary-foreground: #FFFFFF;
-  --secondary: #2C2C2E;
-  --secondary-foreground: #FFFFFF;
-  --muted: #2C2C2E;
-  --muted-foreground: rgba(235, 235, 245, 0.6);
-  --accent: #2C2C2E;
-  --accent-foreground: #FFFFFF;
-  --destructive: #FF453A;
-  --border: #3A3A3C;
-  --input: #3A3A3C;
-  --ring: #1877F2;
-  --chart-1: #1877F2;
-  --chart-2: #30D158;
-  --chart-3: #FF9F0A;
-  --chart-4: #FF453A;
-  --chart-5: #FFD60A;
+  --secondary: #F8F9FA;
+  --secondary-foreground: #202124;
+  --muted: #F8F9FA;
+  --muted-foreground: #5F6368;
+  --accent: #E8F0FE;
+  --accent-foreground: #1A73E8;
+  --destructive: #EA4335;
+  --border: #DADCE0;
+  --input: #DADCE0;
+  --ring: #1A73E8;
+  --chart-1: #1A73E8;
+  --chart-2: #34A853;
+  --chart-3: #FBBC04;
+  --chart-4: #EA4335;
+  --chart-5: #00897B;
   --radius: 0.75rem;
-  --sidebar: #1C1C1E;
-  --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #1877F2;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #202124;
+  --sidebar-primary: #1A73E8;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #2C2C2E;
-  --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #3A3A3C;
-  --sidebar-ring: #1877F2;
+  --sidebar-accent: #F8F9FA;
+  --sidebar-accent-foreground: #202124;
+  --sidebar-border: #DADCE0;
+  --sidebar-ring: #1A73E8;
 }
 
 @layer base {
@@ -131,23 +134,30 @@
   }
   .glass {
     backdrop-filter: blur(20px);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.80);
+    border: 1px solid rgba(218, 220, 224, 0.5);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   }
   .glow-blue {
-    box-shadow: 0 0 40px rgba(24, 119, 242, 0.3);
+    box-shadow: 0 2px 16px rgba(26, 115, 232, 0.18);
   }
-  .glow-gold {
-    box-shadow: 0 0 30px rgba(255, 214, 10, 0.2);
+  .glow-teal {
+    box-shadow: 0 2px 16px rgba(0, 137, 123, 0.18);
+  }
+  .shadow-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+  .shadow-card-hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
   .gradient-hero {
-    background: linear-gradient(135deg, #1877F2 0%, #0052CC 50%, #003D99 100%);
+    background: linear-gradient(135deg, #E8F0FE 0%, #FFFFFF 50%, #E6F4EA 100%);
   }
   .gradient-green {
-    background: linear-gradient(135deg, #30D158 0%, #25A847 100%);
+    background: linear-gradient(135deg, #34A853 0%, #1E8E3E 100%);
   }
   .gradient-amber {
-    background: linear-gradient(135deg, #FF9F0A 0%, #E08900 100%);
+    background: linear-gradient(135deg, #FBBC04 0%, #F29900 100%);
   }
   .safe-bottom {
     padding-bottom: env(safe-area-inset-bottom, 0px);

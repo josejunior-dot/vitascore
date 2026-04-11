@@ -282,14 +282,14 @@ export default function PesoPage() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="sticky top-0 z-50 backdrop-blur-xl bg-black/70 border-b border-white/[0.06] px-4 py-4"
+          className="sticky top-0 z-50 bg-white shadow-sm border-b border-[#DADCE0] px-4 py-4"
         >
           <div className="flex items-center gap-2">
             <Link href="/home" className="p-1 -ml-1">
-              <ChevronLeft className="w-5 h-5 text-white/70" />
+              <ChevronLeft className="w-5 h-5 text-[#5F6368]" />
             </Link>
-            <h1 className="text-lg font-semibold text-white">Peso</h1>
-            <Scale className="w-4.5 h-4.5 text-white/40 ml-auto" />
+            <h1 className="text-lg font-semibold text-[#202124]">Peso</h1>
+            <Scale className="w-4.5 h-4.5 text-[#9AA0A6] ml-auto" />
           </div>
         </motion.header>
 
@@ -299,22 +299,22 @@ export default function PesoPage() {
             <div className="flex flex-col gap-5">
               <div
                 className="rounded-2xl p-6 animate-pulse"
-                style={{ backgroundColor: "#1C1C1E" }}
+                style={{ backgroundColor: "#FFFFFF" }}
               >
                 <div className="flex flex-col items-center gap-3">
-                  <div className="h-16 w-32 bg-white/10 rounded-xl" />
-                  <div className="h-5 w-24 bg-white/10 rounded-lg" />
-                  <div className="h-3 w-40 bg-white/10 rounded-lg" />
+                  <div className="h-16 w-32 bg-[#F1F3F4] rounded-xl" />
+                  <div className="h-5 w-24 bg-[#F1F3F4] rounded-lg" />
+                  <div className="h-3 w-40 bg-[#F1F3F4] rounded-lg" />
                 </div>
               </div>
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}
                   className="rounded-2xl p-5 animate-pulse"
-                  style={{ backgroundColor: "#1C1C1E" }}
+                  style={{ backgroundColor: "#FFFFFF" }}
                 >
-                  <div className="h-4 w-32 bg-white/10 rounded mb-3" />
-                  <div className="h-24 w-full bg-white/10 rounded" />
+                  <div className="h-4 w-32 bg-[#F1F3F4] rounded mb-3" />
+                  <div className="h-24 w-full bg-[#F1F3F4] rounded" />
                 </div>
               ))}
             </div>
@@ -329,13 +329,13 @@ export default function PesoPage() {
               animate="visible"
               className="flex flex-col items-center justify-center py-20 gap-4"
             >
-              <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
-                <Scale className="w-10 h-10 text-white/20" />
+              <div className="w-20 h-20 rounded-full bg-[#F8F9FA] border border-[#DADCE0] flex items-center justify-center">
+                <Scale className="w-10 h-10 text-[#DADCE0]" />
               </div>
-              <p className="text-base font-semibold text-white/60">
+              <p className="text-base font-semibold text-[#5F6368]">
                 Registre sua primeira pesagem
               </p>
-              <p className="text-xs text-white/30 text-center max-w-[260px]">
+              <p className="text-xs text-[#9AA0A6] text-center max-w-[260px]">
                 Tire uma foto da balanca para ganhar mais pontos ou digite o peso
                 manualmente
               </p>
@@ -349,7 +349,7 @@ export default function PesoPage() {
               variants={sectionVariants}
               initial="hidden"
               animate="visible"
-              className="relative rounded-2xl backdrop-blur-xl bg-white/5 border border-white/[0.08] p-6 overflow-hidden"
+              className="relative rounded-2xl backdrop-blur-xl bg-[#F8F9FA] border border-[#DADCE0] p-6 overflow-hidden"
               style={{
                 boxShadow: `0 0 40px ${getBmiGlow(analysis.currentBmi)}`,
               }}
@@ -364,10 +364,10 @@ export default function PesoPage() {
 
               <div className="relative flex flex-col items-center gap-2">
                 {/* Weight */}
-                <span className="font-mono-score text-5xl font-bold text-white leading-none">
+                <span className="font-mono-score text-5xl font-bold text-[#202124] leading-none">
                   {analysis.currentWeight.toFixed(1)}
                 </span>
-                <span className="text-sm text-white/40">kg</span>
+                <span className="text-sm text-[#9AA0A6]">kg</span>
 
                 {/* BMI pill */}
                 <span
@@ -404,7 +404,7 @@ export default function PesoPage() {
 
                 {/* Trend detail */}
                 {analysis.trendKgPerWeek !== 0 && (
-                  <span className="text-xs text-white/40">
+                  <span className="text-xs text-[#9AA0A6]">
                     {analysis.trendKgPerWeek > 0 ? "+" : ""}
                     {analysis.trendKgPerWeek} kg/semana
                   </span>
@@ -449,11 +449,11 @@ export default function PesoPage() {
               initial="hidden"
               animate="visible"
             >
-              <h2 className="text-xs font-semibold text-white/50 mb-3 uppercase tracking-wider">
+              <h2 className="text-xs font-semibold text-[#5F6368] mb-3 uppercase tracking-wider">
                 Evolucao
               </h2>
 
-              <div className="rounded-2xl bg-[#1C1C1E] border border-white/[0.08] p-5">
+              <div className="rounded-2xl bg-white border border-[#DADCE0] p-5">
                 {/* Chart */}
                 <div className="relative">
                   {/* Target line */}
@@ -461,12 +461,12 @@ export default function PesoPage() {
                     profile.targetWeightKg >= chartMin &&
                     profile.targetWeightKg <= chartMax && (
                       <div
-                        className="absolute left-0 right-0 border-t border-dashed border-white/20 z-10"
+                        className="absolute left-0 right-0 border-t border-dashed border-[#DADCE0] z-10"
                         style={{
                           bottom: `${((profile.targetWeightKg - chartMin) / chartRange) * 100}%`,
                         }}
                       >
-                        <span className="absolute -top-4 right-0 text-[9px] text-white/30 flex items-center gap-0.5">
+                        <span className="absolute -top-4 right-0 text-[9px] text-[#9AA0A6] flex items-center gap-0.5">
                           <Target className="w-2.5 h-2.5" />
                           {profile.targetWeightKg}kg
                         </span>
@@ -507,7 +507,7 @@ export default function PesoPage() {
                             }}
                           />
                           <span
-                            className={`text-[9px] mt-1.5 ${isLast ? "text-white/60 font-semibold" : "text-white/25"}`}
+                            className={`text-[9px] mt-1.5 ${isLast ? "text-[#5F6368] font-semibold" : "text-[#DADCE0]"}`}
                           >
                             {d.date.slice(5).replace("-", "/")}
                           </span>
@@ -528,11 +528,11 @@ export default function PesoPage() {
               initial="hidden"
               animate="visible"
             >
-              <h2 className="text-xs font-semibold text-white/50 mb-3 uppercase tracking-wider">
+              <h2 className="text-xs font-semibold text-[#5F6368] mb-3 uppercase tracking-wider">
                 Indice de Massa Corporal
               </h2>
 
-              <div className="rounded-2xl bg-[#1C1C1E] border border-white/[0.08] p-5">
+              <div className="rounded-2xl bg-white border border-[#DADCE0] p-5">
                 {/* Current BMI large */}
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <span
@@ -541,7 +541,7 @@ export default function PesoPage() {
                   >
                     {analysis.currentBmi}
                   </span>
-                  <span className="text-sm text-white/40">IMC</span>
+                  <span className="text-sm text-[#9AA0A6]">IMC</span>
                 </div>
 
                 {/* Gauge bar */}
@@ -620,7 +620,7 @@ export default function PesoPage() {
               initial="hidden"
               animate="visible"
             >
-              <h2 className="text-xs font-semibold text-white/50 mb-3 uppercase tracking-wider">
+              <h2 className="text-xs font-semibold text-[#5F6368] mb-3 uppercase tracking-wider">
                 Historico
               </h2>
 
@@ -645,10 +645,10 @@ export default function PesoPage() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.06 }}
-                      className="rounded-2xl bg-[#1C1C1E] p-4 flex items-center gap-3"
+                      className="rounded-2xl bg-white p-4 flex items-center gap-3"
                       style={{
                         borderLeft: `3px solid ${isPhoto ? "#30D158" : isManual ? "#FF9F0A" : "#0A84FF"}`,
-                        border: `1px solid rgba(255,255,255,0.08)`,
+                        border: `1px solid #DADCE0`,
                         borderLeftColor: isPhoto
                           ? "#30D158"
                           : isManual
@@ -671,16 +671,16 @@ export default function PesoPage() {
                       {/* Info */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-baseline gap-2">
-                          <span className="font-mono-score text-lg font-bold text-white">
+                          <span className="font-mono-score text-lg font-bold text-[#202124]">
                             {entry.weightKg.toFixed(1)}
                           </span>
-                          <span className="text-xs text-white/30">kg</span>
-                          <span className="text-[10px] text-white/25 ml-auto">
+                          <span className="text-xs text-[#9AA0A6]">kg</span>
+                          <span className="text-[10px] text-[#DADCE0] ml-auto">
                             IMC {entry.bmi}
                           </span>
                         </div>
                         <div className="flex items-center gap-2 mt-0.5">
-                          <span className="text-[11px] text-white/40">
+                          <span className="text-[11px] text-[#9AA0A6]">
                             {dateStr} · {timeStr}
                           </span>
                         </div>
@@ -704,28 +704,28 @@ export default function PesoPage() {
               initial="hidden"
               animate="visible"
             >
-              <h2 className="text-xs font-semibold text-white/50 mb-3 uppercase tracking-wider">
+              <h2 className="text-xs font-semibold text-[#5F6368] mb-3 uppercase tracking-wider">
                 Pesagem Semanal
               </h2>
 
               {scheduleStatus?.scheduled ? (
-                <div className="rounded-2xl bg-[#1C1C1E] border border-white/[0.08] p-4">
+                <div className="rounded-2xl bg-white border border-[#DADCE0] p-4">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-[#1877F2]" />
-                      <span className="text-sm font-medium text-white">
+                      <Calendar className="w-4 h-4 text-[#1A73E8]" />
+                      <span className="text-sm font-medium text-[#202124]">
                         {scheduleStatus.dayLabel}s às {scheduleStatus.timeLabel}
                       </span>
                     </div>
                     <button
                       onClick={() => { setSheetMode("schedule"); setShowSheet(true); }}
-                      className="text-xs text-[#1877F2]"
+                      className="text-xs text-[#1A73E8]"
                     >
                       Editar
                     </button>
                   </div>
 
-                  <div className="flex items-center gap-4 text-xs text-white/50">
+                  <div className="flex items-center gap-4 text-xs text-[#5F6368]">
                     <span className="flex items-center gap-1">
                       <Clock className="w-3 h-3" />
                       Próxima: {scheduleStatus.nextDate}
@@ -739,9 +739,9 @@ export default function PesoPage() {
                   </div>
 
                   {weighDayStatus?.isDay && (
-                    <div className="mt-3 flex items-center gap-2 bg-[#1877F2]/10 border border-[#1877F2]/30 rounded-xl px-3 py-2">
-                      <Bell className="w-4 h-4 text-[#1877F2]" />
-                      <span className="text-xs text-[#1877F2] font-medium">
+                    <div className="mt-3 flex items-center gap-2 bg-[#1A73E8]/10 border border-[#1A73E8]/30 rounded-xl px-3 py-2">
+                      <Bell className="w-4 h-4 text-[#1A73E8]" />
+                      <span className="text-xs text-[#1A73E8] font-medium">
                         {weighDayStatus.status === "overdue" ? "Pesagem atrasada!" : "Hoje é dia de pesar!"}
                       </span>
                     </div>
@@ -750,12 +750,12 @@ export default function PesoPage() {
               ) : (
                 <button
                   onClick={() => { setSheetMode("schedule"); setShowSheet(true); }}
-                  className="w-full rounded-2xl bg-[#1C1C1E] border border-dashed border-white/20 p-4 flex items-center gap-3 transition-colors hover:bg-white/[0.06]"
+                  className="w-full rounded-2xl bg-white border border-dashed border-[#DADCE0] p-4 flex items-center gap-3 transition-colors hover:bg-[#F1F3F4]"
                 >
-                  <Calendar className="w-5 h-5 text-white/30" />
+                  <Calendar className="w-5 h-5 text-[#9AA0A6]" />
                   <div className="text-left">
-                    <p className="text-sm text-white/70">Agendar pesagem semanal</p>
-                    <p className="text-xs text-white/30">Defina dia e horário fixo para pesar</p>
+                    <p className="text-sm text-[#5F6368]">Agendar pesagem semanal</p>
+                    <p className="text-xs text-[#9AA0A6]">Defina dia e horário fixo para pesar</p>
                   </div>
                 </button>
               )}
@@ -790,7 +790,7 @@ export default function PesoPage() {
             <>
               {/* Overlay */}
               <motion.div
-                className="fixed inset-0 bg-black/60 z-[55]"
+                className="fixed inset-0 bg-black/30 z-[55]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -800,32 +800,32 @@ export default function PesoPage() {
               {/* Sheet */}
               <motion.div
                 className="fixed bottom-0 left-0 right-0 z-[60] mx-auto max-w-md max-h-[85vh] overflow-y-auto rounded-t-3xl px-5 pt-6 pb-10"
-                style={{ backgroundColor: "#2C2C2E" }}
+                style={{ backgroundColor: "#F8F9FA" }}
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 exit={{ y: "100%" }}
                 transition={{ type: "spring", damping: 28, stiffness: 300 }}
               >
                 {/* Handle */}
-                <div className="w-10 h-1 rounded-full bg-white/20 mx-auto mb-5" />
+                <div className="w-10 h-1 rounded-full bg-[#DADCE0] mx-auto mb-5" />
 
                 {/* ===== MODE: SETUP ===== */}
                 {sheetMode === "setup" && (
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">
+                    <h3 className="text-lg font-semibold text-[#202124] mb-1">
                       Configurar perfil
                     </h3>
-                    <p className="text-xs text-white/40 mb-5">
+                    <p className="text-xs text-[#9AA0A6] mb-5">
                       Informe sua altura para calcular o IMC corretamente
                     </p>
 
                     {/* Height input */}
                     <div className="mb-4">
-                      <label className="text-xs text-white/50 mb-2 block">
+                      <label className="text-xs text-[#5F6368] mb-2 block">
                         Altura (cm)
                       </label>
-                      <div className="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 px-4 py-3">
-                        <Ruler className="w-4 h-4 text-white/30 flex-shrink-0" />
+                      <div className="flex items-center gap-3 rounded-xl bg-[#F8F9FA] border border-[#DADCE0] px-4 py-3">
+                        <Ruler className="w-4 h-4 text-[#9AA0A6] flex-shrink-0" />
                         <input
                           type="number"
                           value={setupHeight}
@@ -833,19 +833,19 @@ export default function PesoPage() {
                           placeholder="170"
                           min={100}
                           max={250}
-                          className="flex-1 bg-transparent text-white text-sm placeholder:text-white/30 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="flex-1 bg-transparent text-[#202124] text-sm placeholder:text-[#9AA0A6] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
-                        <span className="text-xs text-white/30">cm</span>
+                        <span className="text-xs text-[#9AA0A6]">cm</span>
                       </div>
                     </div>
 
                     {/* Target weight input */}
                     <div className="mb-6">
-                      <label className="text-xs text-white/50 mb-2 block">
+                      <label className="text-xs text-[#5F6368] mb-2 block">
                         Peso meta (opcional)
                       </label>
-                      <div className="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 px-4 py-3">
-                        <Target className="w-4 h-4 text-white/30 flex-shrink-0" />
+                      <div className="flex items-center gap-3 rounded-xl bg-[#F8F9FA] border border-[#DADCE0] px-4 py-3">
+                        <Target className="w-4 h-4 text-[#9AA0A6] flex-shrink-0" />
                         <input
                           type="number"
                           value={setupTarget}
@@ -854,9 +854,9 @@ export default function PesoPage() {
                           min={30}
                           max={300}
                           step={0.1}
-                          className="flex-1 bg-transparent text-white text-sm placeholder:text-white/30 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="flex-1 bg-transparent text-[#202124] text-sm placeholder:text-[#9AA0A6] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
-                        <span className="text-xs text-white/30">kg</span>
+                        <span className="text-xs text-[#9AA0A6]">kg</span>
                       </div>
                     </div>
 
@@ -880,7 +880,7 @@ export default function PesoPage() {
                 {/* ===== MODE: CHOOSE ===== */}
                 {sheetMode === "choose" && (
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-5">
+                    <h3 className="text-lg font-semibold text-[#202124] mb-5">
                       Registrar pesagem
                     </h3>
 
@@ -899,7 +899,7 @@ export default function PesoPage() {
                             <Camera className="w-5 h-5" />
                             <span>Foto da balanca</span>
                           </div>
-                          <span className="text-[11px] text-white/70 font-normal">
+                          <span className="text-[11px] text-[#5F6368] font-normal">
                             Verificacao por OCR · ate 30 pts
                           </span>
                         </div>
@@ -910,8 +910,8 @@ export default function PesoPage() {
                         whileTap={{ scale: 0.97 }}
                         className="w-full py-5 rounded-2xl text-white font-semibold text-sm flex items-center justify-center gap-3"
                         style={{
-                          backgroundColor: "#2C2C2E",
-                          border: "1px solid rgba(255,255,255,0.10)",
+                          backgroundColor: "#F8F9FA",
+                          border: "1px solid #DADCE0",
                         }}
                         onClick={() => setSheetMode("manual")}
                       >
@@ -920,7 +920,7 @@ export default function PesoPage() {
                             <PenLine className="w-5 h-5" />
                             <span>Digitar peso</span>
                           </div>
-                          <span className="text-[11px] text-white/50 font-normal">
+                          <span className="text-[11px] text-[#5F6368] font-normal">
                             Sem verificacao · ate 10 pts
                           </span>
                         </div>
@@ -932,14 +932,14 @@ export default function PesoPage() {
                 {/* ===== MODE: PHOTO ===== */}
                 {sheetMode === "photo" && (
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-4">
+                    <h3 className="text-lg font-semibold text-[#202124] mb-4">
                       Foto da balanca
                     </h3>
 
                     {/* No photo yet */}
                     {!photoBase64 && !readingScale && (
-                      <div className="mb-4 flex flex-col items-center justify-center py-12 rounded-xl bg-white/5 border border-dashed border-white/20">
-                        <Scale className="w-10 h-10 text-white/20 mb-3" />
+                      <div className="mb-4 flex flex-col items-center justify-center py-12 rounded-xl bg-[#F8F9FA] border border-dashed border-[#DADCE0]">
+                        <Scale className="w-10 h-10 text-[#DADCE0] mb-3" />
                         <motion.button
                           whileTap={{ scale: 0.97 }}
                           className="px-6 py-3 rounded-xl bg-[#30D158] text-white text-sm font-semibold"
@@ -962,7 +962,7 @@ export default function PesoPage() {
                           <div className="absolute inset-0 rounded-xl bg-black/50 flex items-center justify-center">
                             <div className="flex flex-col items-center gap-2">
                               <div className="w-8 h-8 border-2 border-green-400 border-t-transparent rounded-full animate-spin" />
-                              <span className="text-sm text-white/80 animate-pulse">
+                              <span className="text-sm text-[#202124] animate-pulse">
                                 Lendo display da balanca...
                               </span>
                             </div>
@@ -983,10 +983,10 @@ export default function PesoPage() {
 
                         {/* Weight read */}
                         <div className="flex items-center justify-center gap-2">
-                          <span className="font-mono-score text-4xl font-bold text-white">
+                          <span className="font-mono-score text-4xl font-bold text-[#202124]">
                             {scaleReading.weightKg.toFixed(1)}
                           </span>
-                          <span className="text-lg text-white/40">kg</span>
+                          <span className="text-lg text-[#9AA0A6]">kg</span>
                         </div>
 
                         {/* Confidence badge */}
@@ -1039,7 +1039,7 @@ export default function PesoPage() {
 
                         {/* Switch to manual */}
                         <button
-                          className="text-sm text-white/50 text-center py-2"
+                          className="text-sm text-[#5F6368] text-center py-2"
                           onClick={() => {
                             setManualWeight(
                               scaleReading.weightKg.toFixed(1),
@@ -1054,7 +1054,7 @@ export default function PesoPage() {
 
                     {/* Back */}
                     <button
-                      className="text-xs text-white/40 text-center w-full mt-4"
+                      className="text-xs text-[#9AA0A6] text-center w-full mt-4"
                       onClick={() => {
                         setPhotoBase64(null);
                         setScaleReading(null);
@@ -1071,17 +1071,17 @@ export default function PesoPage() {
                 {/* ===== MODE: MANUAL ===== */}
                 {sheetMode === "manual" && (
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-4">
+                    <h3 className="text-lg font-semibold text-[#202124] mb-4">
                       Digitar peso
                     </h3>
 
                     {/* Weight input */}
                     <div className="mb-4">
-                      <label className="text-xs text-white/50 mb-2 block">
+                      <label className="text-xs text-[#5F6368] mb-2 block">
                         Peso (kg)
                       </label>
-                      <div className="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 px-4 py-3">
-                        <Scale className="w-4 h-4 text-white/30 flex-shrink-0" />
+                      <div className="flex items-center gap-3 rounded-xl bg-[#F8F9FA] border border-[#DADCE0] px-4 py-3">
+                        <Scale className="w-4 h-4 text-[#9AA0A6] flex-shrink-0" />
                         <input
                           type="number"
                           value={manualWeight}
@@ -1090,9 +1090,9 @@ export default function PesoPage() {
                           min={30}
                           max={300}
                           step={0.1}
-                          className="flex-1 bg-transparent text-white text-lg font-mono-score font-bold placeholder:text-white/30 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="flex-1 bg-transparent text-[#202124] text-lg font-mono-score font-bold placeholder:text-[#9AA0A6] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
-                        <span className="text-xs text-white/30">kg</span>
+                        <span className="text-xs text-[#9AA0A6]">kg</span>
                       </div>
                     </div>
 
@@ -1109,7 +1109,7 @@ export default function PesoPage() {
                     <motion.button
                       whileTap={{ scale: 0.97 }}
                       className="w-full py-4 rounded-2xl text-white font-semibold text-sm disabled:opacity-50"
-                      style={{ backgroundColor: "#3A3A3C" }}
+                      style={{ backgroundColor: "#E8EAED" }}
                       onClick={handleSaveManual}
                       disabled={
                         saving ||
@@ -1123,7 +1123,7 @@ export default function PesoPage() {
 
                     {/* Back */}
                     <button
-                      className="text-xs text-white/40 text-center w-full mt-4"
+                      className="text-xs text-[#9AA0A6] text-center w-full mt-4"
                       onClick={() => {
                         setManualWeight("");
                         setSheetMode("choose");
@@ -1138,15 +1138,15 @@ export default function PesoPage() {
                 {/* ========== SCHEDULE MODE ========== */}
                 {sheetMode === "schedule" && (
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">
+                    <h3 className="text-lg font-semibold text-[#202124] mb-2">
                       Agendar Pesagem Semanal
                     </h3>
-                    <p className="text-xs text-white/40 mb-5">
+                    <p className="text-xs text-[#9AA0A6] mb-5">
                       Pesar sempre no mesmo dia e horário garante dados mais confiáveis. Recomendação: manhã, em jejum.
                     </p>
 
                     {/* Dia da semana */}
-                    <p className="text-xs text-white/50 mb-2 uppercase tracking-wider">Dia da semana</p>
+                    <p className="text-xs text-[#5F6368] mb-2 uppercase tracking-wider">Dia da semana</p>
                     <div className="grid grid-cols-7 gap-1 mb-5">
                       {["D", "S", "T", "Q", "Q", "S", "S"].map((label, idx) => (
                         <button
@@ -1154,8 +1154,8 @@ export default function PesoPage() {
                           onClick={() => setScheduleDay(idx)}
                           className={`py-2.5 rounded-lg text-xs font-medium transition-colors ${
                             scheduleDay === idx
-                              ? "bg-[#1877F2] text-white"
-                              : "bg-white/5 text-white/50 border border-white/[0.08]"
+                              ? "bg-[#1A73E8] text-white"
+                              : "bg-[#F8F9FA] text-[#5F6368] border border-[#DADCE0]"
                           }`}
                         >
                           {label}
@@ -1164,34 +1164,34 @@ export default function PesoPage() {
                     </div>
 
                     {/* Horário */}
-                    <p className="text-xs text-white/50 mb-2 uppercase tracking-wider">Horário</p>
+                    <p className="text-xs text-[#5F6368] mb-2 uppercase tracking-wider">Horário</p>
                     <div className="flex items-center gap-2 mb-5">
                       <select
                         value={scheduleHour}
                         onChange={(e) => setScheduleHour(e.target.value)}
-                        className="flex-1 bg-white/5 border border-white/[0.08] rounded-xl px-4 py-3 text-white text-center text-lg font-mono-score outline-none appearance-none"
+                        className="flex-1 bg-[#F8F9FA] border border-[#DADCE0] rounded-xl px-4 py-3 text-[#202124] text-center text-lg font-mono-score outline-none appearance-none"
                       >
                         {Array.from({ length: 24 }, (_, i) => i.toString().padStart(2, "0")).map((h) => (
-                          <option key={h} value={h} className="bg-[#1C1C1E]">{h}</option>
+                          <option key={h} value={h} className="bg-white">{h}</option>
                         ))}
                       </select>
-                      <span className="text-xl text-white/50 font-bold">:</span>
+                      <span className="text-xl text-[#5F6368] font-bold">:</span>
                       <select
                         value={scheduleMinute}
                         onChange={(e) => setScheduleMinute(e.target.value)}
-                        className="flex-1 bg-white/5 border border-white/[0.08] rounded-xl px-4 py-3 text-white text-center text-lg font-mono-score outline-none appearance-none"
+                        className="flex-1 bg-[#F8F9FA] border border-[#DADCE0] rounded-xl px-4 py-3 text-[#202124] text-center text-lg font-mono-score outline-none appearance-none"
                       >
                         {["00", "15", "30", "45"].map((m) => (
-                          <option key={m} value={m} className="bg-[#1C1C1E]">{m}</option>
+                          <option key={m} value={m} className="bg-white">{m}</option>
                         ))}
                       </select>
                     </div>
 
                     {/* Dica */}
-                    <div className="flex items-start gap-2 bg-[#1877F2]/10 border border-[#1877F2]/20 rounded-xl p-3 mb-5">
-                      <Bell className="w-4 h-4 text-[#1877F2] mt-0.5 flex-shrink-0" />
-                      <p className="text-xs text-white/60">
-                        Você receberá um lembrete <span className="text-white/80 font-medium">1 hora antes</span> do horário configurado.
+                    <div className="flex items-start gap-2 bg-[#1A73E8]/10 border border-[#1A73E8]/20 rounded-xl p-3 mb-5">
+                      <Bell className="w-4 h-4 text-[#1A73E8] mt-0.5 flex-shrink-0" />
+                      <p className="text-xs text-[#5F6368]">
+                        Você receberá um lembrete <span className="text-[#202124] font-medium">1 hora antes</span> do horário configurado.
                       </p>
                     </div>
 
@@ -1209,7 +1209,7 @@ export default function PesoPage() {
                         setShowSheet(false);
                         setSheetMode("choose");
                       }}
-                      className="w-full py-4 rounded-2xl bg-[#1877F2] text-white font-semibold text-base transition-opacity hover:opacity-90"
+                      className="w-full py-4 rounded-2xl bg-[#1A73E8] text-white font-semibold text-base transition-opacity hover:opacity-90"
                     >
                       Agendar pesagem
                     </button>

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
     title: "VitaScore",
   },
 };
@@ -37,7 +37,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#0A0A0A",
+  themeColor: "#FFFFFF",
 };
 
 export default function RootLayout({
@@ -50,7 +50,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${dmSans.variable} ${dmMono.variable} ${outfit.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-vita-bg text-vita-text">
+      <body className="min-h-full bg-white text-[#202124]">
         {children}
       </body>
     </html>

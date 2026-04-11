@@ -156,12 +156,12 @@ export default function NutricaoPage() {
     return (
       <AppShell>
         <div className="flex flex-col min-h-screen pb-24">
-          <header className="sticky top-0 z-50 backdrop-blur-xl bg-black/70 border-b border-white/[0.06] px-4 py-4">
+          <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-[#DADCE0] px-4 py-4">
             <div className="flex items-center justify-between">
               <Link href="/home" className="p-1 -ml-1">
-                <ChevronLeft className="w-6 h-6 text-white/70" />
+                <ChevronLeft className="w-6 h-6 text-[#5F6368]" />
               </Link>
-              <h1 className="text-lg font-semibold text-white flex items-center gap-2">
+              <h1 className="text-lg font-semibold text-[#202124] flex items-center gap-2">
                 <UtensilsCrossed className="w-5 h-5" />
                 Nutricao
               </h1>
@@ -171,14 +171,14 @@ export default function NutricaoPage() {
           <div className="flex flex-col gap-4 px-4 pt-4">
             <div
               className="rounded-2xl p-5 animate-pulse"
-              style={{ backgroundColor: "#1C1C1E" }}
+              style={{ backgroundColor: "#FFFFFF" }}
             >
-              <div className="h-4 w-48 bg-white/10 rounded mb-4" />
+              <div className="h-4 w-48 bg-[#F1F3F4] rounded mb-4" />
               <div className="flex items-center justify-center gap-4">
                 {[1, 2, 3].map((i) => (
                   <div key={i} className="flex flex-col items-center gap-2">
-                    <div className="w-14 h-14 rounded-full bg-white/10" />
-                    <div className="h-3 w-10 bg-white/10 rounded" />
+                    <div className="w-14 h-14 rounded-full bg-[#F1F3F4]" />
+                    <div className="h-3 w-10 bg-[#F1F3F4] rounded" />
                   </div>
                 ))}
               </div>
@@ -187,10 +187,10 @@ export default function NutricaoPage() {
               <div
                 key={i}
                 className="rounded-2xl p-4 animate-pulse"
-                style={{ backgroundColor: "#1C1C1E" }}
+                style={{ backgroundColor: "#FFFFFF" }}
               >
-                <div className="h-4 w-32 bg-white/10 rounded mb-2" />
-                <div className="h-3 w-48 bg-white/10 rounded" />
+                <div className="h-4 w-32 bg-[#F1F3F4] rounded mb-2" />
+                <div className="h-3 w-48 bg-[#F1F3F4] rounded" />
               </div>
             ))}
           </div>
@@ -203,16 +203,16 @@ export default function NutricaoPage() {
     <AppShell>
       <div className="flex flex-col min-h-screen pb-24">
         {/* Header */}
-        <header className="sticky top-0 z-50 backdrop-blur-xl bg-black/70 border-b border-white/[0.06] px-4 py-4">
+        <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-[#DADCE0] px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/home" className="p-1 -ml-1">
-              <ChevronLeft className="w-6 h-6 text-white/70" />
+              <ChevronLeft className="w-6 h-6 text-[#5F6368]" />
             </Link>
-            <h1 className="text-lg font-semibold text-white flex items-center gap-2">
+            <h1 className="text-lg font-semibold text-[#202124] flex items-center gap-2">
               <UtensilsCrossed className="w-5 h-5" />
               Nutricao
             </h1>
-            <span className="text-xs text-white/40 font-medium">
+            <span className="text-xs text-[#9AA0A6] font-medium">
               {totalPoints} / 150 pts
             </span>
           </div>
@@ -227,11 +227,11 @@ export default function NutricaoPage() {
             animate="visible"
             className="rounded-2xl p-5"
             style={{
-              backgroundColor: "#1C1C1E",
-              border: "1px solid rgba(255,255,255,0.08)",
+              backgroundColor: "#FFFFFF",
+              border: "1px solid #DADCE0",
             }}
           >
-            <p className="text-sm text-white/70 mb-4">
+            <p className="text-sm text-[#5F6368] mb-4">
               {currentCount} de {MEAL_GOAL} refeicoes registradas
             </p>
 
@@ -254,7 +254,7 @@ export default function NutricaoPage() {
                           ? "bg-green-500/20 border-2 border-green-500"
                           : isManual
                           ? "bg-blue-500/20 border-2 border-blue-500"
-                          : "border-2 border-dashed border-white/20"
+                          : "border-2 border-dashed border-[#DADCE0]"
                       }`}
                     >
                       {isPhoto ? (
@@ -262,12 +262,12 @@ export default function NutricaoPage() {
                       ) : isManual ? (
                         <CheckCircle2 className="w-6 h-6 text-blue-400" />
                       ) : (
-                        <Icon className="w-6 h-6 text-white/30" />
+                        <Icon className="w-6 h-6 text-[#9AA0A6]" />
                       )}
                     </div>
                     <span
                       className={`text-xs ${
-                        logged ? "text-white/70" : "text-white/40"
+                        logged ? "text-[#5F6368]" : "text-[#9AA0A6]"
                       }`}
                     >
                       {slot.label}
@@ -285,17 +285,17 @@ export default function NutricaoPage() {
             initial="hidden"
             animate="visible"
           >
-            <h2 className="text-base font-semibold text-white mb-3">
+            <h2 className="text-base font-semibold text-[#202124] mb-3">
               Refeicoes de hoje
             </h2>
 
             {meals.length === 0 && (
               <div className="flex flex-col items-center justify-center py-12 gap-3">
-                <Image className="w-10 h-10 text-white/20" />
-                <p className="text-sm text-white/40 text-center">
+                <Image className="w-10 h-10 text-[#DADCE0]" />
+                <p className="text-sm text-[#9AA0A6] text-center">
                   Nenhuma refeicao registrada hoje
                 </p>
-                <p className="text-xs text-white/25 text-center">
+                <p className="text-xs text-[#DADCE0] text-center">
                   Tire uma foto do prato para ganhar mais pontos
                 </p>
               </div>
@@ -318,12 +318,12 @@ export default function NutricaoPage() {
                     key={entry.timestamp + "-" + i}
                     className="rounded-2xl p-4"
                     style={{
-                      backgroundColor: "#1C1C1E",
+                      backgroundColor: "#FFFFFF",
                       border: isPhoto
                         ? "1px solid rgba(48,209,88,0.20)"
                         : isManual
                         ? "1px solid rgba(255,159,10,0.20)"
-                        : "1px solid rgba(255,255,255,0.08)",
+                        : "1px solid #DADCE0",
                     }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -342,11 +342,11 @@ export default function NutricaoPage() {
                       <div className="flex-1 min-w-0">
                         {/* Title + time */}
                         <div className="flex items-center gap-2 mb-1">
-                          <h3 className="text-sm font-semibold text-white">
+                          <h3 className="text-sm font-semibold text-[#202124]">
                             {label}
                           </h3>
                           {time && (
-                            <span className="text-xs text-white/40">
+                            <span className="text-xs text-[#9AA0A6]">
                               {time}
                             </span>
                           )}
@@ -355,7 +355,7 @@ export default function NutricaoPage() {
                         {/* Photo verified content */}
                         {isPhoto && entry.analysis && (
                           <>
-                            <p className="text-xs text-white/60 mb-2 line-clamp-2">
+                            <p className="text-xs text-[#5F6368] mb-2 line-clamp-2">
                               {entry.analysis.description}
                             </p>
 
@@ -392,13 +392,13 @@ export default function NutricaoPage() {
                               ].map((item) => (
                                 <span
                                   key={item.label}
-                                  className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-white/50"
+                                  className="text-[10px] px-2 py-0.5 rounded-full bg-[#F8F9FA] text-[#5F6368]"
                                 >
                                   {item.label}{" "}
                                   {item.present ? (
                                     <CheckCircle2 className="w-2.5 h-2.5 inline text-green-400" />
                                   ) : (
-                                    <AlertTriangle className="w-2.5 h-2.5 inline text-white/20" />
+                                    <AlertTriangle className="w-2.5 h-2.5 inline text-[#DADCE0]" />
                                   )}
                                 </span>
                               ))}
@@ -409,7 +409,7 @@ export default function NutricaoPage() {
                         {/* Manual content */}
                         {isManual && (
                           <>
-                            <p className="text-xs text-white/60 mb-2">
+                            <p className="text-xs text-[#5F6368] mb-2">
                               {entry.manualDescription}
                             </p>
                             <span className="flex items-center gap-1 text-[11px] text-amber-400">
@@ -455,7 +455,7 @@ export default function NutricaoPage() {
           {showSheet && (
             <>
               <motion.div
-                className="fixed inset-0 bg-black/60 z-[55]"
+                className="fixed inset-0 bg-black/30 z-[55]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -463,25 +463,25 @@ export default function NutricaoPage() {
               />
               <motion.div
                 className="fixed bottom-0 left-0 right-0 z-[60] mx-auto max-w-md max-h-[85vh] overflow-y-auto rounded-t-3xl px-5 pt-6 pb-10"
-                style={{ backgroundColor: "#2C2C2E" }}
+                style={{ backgroundColor: "#F8F9FA" }}
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 exit={{ y: "100%" }}
                 transition={{ type: "spring", damping: 28, stiffness: 300 }}
               >
                 {/* Handle */}
-                <div className="w-10 h-1 rounded-full bg-white/20 mx-auto mb-5" />
+                <div className="w-10 h-1 rounded-full bg-[#DADCE0] mx-auto mb-5" />
 
                 {/* ===== MODE: CHOOSE ===== */}
                 {mode === "choose" && (
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-4">
+                    <h3 className="text-lg font-semibold text-[#202124] mb-4">
                       Registrar Refeicao
                     </h3>
 
                     {/* Meal type selector */}
                     <div className="mb-5">
-                      <label className="text-xs text-white/50 mb-2 block">
+                      <label className="text-xs text-[#5F6368] mb-2 block">
                         Tipo de refeicao
                       </label>
                       <div className="grid grid-cols-4 gap-2">
@@ -516,7 +516,7 @@ export default function NutricaoPage() {
                               className={`flex flex-col items-center gap-1.5 rounded-xl py-3 text-xs font-medium transition-colors ${
                                 selectedType === m.key
                                   ? "bg-green-500/20 text-green-400 border border-green-500/40"
-                                  : "bg-white/5 text-white/60 border border-transparent"
+                                  : "bg-[#F8F9FA] text-[#5F6368] border border-transparent"
                               }`}
                               onClick={() => setSelectedType(m.key)}
                             >
@@ -543,7 +543,7 @@ export default function NutricaoPage() {
                             <Camera className="w-5 h-5" />
                             <span>Tirar foto do prato</span>
                           </div>
-                          <span className="text-[11px] text-white/70 font-normal">
+                          <span className="text-[11px] text-[#5F6368] font-normal">
                             Verificacao por IA · ate 35 pts
                           </span>
                         </div>
@@ -552,7 +552,7 @@ export default function NutricaoPage() {
                       <motion.button
                         whileTap={{ scale: 0.97 }}
                         className="w-full py-4 rounded-2xl text-white font-semibold text-sm flex items-center justify-center gap-3"
-                        style={{ backgroundColor: "#2C2C2E", border: "1px solid rgba(255,255,255,0.10)" }}
+                        style={{ backgroundColor: "#F8F9FA", border: "1px solid #DADCE0" }}
                         onClick={() => setMode("manual")}
                       >
                         <div className="flex flex-col items-center gap-1">
@@ -560,7 +560,7 @@ export default function NutricaoPage() {
                             <PenLine className="w-5 h-5" />
                             <span>Registro manual</span>
                           </div>
-                          <span className="text-[11px] text-white/50 font-normal">
+                          <span className="text-[11px] text-[#5F6368] font-normal">
                             Sem verificacao · ate 10 pts
                           </span>
                         </div>
@@ -572,7 +572,7 @@ export default function NutricaoPage() {
                 {/* ===== MODE: PHOTO ===== */}
                 {mode === "photo" && (
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-4">
+                    <h3 className="text-lg font-semibold text-[#202124] mb-4">
                       Verificacao por foto
                     </h3>
 
@@ -588,7 +588,7 @@ export default function NutricaoPage() {
                           <div className="absolute inset-0 rounded-xl bg-black/50 flex items-center justify-center">
                             <div className="flex flex-col items-center gap-2">
                               <div className="w-8 h-8 border-2 border-green-400 border-t-transparent rounded-full animate-spin" />
-                              <span className="text-sm text-white/80">
+                              <span className="text-sm text-[#202124]">
                                 Analisando refeicao...
                               </span>
                             </div>
@@ -596,8 +596,8 @@ export default function NutricaoPage() {
                         )}
                       </div>
                     ) : (
-                      <div className="mb-4 flex flex-col items-center justify-center py-12 rounded-xl bg-white/5 border border-dashed border-white/20">
-                        <Camera className="w-10 h-10 text-white/20 mb-3" />
+                      <div className="mb-4 flex flex-col items-center justify-center py-12 rounded-xl bg-[#F8F9FA] border border-dashed border-[#DADCE0]">
+                        <Camera className="w-10 h-10 text-[#DADCE0] mb-3" />
                         <motion.button
                           whileTap={{ scale: 0.97 }}
                           className="px-6 py-3 rounded-xl bg-[#30D158] text-white text-sm font-semibold"
@@ -619,11 +619,11 @@ export default function NutricaoPage() {
                           >
                             {analysis.mealScore}
                           </span>
-                          <span className="text-lg text-white/40">/100</span>
+                          <span className="text-lg text-[#9AA0A6]">/100</span>
                         </div>
 
                         {/* Description */}
-                        <p className="text-sm text-white/70 text-center">
+                        <p className="text-sm text-[#5F6368] text-center">
                           {analysis.description}
                         </p>
 
@@ -639,14 +639,14 @@ export default function NutricaoPage() {
                           ].map((item) => (
                             <div
                               key={item.label}
-                              className="flex items-center gap-2 rounded-xl bg-white/5 px-3 py-2"
+                              className="flex items-center gap-2 rounded-xl bg-[#F8F9FA] px-3 py-2"
                             >
                               {item.present ? (
                                 <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0" />
                               ) : (
                                 <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0" />
                               )}
-                              <span className="text-xs text-white/60">
+                              <span className="text-xs text-[#5F6368]">
                                 {item.label}
                               </span>
                             </div>
@@ -667,7 +667,7 @@ export default function NutricaoPage() {
 
                         {/* Retake button */}
                         <button
-                          className="text-sm text-white/50 text-center py-2"
+                          className="text-sm text-[#5F6368] text-center py-2"
                           onClick={() => {
                             setPhotoBase64(null);
                             setAnalysis(null);
@@ -681,7 +681,7 @@ export default function NutricaoPage() {
 
                     {/* Back button */}
                     <button
-                      className="text-xs text-white/40 text-center w-full mt-4"
+                      className="text-xs text-[#9AA0A6] text-center w-full mt-4"
                       onClick={() => {
                         setPhotoBase64(null);
                         setAnalysis(null);
@@ -698,20 +698,20 @@ export default function NutricaoPage() {
                 {/* ===== MODE: MANUAL ===== */}
                 {mode === "manual" && (
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-4">
+                    <h3 className="text-lg font-semibold text-[#202124] mb-4">
                       Registro manual
                     </h3>
 
                     {/* Meal type label */}
                     <div className="mb-3">
-                      <span className="text-xs text-white/50">
+                      <span className="text-xs text-[#5F6368]">
                         {mealTypeLabels[selectedType]}
                       </span>
                     </div>
 
                     {/* Textarea */}
                     <div className="mb-4">
-                      <label className="text-xs text-white/50 mb-2 block">
+                      <label className="text-xs text-[#5F6368] mb-2 block">
                         O que voce comeu?
                       </label>
                       <textarea
@@ -719,7 +719,7 @@ export default function NutricaoPage() {
                         onChange={(e) => setManualDescription(e.target.value)}
                         placeholder="Ex: Salada com frango grelhado, arroz integral e legumes"
                         rows={3}
-                        className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/20 resize-none"
+                        className="w-full rounded-xl bg-[#F8F9FA] border border-[#DADCE0] px-4 py-3 text-sm text-[#202124] placeholder:text-[#9AA0A6] focus:outline-none focus:border-[#DADCE0] resize-none"
                       />
                     </div>
 
@@ -736,7 +736,7 @@ export default function NutricaoPage() {
                     <motion.button
                       whileTap={{ scale: 0.97 }}
                       className="w-full py-4 rounded-2xl text-white font-semibold text-sm disabled:opacity-50"
-                      style={{ backgroundColor: "#3A3A3C" }}
+                      style={{ backgroundColor: "#E8EAED" }}
                       onClick={handleSaveManual}
                       disabled={!manualDescription.trim() || registering}
                     >
@@ -745,7 +745,7 @@ export default function NutricaoPage() {
 
                     {/* Back button */}
                     <button
-                      className="text-xs text-white/40 text-center w-full mt-4"
+                      className="text-xs text-[#9AA0A6] text-center w-full mt-4"
                       onClick={() => {
                         setManualDescription("");
                         setMode("choose");

@@ -23,22 +23,22 @@ export default function DesafiosPage() {
     <AppShell>
       <div className="flex flex-col min-h-screen pb-24">
         {/* Header */}
-        <header className="sticky top-0 z-50 backdrop-blur-xl bg-black/70 border-b border-white/[0.06] px-4 py-4">
+        <header className="sticky top-0 z-50 backdrop-blur-xl bg-white shadow-sm border-b border-[#DADCE0] px-4 py-4">
           <div className="flex items-center justify-center gap-2">
             <Trophy className="w-5 h-5 text-yellow-400" />
-            <h1 className="text-lg font-semibold text-white">Desafios</h1>
+            <h1 className="text-lg font-semibold text-[#202124]">Desafios</h1>
           </div>
         </header>
 
         <div className="flex flex-col gap-4 px-4 pt-4">
           {/* Tab bar */}
-          <div className="flex rounded-xl bg-white/[0.05] p-1">
+          <div className="flex rounded-xl bg-[#F8F9FA] p-1">
             {tabs.map((tab) => (
               <button
                 key={tab.key}
                 className="relative flex-1 py-2 text-sm font-medium text-center transition-colors"
                 style={{
-                  color: activeTab === tab.key ? "#fff" : "rgba(255,255,255,0.5)",
+                  color: activeTab === tab.key ? "#202124" : "#5F6368",
                 }}
                 onClick={() => setActiveTab(tab.key)}
               >
@@ -121,7 +121,7 @@ export default function DesafiosPage() {
 
           {/* Conquistas Section */}
           <section className="mt-4">
-            <h2 className="text-base font-semibold text-white mb-3">Conquistas</h2>
+            <h2 className="text-base font-semibold text-[#202124] mb-3">Conquistas</h2>
             <div className="grid grid-cols-4 gap-3">
               {mockAchievements.map((achievement) => (
                 <motion.div
@@ -134,8 +134,8 @@ export default function DesafiosPage() {
                   <div
                     className={`relative w-14 h-14 rounded-2xl flex items-center justify-center ${
                       achievement.unlocked
-                        ? "bg-white/10"
-                        : "bg-white/[0.04] opacity-40 grayscale"
+                        ? "bg-[#E8EAED]"
+                        : "bg-[#F8F9FA] opacity-40 grayscale"
                     }`}
                   >
                     <span className={`text-2xl ${achievement.unlocked ? "" : "opacity-50"}`}>
@@ -143,13 +143,13 @@ export default function DesafiosPage() {
                     </span>
                     {!achievement.unlocked && (
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <Lock className="w-4 h-4 text-white/40" />
+                        <Lock className="w-4 h-4 text-[#9AA0A6]" />
                       </div>
                     )}
                   </div>
                   <span
                     className={`text-[10px] text-center leading-tight ${
-                      achievement.unlocked ? "text-white/70" : "text-white/30"
+                      achievement.unlocked ? "text-[#5F6368]" : "text-[#9AA0A6]"
                     }`}
                   >
                     {achievement.name}

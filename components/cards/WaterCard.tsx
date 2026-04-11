@@ -21,7 +21,7 @@ function MiniRing({ progress }: { progress: number }) {
         cy="22"
         r={radius}
         fill="none"
-        stroke="rgba(255,255,255,0.08)"
+        stroke="#E8F5FD"
         strokeWidth="4"
       />
       <motion.circle
@@ -29,7 +29,7 @@ function MiniRing({ progress }: { progress: number }) {
         cy="22"
         r={radius}
         fill="none"
-        stroke="#64D2FF"
+        stroke="#1A73E8"
         strokeWidth="4"
         strokeLinecap="round"
         strokeDasharray={circumference}
@@ -43,7 +43,7 @@ function MiniRing({ progress }: { progress: number }) {
         y="23"
         textAnchor="middle"
         dominantBaseline="middle"
-        fill="white"
+        fill="#202124"
         fontSize="10"
         fontWeight="600"
       >
@@ -66,30 +66,31 @@ export default function WaterCard({ current, goal }: WaterCardProps) {
         whileTap={{ scale: 0.98 }}
         className="cursor-pointer rounded-2xl p-4"
         style={{
-          background: "#1C1C1E",
-          border: "1px solid rgba(255,255,255,0.08)",
+          background: "#FFFFFF",
+          border: "1px solid #DADCE0",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
         }}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
               className="flex h-9 w-9 items-center justify-center rounded-xl"
-              style={{ background: "rgba(100,210,255,0.15)" }}
+              style={{ background: "rgba(26,115,232,0.1)" }}
             >
-              <Droplets size={18} color="#64D2FF" />
+              <Droplets size={18} color="#1A73E8" />
             </div>
             <div>
               <p
                 className="text-xs font-medium"
-                style={{ color: "rgba(235,235,245,0.6)" }}
+                style={{ color: "#5F6368" }}
               >
                 Agua
               </p>
-              <p className="text-base font-semibold text-white">
+              <p className="text-base font-semibold" style={{ color: "#202124" }}>
                 {current.toFixed(1)}L{" "}
                 <span
                   className="text-xs font-normal"
-                  style={{ color: "rgba(235,235,245,0.6)" }}
+                  style={{ color: "#5F6368" }}
                 >
                   / {goal.toFixed(1)}L
                 </span>

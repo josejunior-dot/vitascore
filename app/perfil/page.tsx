@@ -85,8 +85,8 @@ export default function PerfilPage() {
           </div>
 
           {/* Name + age */}
-          <h1 className="text-xl font-bold text-white">{u?.name ?? ""}</h1>
-          <p className="text-sm text-white/50 mt-0.5">{u?.age ?? 0} anos</p>
+          <h1 className="text-xl font-bold text-[#202124]">{u?.name ?? ""}</h1>
+          <p className="text-sm text-[#5F6368] mt-0.5">{u?.age ?? 0} anos</p>
 
           {/* Score Badge */}
           <div className="mt-3">
@@ -94,8 +94,8 @@ export default function PerfilPage() {
           </div>
 
           {/* Total score */}
-          <p className="text-sm text-white/60 mt-2">
-            <span className="font-semibold text-white">{u?.score ?? 0}</span> pontos
+          <p className="text-sm text-[#5F6368] mt-2">
+            <span className="font-semibold text-[#202124]">{u?.score ?? 0}</span> pontos
           </p>
         </motion.section>
 
@@ -130,14 +130,14 @@ export default function PerfilPage() {
               <div
                 key={i}
                 className="flex flex-col items-center rounded-2xl py-4 px-2"
-                style={{ backgroundColor: "#1C1C1E" }}
+                style={{ backgroundColor: "#F8F9FA" }}
               >
                 <span className="text-lg mb-1">{stat.emoji}</span>
-                <span className="text-xl font-bold text-white">{stat.value}</span>
-                <span className="text-[10px] text-white/40 mt-0.5">
+                <span className="text-xl font-bold text-[#202124]">{stat.value}</span>
+                <span className="text-[10px] text-[#9AA0A6] mt-0.5">
                   {stat.unit}
                 </span>
-                <span className="text-[10px] text-white/50 mt-0.5">{stat.label}</span>
+                <span className="text-[10px] text-[#5F6368] mt-0.5">{stat.label}</span>
               </div>
             ))}
           </motion.div>
@@ -145,7 +145,7 @@ export default function PerfilPage() {
           {/* Settings List */}
           <motion.div
             className="rounded-2xl overflow-hidden"
-            style={{ backgroundColor: "#1C1C1E" }}
+            style={{ backgroundColor: "#F8F9FA" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -157,14 +157,14 @@ export default function PerfilPage() {
               return (
                 <button
                   key={i}
-                  className={`w-full flex items-center gap-3 py-4 px-4 text-left transition-colors hover:bg-white/[0.03] ${
-                    !isLast ? "border-b border-white/[0.08]" : ""
+                  className={`w-full flex items-center gap-3 py-4 px-4 text-left transition-colors hover:bg-[#F8F9FA] ${
+                    !isLast ? "border-b border-[#DADCE0]" : ""
                   }`}
                 >
                   <Icon
                     className="w-5 h-5 flex-shrink-0"
                     style={{
-                      color: item.danger ? "#FF453A" : "rgba(255,255,255,0.5)",
+                      color: item.danger ? "#FF453A" : "#5F6368",
                     }}
                   />
                   <div className="flex-1 min-w-0">
@@ -172,19 +172,19 @@ export default function PerfilPage() {
                       className={`text-sm ${
                         item.danger
                           ? "text-red-500 font-medium"
-                          : "text-white/90"
+                          : "text-[#202124]"
                       }`}
                     >
                       {item.label}
                     </span>
                     {item.subtitle && (
-                      <span className="text-xs text-white/40 ml-1">
+                      <span className="text-xs text-[#9AA0A6] ml-1">
                         {item.subtitle}
                       </span>
                     )}
                   </div>
                   {!item.danger && (
-                    <ChevronRight className="w-4 h-4 text-white/20 flex-shrink-0" />
+                    <ChevronRight className="w-4 h-4 text-[#DADCE0] flex-shrink-0" />
                   )}
                 </button>
               );

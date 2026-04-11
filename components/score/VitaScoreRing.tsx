@@ -52,9 +52,8 @@ export function VitaScoreRing({
     return unsubscribe;
   }, [displayScore]);
 
-  // Gradient: blue at 0% → green at 100%
+  // Gradient: Google blue → teal
   const gradientId = `vitascore-gradient-${size}`;
-  const isHigh = clampedScore > 700;
 
   return (
     <div
@@ -62,11 +61,7 @@ export function VitaScoreRing({
       style={{
         width: size,
         height: size,
-        ...(isHigh
-          ? {
-              filter: "drop-shadow(0 0 40px rgba(24,119,242,0.3))",
-            }
-          : {}),
+        filter: "drop-shadow(0 2px 8px rgba(26,115,232,0.15))",
       }}
     >
       <svg
@@ -77,8 +72,8 @@ export function VitaScoreRing({
       >
         <defs>
           <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#1877F2" />
-            <stop offset="100%" stopColor="#30D158" />
+            <stop offset="0%" stopColor="#1A73E8" />
+            <stop offset="100%" stopColor="#00897B" />
           </linearGradient>
         </defs>
 
@@ -88,7 +83,7 @@ export function VitaScoreRing({
           cy={center}
           r={radius}
           fill="none"
-          stroke="#2C2C2E"
+          stroke="#E8F0FE"
           strokeWidth={strokeWidth}
         />
 
@@ -111,13 +106,13 @@ export function VitaScoreRing({
         <span
           ref={counterRef}
           className="font-mono-score leading-none"
-          style={{ fontSize: size * 0.22 }}
+          style={{ fontSize: size * 0.22, color: "#202124" }}
         >
           {animated ? "0" : clampedScore}
         </span>
         <span
-          className="text-muted-foreground font-mono-score"
-          style={{ fontSize: size * 0.08 }}
+          className="font-mono-score"
+          style={{ fontSize: size * 0.08, color: "#5F6368" }}
         >
           /1000
         </span>

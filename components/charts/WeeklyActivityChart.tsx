@@ -23,9 +23,9 @@ interface WeeklyActivityChartProps {
 function CustomTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="rounded-lg border border-white/10 bg-[#1C1C1E] px-3 py-2 shadow-lg">
-      <p className="text-xs font-medium text-white">{label}</p>
-      <p className="text-sm text-[#1877F2]">
+    <div className="rounded-lg border border-[#DADCE0] bg-white border-[#DADCE0] px-3 py-2 shadow-lg">
+      <p className="text-xs font-medium text-[#202124]">{label}</p>
+      <p className="text-sm text-[#1A73E8]">
         {payload[0].value.toLocaleString()} passos
       </p>
     </div>
@@ -40,14 +40,14 @@ export default function WeeklyActivityChart({ data }: WeeklyActivityChartProps) 
           dataKey="day"
           axisLine={false}
           tickLine={false}
-          tick={{ fill: "#ffffff", fontSize: 12 }}
+          tick={{ fill: "#202124", fontSize: 12 }}
         />
         <YAxis
           axisLine={false}
           tickLine={false}
-          tick={{ fill: "#ffffff99", fontSize: 10 }}
+          tick={{ fill: "#5F6368", fontSize: 10 }}
         />
-        <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(255,255,255,0.05)" }} />
+        <Tooltip content={<CustomTooltip />} cursor={{ fill: "#F8F9FA" }} />
         <ReferenceLine
           y={10000}
           stroke="#FF9F0A"
@@ -62,7 +62,7 @@ export default function WeeklyActivityChart({ data }: WeeklyActivityChartProps) 
         />
         <Bar
           dataKey="steps"
-          fill="#1877F2"
+          fill="#1A73E8"
           radius={[4, 4, 0, 0]}
           maxBarSize={32}
         />

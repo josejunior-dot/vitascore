@@ -2,18 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Bell } from "lucide-react";
+import { Info, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 import AppShell from "@/components/layout/AppShell";
-import { VitaScoreRing } from "@/components/score/VitaScoreRing";
-import { ScoreBadge } from "@/components/score/ScoreBadge";
-import StreakBadge from "@/components/gamification/StreakBadge";
-import ActivityCard from "@/components/cards/ActivityCard";
-import SleepCard from "@/components/cards/SleepCard";
-import NutritionCard from "@/components/cards/NutritionCard";
-import WaterCard from "@/components/cards/WaterCard";
-import InsuranceDiscountCard from "@/components/cards/InsuranceDiscountCard";
 import ChallengeCard from "@/components/gamification/ChallengeCard";
 
 import {
@@ -21,9 +13,7 @@ import {
   mockChallenges,
   mockRecentActivity,
   mockRanking,
-  mockNotifications,
 } from "@/lib/mock-data";
-import { getDayProgress } from "@/lib/vitascore";
 import { useHealthData } from "@/hooks/useHealthData";
 import { getUserProfile, type UserProfile } from "@/lib/user-profile";
 
@@ -37,11 +27,156 @@ const sectionVariants: any = {
   }),
 };
 
-const todayFormatted = new Date().toLocaleDateString("pt-BR", {
-  weekday: "long",
-  day: "numeric",
-  month: "long",
-});
+/* ── SVG Dual Ring (Google Fit style) ── */
+function DualRing({
+  outerValue,
+  outerMax,
+  innerValue,
+  innerMax,
+}: {
+  outerValue: number;
+  outerMax: number;
+  innerValue: number;
+  innerMax: number;
+}) {
+  const size = 220;
+  const cx = size / 2;
+  const cy = size / 2;
+
+  // Outer ring
+  const outerR = 95;
+  const outerStroke = 14;
+  const outerCircumference = 2 * Math.PI * outerR;
+  const outerPct = Math.min(outerValue / outerMax, 1);
+  const outerOffset = outerCircumference * (1 - outerPct);
+
+  // Inner ring
+  const innerR = 72;
+  const innerStroke = 14;
+  const innerCircumference = 2 * Math.PI * innerR;
+  const innerPct = Math.min(innerValue / innerMax, 1);
+  const innerOffset = innerCircumference * (1 - innerPct);
+
+  return (
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+      {/* Outer track */}
+      <circle
+        cx={cx}
+        cy={cy}
+        r={outerR}
+        fill="none"
+        stroke="#E8F0FE"
+        strokeWidth={outerStroke}
+        strokeLinecap="round"
+      />
+      {/* Outer fill */}
+      <motion.circle
+        cx={cx}
+        cy={cy}
+        r={outerR}
+        fill="none"
+        stroke="#1A73E8"
+        strokeWidth={outerStroke}
+        strokeLinecap="round"
+        strokeDasharray={outerCircumference}
+        initial={{ strokeDashoffset: outerCircumference }}
+        animate={{ strokeDashoffset: outerOffset }}
+        transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
+        transform={`rotate(-90 ${cx} ${cy})`}
+      />
+      {/* Inner track */}
+      <circle
+        cx={cx}
+        cy={cy}
+        r={innerR}
+        fill="none"
+        stroke="#E0F2F1"
+        strokeWidth={innerStroke}
+        strokeLinecap="round"
+      />
+      {/* Inner fill */}
+      <motion.circle
+        cx={cx}
+        cy={cy}
+        r={innerR}
+        fill="none"
+        stroke="#00897B"
+        strokeWidth={innerStroke}
+        strokeLinecap="round"
+        strokeDasharray={innerCircumference}
+        initial={{ strokeDashoffset: innerCircumference }}
+        animate={{ strokeDashoffset: innerOffset }}
+        transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
+        transform={`rotate(-90 ${cx} ${cy})`}
+      />
+      {/* Center text */}
+      <text
+        x={cx}
+        y={cy - 6}
+        textAnchor="middle"
+        dominantBaseline="central"
+        fill="#00897B"
+        fontSize="36"
+        fontWeight="700"
+        fontFamily="system-ui, sans-serif"
+      >
+        {innerValue.toLocaleString("pt-BR")}
+      </text>
+      <text
+        x={cx}
+        y={cy + 22}
+        textAnchor="middle"
+        dominantBaseline="central"
+        fill="#5F6368"
+        fontSize="13"
+        fontFamily="system-ui, sans-serif"
+      >
+        passos
+      </text>
+    </svg>
+  );
+}
+
+/* ── Goal bar ── */
+function GoalBar({
+  label,
+  icon,
+  current,
+  goal,
+  unit,
+  color,
+}: {
+  label: string;
+  icon: string;
+  current: number;
+  goal: number;
+  unit: string;
+  color: string;
+}) {
+  const pct = Math.min((current / goal) * 100, 100);
+  return (
+    <div className="flex items-center gap-3">
+      <span className="text-lg w-6 text-center">{icon}</span>
+      <div className="flex-1">
+        <div className="flex items-baseline justify-between mb-1">
+          <span className="text-sm text-[#202124] font-medium">{label}</span>
+          <span className="text-xs text-[#5F6368]">
+            {current}{unit} / {goal}{unit}
+          </span>
+        </div>
+        <div className="h-2 bg-[#F1F3F4] rounded-full overflow-hidden">
+          <motion.div
+            className="h-full rounded-full"
+            style={{ backgroundColor: color }}
+            initial={{ width: 0 }}
+            animate={{ width: `${pct}%` }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function HomePage() {
   const { summary, loading, water, meals, source } = useHealthData();
@@ -51,11 +186,8 @@ export default function HomePage() {
     getUserProfile().then(setUser);
   }, []);
 
-  const dayProgress = getDayProgress(mockTodayStats);
   const activeChallenge = mockChallenges.active[0];
-  const userScore = user?.score ?? 0;
-  const userStatus = user?.status ?? "bronze";
-  const userStreak = user?.streak ?? 0;
+  const userScore = user?.score ?? 742;
 
   // Real data with mock fallbacks
   const stepsData = {
@@ -84,212 +216,237 @@ export default function HomePage() {
     goal: 3,
   };
 
+  const userName = user?.name ?? "Carlos";
+  const firstLetter = userName.charAt(0).toUpperCase();
+
+  // Estimate calories & active minutes from steps
+  const estimatedCal = Math.round(stepsData.steps * 0.04);
+  const estimatedMin = Math.round(stepsData.steps / 130);
+
   return (
     <AppShell>
-      <div className="flex flex-col min-h-screen pb-24">
-        {/* Header sticky */}
-        <header className="sticky top-0 z-50 backdrop-blur-xl bg-black/70 border-b border-white/[0.06] px-4 pt-4 pb-2">
-          <div className="flex items-center justify-between mb-2">
-            <h1 className="font-display text-xl font-bold text-white">
-              VitaScore
-            </h1>
-            <Link href="/notificacoes" className="relative p-2">
-              <Bell className="w-5 h-5 text-white/70" />
-              {mockNotifications > 0 && (
-                <span className="absolute top-1 right-1 flex items-center justify-center w-4 h-4 text-[10px] font-bold text-white bg-red-500 rounded-full">
-                  {mockNotifications}
-                </span>
-              )}
+      <div className="flex flex-col min-h-screen pb-24 bg-white">
+        {/* ── Header (clean, minimal) ── */}
+        <header className="sticky top-0 z-50 bg-white px-4 pt-4 pb-3 flex items-center justify-between">
+          <div />
+          <div className="flex items-center gap-3">
+            {!loading && source && source !== "loading" && (
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium bg-[#E8F0FE] text-[#1A73E8]">
+                {source}
+              </span>
+            )}
+            <Link href="/perfil" className="p-1 text-[#5F6368]">
+              <Info className="w-5 h-5" />
+            </Link>
+            <Link
+              href="/perfil"
+              className="w-9 h-9 rounded-full bg-[#1A73E8] flex items-center justify-center"
+            >
+              <span className="text-white text-sm font-semibold">{firstLetter}</span>
             </Link>
           </div>
-          {/* Day progress bar */}
-          <div className="w-full h-1 bg-white/[0.08] rounded-full overflow-hidden">
-            <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400"
-              initial={{ width: 0 }}
-              animate={{ width: `${dayProgress}%` }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-            />
-          </div>
-          <p className="text-[11px] text-white/40 mt-1 text-right">
-            {dayProgress}% do dia concluído
-          </p>
         </header>
 
-        <div className="flex flex-col gap-6 px-4 pt-6">
-          {/* Hero — VitaScore Principal */}
+        <div className="flex flex-col gap-6 px-4 pt-2">
+          {/* ── Hero — Dual Ring (Google Fit style) ── */}
           <motion.section
             custom={0}
             variants={sectionVariants}
             initial="hidden"
             animate="visible"
-            className="relative rounded-2xl backdrop-blur-xl bg-white/5 border border-white/[0.08] p-6 overflow-hidden"
-            style={{
-              boxShadow: "0 0 40px rgba(24,119,242,0.15), 0 0 80px rgba(24,119,242,0.05)",
-            }}
+            className="flex flex-col items-center pt-2 pb-2"
           >
-            {/* Glow background */}
-            <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+            {loading ? (
+              <div className="w-[220px] h-[220px] rounded-full bg-[#F1F3F4] animate-pulse" />
+            ) : (
+              <DualRing
+                outerValue={userScore}
+                outerMax={1000}
+                innerValue={stepsData.steps}
+                innerMax={stepsData.goal}
+              />
+            )}
 
-            <div className="relative flex flex-col items-center gap-4">
-              <VitaScoreRing score={userScore} />
-              <ScoreBadge status={userStatus} />
-              <StreakBadge days={userStreak} />
-
-              <p className="text-sm text-white/50 text-center">
-                {user?.renewalDate ? (
-                  <>
-                    Renovação em{" "}
-                    <span className="text-white/80 font-medium">
-                      {Math.max(0, Math.ceil((new Date(user.renewalDate).getTime() - Date.now()) / 86400000))} dias
-                    </span>{" "}
-                    ·{" "}
-                  </>
-                ) : null}
-                Desconto atual:{" "}
-                <span className="text-green-400 font-medium">
-                  {user?.insuranceDiscount ?? 0}%
+            {/* Ring labels */}
+            <div className="flex items-center gap-6 mt-4">
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-[#1A73E8]" />
+                <span className="text-xs text-[#5F6368] font-medium">
+                  Pontos cardio
                 </span>
-              </p>
+                <span className="text-xs text-[#202124] font-bold ml-0.5">
+                  {userScore}
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-[#00897B]" />
+                <span className="text-xs text-[#5F6368] font-medium">
+                  Passos
+                </span>
+                <span className="text-xs text-[#202124] font-bold ml-0.5">
+                  {stepsData.steps.toLocaleString("pt-BR")}
+                </span>
+              </div>
+            </div>
 
-              <Link
-                href="/seguro"
-                className="mt-1 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
-              >
-                Ver detalhes da apólice →
-              </Link>
+            {/* 3 metrics row */}
+            <div className="flex items-center gap-0 mt-4 text-center">
+              <div className="flex-1 border-r border-[#DADCE0] px-4">
+                <p className="text-lg font-bold text-[#202124]">{estimatedCal}</p>
+                <p className="text-[11px] text-[#9AA0A6]">Cal</p>
+              </div>
+              <div className="flex-1 border-r border-[#DADCE0] px-4">
+                <p className="text-lg font-bold text-[#202124]">{stepsData.km.toFixed(1)}</p>
+                <p className="text-[11px] text-[#9AA0A6]">km</p>
+              </div>
+              <div className="flex-1 px-4">
+                <p className="text-lg font-bold text-[#202124]">{estimatedMin}</p>
+                <p className="text-[11px] text-[#9AA0A6]">Min. em movimento</p>
+              </div>
             </div>
           </motion.section>
 
-          {/* Card de Desconto do Seguro */}
-          <motion.section
-            custom={0.5}
-            variants={sectionVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <InsuranceDiscountCard
-              discount={user?.insuranceDiscount ?? 0}
-              savings={user?.annualSavings ?? 0}
-              daysToRenewal={user?.renewalDate ? Math.max(0, Math.ceil((new Date(user.renewalDate).getTime() - Date.now()) / 86400000)) : 0}
-            />
-          </motion.section>
-
-          {/* Seção Hoje */}
+          {/* ── Quick Actions Row ── */}
           <motion.section
             custom={1}
             variants={sectionVariants}
             initial="hidden"
             animate="visible"
           >
-            <div className="flex items-baseline justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <h2 className="text-base font-semibold text-white">Hoje</h2>
-                {!loading && source && source !== "loading" && (
-                  <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-white/[0.08] text-white/50 border border-white/[0.06]">
-                    {source}
-                  </span>
-                )}
-              </div>
-              <span className="text-xs text-white/40 capitalize">
-                {todayFormatted}
-              </span>
-            </div>
-            {loading ? (
-              <div className="grid grid-cols-2 gap-3">
-                {[0, 1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="h-28 rounded-2xl bg-white/[0.04] border border-white/[0.06] animate-pulse"
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-3">
-                <ActivityCard steps={stepsData.steps} goal={stepsData.goal} km={stepsData.km} />
-                <SleepCard hours={sleepData.hours} minutes={sleepData.minutes} goal={mockTodayStats.sleep.goal} />
-                <WaterCard current={waterData.current} goal={waterData.goal} />
-                <NutritionCard current={nutritionData.current} goal={nutritionData.goal} />
-              </div>
-            )}
-          </motion.section>
-
-          {/* Links rápidos */}
-          <motion.section
-            custom={1.5}
-            variants={sectionVariants}
-            initial="hidden"
-            animate="visible"
-          >
             <div className="flex gap-2 overflow-x-auto pb-1 hide-scrollbar">
               {[
-                { href: "/peso", label: "Peso", icon: "⚖️", color: "#30D158" },
-                { href: "/sono", label: "Sono", icon: "🌙", color: "#7B61FF" },
-                { href: "/digital", label: "Digital", icon: "📱", color: "#1877F2" },
-                { href: "/nutricao", label: "Nutrição", icon: "🥗", color: "#FF9F0A" },
-                { href: "/desafios", label: "Desafios", icon: "🏆", color: "#FFD60A" },
+                { href: "/sono", label: "Sono", icon: "🌙" },
+                { href: "/nutricao", label: "Nutricao", icon: "🥗" },
+                { href: "/peso", label: "Peso", icon: "⚖️" },
+                { href: "/digital", label: "Digital", icon: "📱" },
+                { href: "/desafios", label: "Desafios", icon: "🏆" },
               ].map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="flex-shrink-0 flex items-center gap-2 bg-white/[0.04] border border-white/[0.08] rounded-xl px-3.5 py-2.5 transition-colors hover:bg-white/[0.08]"
+                  className="flex-shrink-0 flex items-center gap-2 bg-[#F1F3F4] rounded-full px-4 py-2.5 transition-colors hover:bg-[#E8EAED] active:bg-[#DADCE0]"
                 >
-                  <span className="text-base">{item.icon}</span>
-                  <span className="text-xs text-white/70 font-medium">{item.label}</span>
+                  <span className="text-sm">{item.icon}</span>
+                  <span className="text-xs text-[#202124] font-medium">{item.label}</span>
                 </Link>
               ))}
             </div>
           </motion.section>
 
-          {/* Seção Desafio da Semana */}
+          {/* ── Metas Diarias Card ── */}
+          <motion.section
+            custom={2}
+            variants={sectionVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <div
+              className="rounded-2xl bg-white p-5"
+              style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.08)" }}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-base font-semibold text-[#202124]">
+                  Suas metas diarias
+                </h2>
+                <Link href="/atividade" className="text-[#5F6368]">
+                  <ChevronRight className="w-5 h-5" />
+                </Link>
+              </div>
+
+              {loading ? (
+                <div className="flex flex-col gap-4">
+                  {[0, 1, 2, 3].map((i) => (
+                    <div key={i} className="h-8 rounded bg-[#F1F3F4] animate-pulse" />
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-col gap-4">
+                  <GoalBar
+                    label="Passos"
+                    icon="👟"
+                    current={stepsData.steps}
+                    goal={stepsData.goal}
+                    unit=""
+                    color="#00897B"
+                  />
+                  <GoalBar
+                    label="Sono"
+                    icon="🌙"
+                    current={sleepData.hours}
+                    goal={mockTodayStats.sleep.goal}
+                    unit="h"
+                    color="#7B61FF"
+                  />
+                  <GoalBar
+                    label="Agua"
+                    icon="💧"
+                    current={waterData.current}
+                    goal={waterData.goal}
+                    unit="L"
+                    color="#1A73E8"
+                  />
+                  <GoalBar
+                    label="Refeicoes"
+                    icon="🥗"
+                    current={nutritionData.current}
+                    goal={nutritionData.goal}
+                    unit=""
+                    color="#FF9F0A"
+                  />
+                </div>
+              )}
+            </div>
+          </motion.section>
+
+          {/* ── Desafio da Semana ── */}
           {activeChallenge && (
             <motion.section
-              custom={2}
+              custom={2.5}
               variants={sectionVariants}
               initial="hidden"
               animate="visible"
             >
-              <h2 className="text-base font-semibold text-white mb-3">
+              <h2 className="text-base font-semibold text-[#202124] mb-3">
                 Desafio da Semana
               </h2>
               <ChallengeCard challenge={activeChallenge} />
             </motion.section>
           )}
 
-          {/* Seção Atividade Recente */}
+          {/* ── Atividade Recente ── */}
           <motion.section
             custom={3}
             variants={sectionVariants}
             initial="hidden"
             animate="visible"
           >
-            <h2 className="text-base font-semibold text-white mb-3">
+            <h2 className="text-base font-semibold text-[#202124] mb-3">
               Atividade Recente
             </h2>
-            <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-none">
-              {mockRecentActivity.map((activity) => (
+            <div className="bg-white">
+              {mockRecentActivity.map((activity, idx) => (
                 <div
                   key={activity.id}
-                  className="flex-shrink-0 w-40 bg-[#1C1C1E] rounded-xl p-3 flex flex-col gap-2"
+                  className={`flex items-center gap-3 py-3 ${
+                    idx < mockRecentActivity.length - 1
+                      ? "border-b border-[#DADCE0]"
+                      : ""
+                  }`}
                 >
-                  <span className="text-2xl">{activity.icon}</span>
-                  <p className="text-xs text-white/80 leading-tight">
-                    {activity.description}
-                  </p>
-                  <div className="flex items-center justify-between mt-auto">
-                    <span className="text-xs font-semibold text-green-400">
-                      +{activity.points} pts
-                    </span>
-                    <span className="text-[10px] text-white/30">
-                      {activity.time}
-                    </span>
+                  <span className="text-xl w-8 text-center">{activity.icon}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm text-[#202124]">{activity.description}</p>
+                    <p className="text-xs text-[#9AA0A6]">{activity.time}</p>
                   </div>
+                  <span className="text-sm font-semibold text-[#00897B] whitespace-nowrap">
+                    +{activity.points} pts
+                  </span>
                 </div>
               ))}
             </div>
           </motion.section>
 
-          {/* Seção Ranking de Segurados */}
+          {/* ── Ranking de Segurados ── */}
           <motion.section
             custom={4}
             variants={sectionVariants}
@@ -297,13 +454,16 @@ export default function HomePage() {
             animate="visible"
           >
             <div className="flex items-baseline justify-between mb-3">
-              <h2 className="text-base font-semibold text-white">
+              <h2 className="text-base font-semibold text-[#202124]">
                 Ranking de Segurados
               </h2>
-              <span className="text-xs text-white/40">Esta semana</span>
+              <span className="text-xs text-[#9AA0A6]">Esta semana</span>
             </div>
-            <div className="flex flex-col gap-2">
-              {mockRanking.map((entry) => {
+            <div
+              className="rounded-2xl bg-white overflow-hidden"
+              style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.08)" }}
+            >
+              {mockRanking.map((entry, idx) => {
                 const medal =
                   entry.position === 1
                     ? "\u{1F947}"
@@ -316,30 +476,28 @@ export default function HomePage() {
                 return (
                   <div
                     key={entry.position}
-                    className={`flex items-center gap-3 rounded-xl px-4 py-3 transition-colors ${
-                      entry.isUser
-                        ? "bg-blue-500/10 border border-blue-500/30"
-                        : "bg-white/[0.03]"
-                    }`}
+                    className={`flex items-center gap-3 px-4 py-3 ${
+                      idx < mockRanking.length - 1 ? "border-b border-[#DADCE0]" : ""
+                    } ${entry.isUser ? "bg-[#E8F0FE]" : ""}`}
                   >
-                    <span className="w-8 text-center text-sm font-bold text-white/60">
-                      {medal ?? `${entry.position}º`}
+                    <span className="w-8 text-center text-sm font-bold text-[#5F6368]">
+                      {medal ?? `${entry.position}o`}
                     </span>
                     <span
                       className={`flex-1 text-sm ${
                         entry.isUser
-                          ? "text-white font-semibold"
-                          : "text-white/70"
+                          ? "text-[#1A73E8] font-semibold"
+                          : "text-[#202124]"
                       }`}
                     >
                       {entry.name}
                       {entry.isUser && (
-                        <span className="ml-1.5 text-[10px] text-blue-400 font-medium">
-                          (você)
+                        <span className="ml-1.5 text-[10px] text-[#1A73E8] font-medium">
+                          (voce)
                         </span>
                       )}
                     </span>
-                    <span className="font-mono text-sm font-bold text-white/90">
+                    <span className="font-mono text-sm font-bold text-[#202124]">
                       {entry.score}
                     </span>
                   </div>

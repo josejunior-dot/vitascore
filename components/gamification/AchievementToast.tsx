@@ -50,13 +50,13 @@ export default function AchievementToast({
               <p className="text-xs font-medium text-[#FFD60A]">
                 Conquista desbloqueada!
               </p>
-              <p className="text-sm font-semibold text-white truncate">
+              <p className="text-sm font-semibold text-[#202124] truncate">
                 {achievement.name}
               </p>
             </div>
             <button
               onClick={onClose}
-              className="text-white/50 hover:text-white transition-colors p-1"
+              className="text-[#5F6368] hover:text-[#202124] transition-colors p-1"
               aria-label="Fechar"
             >
               <svg

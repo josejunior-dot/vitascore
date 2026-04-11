@@ -53,7 +53,7 @@ function DotIndicators({
             animate={{
               width: i === current ? 24 : 8,
               height: 8,
-              backgroundColor: i === current ? "#ffffff" : "rgba(255,255,255,0.4)",
+              backgroundColor: i === current ? "#1A73E8" : "#DADCE0",
             }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
           />
@@ -68,7 +68,7 @@ function SlideHero() {
     <div
       className="flex flex-col items-center justify-center h-full px-8 text-center"
       style={{
-        background: "linear-gradient(135deg, #1877F2 0%, #0052CC 50%, #003D99 100%)",
+        background: "linear-gradient(135deg, #1A73E8 0%, #0052CC 50%, #003D99 100%)",
       }}
     >
       <motion.div
@@ -94,7 +94,7 @@ function SlideHero() {
 }
 
 const cards = [
-  { icon: Activity, label: "Movimento", points: "+120 pts", color: "#1877F2" },
+  { icon: Activity, label: "Movimento", points: "+120 pts", color: "#1A73E8" },
   { icon: Moon, label: "Sono", points: "+80 pts", color: "#A855F7" },
   { icon: Heart, label: "Sa\u00fade", points: "+100 pts", color: "#22C55E" },
   { icon: Trophy, label: "Engajamento", points: "+50 pts", color: "#F59E0B" },
@@ -102,9 +102,9 @@ const cards = [
 
 function SlideComoFunciona() {
   return (
-    <div className="flex flex-col h-full px-6 pt-16 pb-8" style={{ background: "#0A0A0A" }}>
+    <div className="flex flex-col h-full px-6 pt-16 pb-8" style={{ background: "#FFFFFF" }}>
       <h2
-        className="text-3xl font-extrabold text-white mb-8 text-center"
+        className="text-3xl font-extrabold text-[#202124] mb-8 text-center"
         style={{ fontFamily: "var(--font-display, 'Outfit', sans-serif)" }}
       >
         Como funciona
@@ -120,7 +120,7 @@ function SlideComoFunciona() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.12, duration: 0.4, ease: "easeOut" }}
               className="flex items-center gap-4 rounded-2xl px-5 py-4"
-              style={{ backgroundColor: "#1C1C1E" }}
+              style={{ backgroundColor: "#F8F9FA" }}
             >
               <div
                 className="flex items-center justify-center w-12 h-12 rounded-xl"
@@ -129,7 +129,7 @@ function SlideComoFunciona() {
                 <Icon className="w-6 h-6" style={{ color: card.color }} />
               </div>
               <div className="flex-1">
-                <p className="text-white font-semibold text-base">{card.label}</p>
+                <p className="text-[#202124] font-semibold text-base">{card.label}</p>
               </div>
               <span className="text-sm font-bold" style={{ color: card.color }}>
                 {card.points}
@@ -146,35 +146,35 @@ function SlideApolice() {
   return (
     <div
       className="flex flex-col items-center justify-center h-full px-8 text-center"
-      style={{ background: "#0A0A0A" }}
+      style={{ background: "#FFFFFF" }}
     >
       <motion.p
-        className="text-5xl font-extrabold text-white mb-6"
+        className="text-5xl font-extrabold text-[#202124] mb-6"
         style={{ fontFamily: "var(--font-display, 'Outfit', sans-serif)" }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        At&eacute; <span style={{ color: "#1877F2" }}>15%</span> de desconto
+        At&eacute; <span style={{ color: "#1A73E8" }}>15%</span> de desconto
       </motion.p>
 
       {/* Progress bar */}
-      <div className="w-full max-w-xs h-3 rounded-full overflow-hidden mb-6" style={{ backgroundColor: "#1C1C1E" }}>
+      <div className="w-full max-w-xs h-3 rounded-full overflow-hidden mb-6" style={{ backgroundColor: "#F8F9FA" }}>
         <motion.div
           className="h-full rounded-full"
-          style={{ background: "linear-gradient(90deg, #1877F2, #0052CC)" }}
+          style={{ background: "linear-gradient(90deg, #1A73E8, #0052CC)" }}
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
           transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
         />
       </div>
 
-      <div className="flex justify-between w-full max-w-xs mb-8 text-sm text-white/50">
+      <div className="flex justify-between w-full max-w-xs mb-8 text-sm text-[#5F6368]">
         <span>0%</span>
-        <span className="font-bold text-white">15%</span>
+        <span className="font-bold text-[#202124]">15%</span>
       </div>
 
-      <p className="text-base text-white/70 max-w-xs leading-relaxed">
+      <p className="text-base text-[#5F6368] max-w-xs leading-relaxed">
         Quanto mais h&aacute;bitos, maior o desconto na renova&ccedil;&atilde;o.
       </p>
     </div>
@@ -221,7 +221,7 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="fixed inset-0 overflow-hidden select-none" style={{ background: "#0A0A0A" }}>
+    <div className="fixed inset-0 overflow-hidden select-none" style={{ background: "#FFFFFF" }}>
       <AnimatePresence initial={false} custom={direction} mode="popLayout">
         <motion.div
           key={currentSlide}
@@ -241,20 +241,20 @@ export default function OnboardingPage() {
           {currentSlide === 1 && <SlideComoFunciona />}
           {currentSlide === 2 && <SlideApolice />}
           {currentSlide === 3 && (
-            <div className="flex flex-col items-center justify-center h-full px-8" style={{ background: "#0A0A0A" }}>
+            <div className="flex flex-col items-center justify-center h-full px-8" style={{ background: "#FFFFFF" }}>
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                className="w-20 h-20 rounded-full bg-[#1877F2]/20 flex items-center justify-center mb-6"
+                className="w-20 h-20 rounded-full bg-[#1A73E8]/20 flex items-center justify-center mb-6"
               >
-                <User className="w-10 h-10 text-[#1877F2]" />
+                <User className="w-10 h-10 text-[#1A73E8]" />
               </motion.div>
 
-              <h2 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: "var(--font-display, 'Outfit', sans-serif)" }}>
+              <h2 className="text-2xl font-bold text-[#202124] mb-2" style={{ fontFamily: "var(--font-display, 'Outfit', sans-serif)" }}>
                 Como podemos te chamar?
               </h2>
-              <p className="text-sm text-white/50 mb-8 text-center">
+              <p className="text-sm text-[#5F6368] mb-8 text-center">
                 Seus dados ficam apenas no seu celular.
               </p>
 
@@ -263,7 +263,7 @@ export default function OnboardingPage() {
                 placeholder="Seu nome"
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
-                className="w-full max-w-xs bg-white/5 border border-white/[0.12] rounded-2xl px-5 py-4 text-white text-center text-lg outline-none focus:border-[#1877F2]/50 placeholder:text-white/20 mb-4"
+                className="w-full max-w-xs bg-[#F8F9FA] border border-[#DADCE0] rounded-2xl px-5 py-4 text-[#202124] text-center text-lg outline-none focus:border-[#1A73E8]/50 placeholder:text-[#DADCE0] mb-4"
                 autoFocus
               />
 
@@ -272,7 +272,7 @@ export default function OnboardingPage() {
                 placeholder="Sua idade"
                 value={userAge}
                 onChange={(e) => setUserAge(e.target.value)}
-                className="w-full max-w-xs bg-white/5 border border-white/[0.12] rounded-2xl px-5 py-4 text-white text-center text-lg outline-none focus:border-[#1877F2]/50 placeholder:text-white/20 mb-8"
+                className="w-full max-w-xs bg-[#F8F9FA] border border-[#DADCE0] rounded-2xl px-5 py-4 text-[#202124] text-center text-lg outline-none focus:border-[#1A73E8]/50 placeholder:text-[#DADCE0] mb-8"
               />
             </div>
           )}
@@ -292,8 +292,8 @@ export default function OnboardingPage() {
             className="w-full max-w-xs py-4 rounded-full font-bold text-base transition-transform active:scale-95"
             style={
               currentSlide === 0
-                ? { backgroundColor: "#ffffff", color: "#1877F2" }
-                : { backgroundColor: "#1877F2", color: "#ffffff" }
+                ? { backgroundColor: "#ffffff", color: "#1A73E8" }
+                : { backgroundColor: "#1A73E8", color: "#ffffff" }
             }
           >
             {currentSlide === 0 ? "Começar agora" : currentSlide === 1 ? "Continuar" : "Próximo"}
@@ -308,7 +308,7 @@ export default function OnboardingPage() {
             onClick={handleFinish}
             disabled={!userName.trim()}
             className="w-full max-w-xs py-4 rounded-full font-bold text-base transition-transform active:scale-95 disabled:opacity-40"
-            style={{ backgroundColor: "#1877F2", color: "#ffffff" }}
+            style={{ backgroundColor: "#1A73E8", color: "#ffffff" }}
           >
             Entrar no VitaScore
           </motion.button>

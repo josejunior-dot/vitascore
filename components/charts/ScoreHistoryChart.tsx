@@ -28,8 +28,8 @@ interface ScoreHistoryChartProps {
 function CustomTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="rounded-lg border border-white/10 bg-[#1C1C1E] px-3 py-2 shadow-lg">
-      <p className="mb-1 text-xs font-medium text-white">{label}</p>
+    <div className="rounded-lg border border-[#DADCE0] bg-white border-[#DADCE0] px-3 py-2 shadow-lg">
+      <p className="mb-1 text-xs font-medium text-[#202124]">{label}</p>
       {payload.map((entry: any, i: number) => (
         <p key={i} className="text-sm" style={{ color: entry.color }}>
           {entry.name}: {entry.value}
@@ -53,12 +53,12 @@ export default function ScoreHistoryChart({
           dataKey="month"
           axisLine={false}
           tickLine={false}
-          tick={{ fill: "#ffffff", fontSize: 12 }}
+          tick={{ fill: "#202124", fontSize: 12 }}
         />
         <YAxis
           axisLine={false}
           tickLine={false}
-          tick={{ fill: "#ffffff99", fontSize: 10 }}
+          tick={{ fill: "#5F6368", fontSize: 10 }}
         />
         <Tooltip content={<CustomTooltip />} />
         {useDiscount ? (
@@ -91,9 +91,9 @@ export default function ScoreHistoryChart({
             type="monotone"
             dataKey="score"
             name="Score"
-            stroke="#1877F2"
+            stroke="#1A73E8"
             strokeWidth={2}
-            dot={{ r: 4, fill: "#1877F2" }}
+            dot={{ r: 4, fill: "#1A73E8" }}
             activeDot={{ r: 6 }}
             isAnimationActive={true}
             animationDuration={800}

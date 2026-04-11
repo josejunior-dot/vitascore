@@ -43,7 +43,7 @@ export function ScoreCounter({
   }, [display]);
 
   return (
-    <span className={cn("font-mono-score", className)}>
+    <span className={cn("font-mono-score text-[#202124]", className)}>
       {prefix}
       <span ref={ref}>0</span>
       {suffix}

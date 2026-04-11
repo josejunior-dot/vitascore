@@ -127,11 +127,11 @@ function DiscountGauge() {
         y1={GAUGE_CY}
         x2={needleTip.x}
         y2={needleTip.y}
-        stroke="#FFFFFF"
+        stroke="#202124"
         strokeWidth={3}
         strokeLinecap="round"
       />
-      <circle cx={GAUGE_CX} cy={GAUGE_CY} r={6} fill="#FFFFFF" />
+      <circle cx={GAUGE_CX} cy={GAUGE_CY} r={6} fill="#202124" />
 
       {/* Labels */}
       {labels.map((l) => {
@@ -141,7 +141,7 @@ function DiscountGauge() {
             key={l.value}
             x={pos.x}
             y={pos.y}
-            fill="#FFFFFFAA"
+            fill="#5F6368"
             fontSize="12"
             textAnchor="middle"
             dominantBaseline="middle"
@@ -165,12 +165,12 @@ export default function SeguroPage() {
       >
         {/* Header */}
         <motion.div variants={itemVariants} className="flex items-center justify-between">
-          <Link href="/home" className="flex items-center gap-1 text-white/70">
+          <Link href="/home" className="flex items-center gap-1 text-[#5F6368]">
             <ChevronLeft size={24} />
           </Link>
-          <h1 className="text-lg font-semibold text-white flex items-center gap-2">
+          <h1 className="text-lg font-semibold text-[#202124] flex items-center gap-2">
             Seguro
-            <Shield size={20} className="text-[#1877F2]" />
+            <Shield size={20} className="text-[#1A73E8]" />
           </h1>
           <div className="w-6" />
         </motion.div>
@@ -190,10 +190,10 @@ export default function SeguroPage() {
               suffix="%"
               className="text-6xl font-mono-score text-[#30D158]"
             />
-            <p className="text-white/70 text-sm">
+            <p className="text-[#5F6368] text-sm">
               de desconto na próxima renovação
             </p>
-            <div className="flex items-center gap-4 mt-2 text-xs text-white/60">
+            <div className="flex items-center gap-4 mt-2 text-xs text-[#5F6368]">
               <span className="flex items-center gap-1">
                 <Calendar size={14} />
                 Renova em {daysUntilRenewal} dias
@@ -209,14 +209,14 @@ export default function SeguroPage() {
         {/* Gauge Semicircular */}
         <motion.div
           variants={itemVariants}
-          className="rounded-2xl bg-[#1C1C1E] p-4"
+          className="rounded-2xl bg-[#F8F9FA] p-4"
         >
           <DiscountGauge />
         </motion.div>
 
         {/* Como aumentar o desconto */}
         <motion.div variants={itemVariants} className="flex flex-col gap-2">
-          <h2 className="text-white font-semibold text-base px-1">
+          <h2 className="text-[#202124] font-semibold text-base px-1">
             Como aumentar o desconto
           </h2>
           <div className="flex flex-col gap-2">
@@ -224,7 +224,7 @@ export default function SeguroPage() {
               <motion.div
                 key={action.id}
                 variants={itemVariants}
-                className="flex items-center gap-3 rounded-xl bg-[#1C1C1E] p-4"
+                className="flex items-center gap-3 rounded-xl bg-[#F8F9FA] p-4"
               >
                 {action.completed ? (
                   <div className="flex-shrink-0 rounded-full bg-[#30D158]/20 p-1">
@@ -232,20 +232,20 @@ export default function SeguroPage() {
                   </div>
                 ) : (
                   <div className="flex-shrink-0 p-1">
-                    <Circle size={18} className="text-white/30" />
+                    <Circle size={18} className="text-[#9AA0A6]" />
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
                   <p
                     className={`text-sm font-medium ${
-                      action.completed ? "text-white/50 line-through" : "text-white"
+                      action.completed ? "text-[#5F6368] line-through" : "text-[#202124]"
                     }`}
                   >
                     {action.title}
                   </p>
                 </div>
                 <div className="flex flex-col items-end text-xs flex-shrink-0">
-                  <span className="text-[#1877F2]">+{action.points} pts</span>
+                  <span className="text-[#1A73E8]">+{action.points} pts</span>
                   <span className="text-[#30D158]">+{action.discountPercent}%</span>
                 </div>
               </motion.div>
@@ -255,10 +255,10 @@ export default function SeguroPage() {
 
         {/* Histórico de Descontos */}
         <motion.div variants={itemVariants} className="flex flex-col gap-2">
-          <h2 className="text-white font-semibold text-base px-1">
+          <h2 className="text-[#202124] font-semibold text-base px-1">
             Histórico de Descontos
           </h2>
-          <div className="rounded-2xl bg-[#1C1C1E] p-4">
+          <div className="rounded-2xl bg-[#F8F9FA] p-4">
             <ScoreHistoryChart data={[]} discountData={mockDiscountHistory} />
           </div>
         </motion.div>
@@ -266,33 +266,33 @@ export default function SeguroPage() {
         {/* Card de Apólice */}
         <motion.div
           variants={itemVariants}
-          className="rounded-2xl bg-[#1C1C1E] p-5 flex flex-col gap-3 mb-4"
+          className="rounded-2xl bg-[#F8F9FA] p-5 flex flex-col gap-3 mb-4"
         >
           <div className="flex items-center gap-2 mb-1">
-            <CreditCard size={18} className="text-[#1877F2]" />
-            <h2 className="text-white font-semibold text-base">Apólice</h2>
+            <CreditCard size={18} className="text-[#1A73E8]" />
+            <h2 className="text-[#202124] font-semibold text-base">Apólice</h2>
           </div>
           <div className="flex flex-col gap-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-white/50">Número</span>
-              <span className="text-white font-mono">SL-2024-••••91</span>
+              <span className="text-[#5F6368]">Número</span>
+              <span className="text-[#202124] font-mono">SL-2024-••••91</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-white/50">Seguradora</span>
-              <span className="text-white">{mockUser.insurer}</span>
+              <span className="text-[#5F6368]">Seguradora</span>
+              <span className="text-[#202124]">{mockUser.insurer}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-white/50">Próximo pagamento</span>
-              <span className="text-white">15/05/2026</span>
+              <span className="text-[#5F6368]">Próximo pagamento</span>
+              <span className="text-[#202124]">15/05/2026</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-white/50">Mensalidade</span>
-              <span className="text-white font-medium">
+              <span className="text-[#5F6368]">Mensalidade</span>
+              <span className="text-[#202124] font-medium">
                 R$ {mockUser.premiumMonthly.toFixed(2).replace(".", ",")}/mês
               </span>
             </div>
           </div>
-          <button className="mt-2 w-full rounded-xl border border-[#1877F2]/30 py-3 text-sm font-medium text-[#1877F2] transition-colors hover:bg-[#1877F2]/10">
+          <button className="mt-2 w-full rounded-xl border border-[#1A73E8]/30 py-3 text-sm font-medium text-[#1A73E8] transition-colors hover:bg-[#1A73E8]/10">
             Ver apólice completa
           </button>
         </motion.div>
