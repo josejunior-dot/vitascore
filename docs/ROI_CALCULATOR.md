@@ -1,217 +1,207 @@
 # VitaScore — Calculadora de ROI
 
-> Estime o retorno sobre investimento do VitaScore para sua empresa ou carteira de seguros
+> Estimativas de retorno sobre investimento, separadas por nivel de evidencia.
 
 ---
 
-## Para Empresas (RH)
+## ROI 1: Compliance NR-1 (PROVAVEL — dados brasileiros)
 
-### Parametros de Entrada
-
-| Parametro | Valor Padrao | Observacao |
-|-----------|-------------|------------|
-| Numero de funcionarios | 80 | Ajuste conforme a empresa |
-| Taxa de adesao | 60% | Conservador (Vitality reporta 70%+) |
-| Custo VitaScore | R$4/ativo/mes | Preco B2B padrao |
-| Valor medio do plano/mes | R$450 | Media mercado PME |
-| Reajuste atual (%/ano) | 15% | Media ANS 2024 |
-| Reajuste com VitaScore (%/ano) | 8% | Reducao pela melhora da sinistralidade |
-| Absenteismo atual (dias/ano) | 12 | Media brasileira |
-| Absenteismo com VitaScore (dias/ano) | 8 | Reducao de 33% |
-| Custo medio por dia de ausencia | R$200 | Salario + encargos + produtividade |
+A NR-1 (Portaria MTE 1.419/2024) exige que empresas com funcionarios CLT implementem gestao de riscos psicossociais. Multa por descumprimento: R$6.708,09 por trabalhador (grau 4, reincidente).
 
 ### Calculo — Empresa com 80 funcionarios
 
-#### Custo do VitaScore
-
 ```
+Multa potencial (pior caso):
+80 funcionarios x R$6.708 = R$536.640
+
+Custo do VitaScore:
 80 funcionarios x 60% adesao = 48 ativos
-48 ativos x R$4/mes = R$192/mes
-R$192 x 12 meses = R$2.304/ano
+48 ativos x R$4/mes x 12 meses = R$2.304/ano
+
+Investimento: R$2.304/ano
+Multa evitada: ate R$536.640
 ```
 
-#### Economia 1: Reajuste Menor no Plano
+### Por que este ROI e provavel
 
-```
-Gasto anual com plano: 80 x R$450/mes x 12 = R$432.000/ano
+- A multa e definida por **lei brasileira** (NR-1, vigente desde 26/05/2025)
+- O VitaScore gera **relatorio de gestao de riscos psicossociais** que comprova conformidade
+- Nao depende de projecoes internacionais — e compliance regulatorio direto
+- A empresa investe R$2.304/ano para evitar multa de ate R$536.640
 
-Reajuste SEM VitaScore (15%): +R$64.800/ano
-Reajuste COM VitaScore (8%):  +R$34.560/ano
+### Tabela por tamanho de empresa
 
-Economia: R$30.240/ano
-```
+| Funcionarios | Custo VitaScore/ano | Multa evitada (pior caso) | Relacao custo/multa |
+|-------------|--------------------|--------------------------|--------------------|
+| 20 | R$576 | R$134.160 | 1:233 |
+| 50 | R$1.440 | R$335.400 | 1:233 |
+| 80 | R$2.304 | R$536.640 | 1:233 |
+| 150 | R$4.320 | R$1.006.200 | 1:233 |
+| 300 | R$8.640 | R$2.012.400 | 1:233 |
 
-#### Economia 2: Reducao do Absenteismo
-
-```
-Custo absenteismo SEM VitaScore: 80 x 12 dias x R$200 = R$192.000/ano
-Custo absenteismo COM VitaScore: 80 x  8 dias x R$200 = R$128.000/ano
-
-Economia: R$64.000/ano
-```
-
-#### Economia 3: Desconto na Coparticipacao (beneficio ao funcionario)
-
-```
-Funcionarios com Score Ouro (700+): ~40% dos ativos
-Desconto medio na coparticipacao: 20%
-Economia media por funcionario: ~R$230/ano
-
-80 funcionarios x R$230 = R$18.400/ano (economia coletiva)
-```
-
-#### Resultado Final
-
-```
-Investimento anual:  R$2.304
-Economia total:      R$94.240 (reajuste + absenteismo)
-                     R$112.640 (incluindo coparticipacao)
-
-ROI:                 40,9x
-Payback:             9 dias
-```
-
-### Tabela para Diferentes Tamanhos de Empresa
-
-| Funcionarios | Ativos (60%) | Custo VitaScore/ano | Economia estimada/ano | ROI |
-|-------------|-------------|--------------------|-----------------------|-----|
-| 20 | 12 | R$576 | R$23.560 | 40x |
-| 50 | 30 | R$1.440 | R$58.900 | 40x |
-| 80 | 48 | R$2.304 | R$94.240 | 40x |
-| 150 | 90 | R$4.320 | R$176.700 | 40x |
-| 300 | 180 | R$8.640 | R$353.400 | 40x |
-| 500 | 300 | R$14.400 | R$589.000 | 40x |
-| 1.000 | 600 | R$28.800 | R$1.178.000 | 40x |
-
-> O ROI se mantem consistente porque os custos e economias escalam linearmente.
+> Nota: a multa de R$6.708/trabalhador e o teto para infraccoes graves com reincidencia. O valor real depende da classificacao pela fiscalizacao.
 
 ---
 
-## Para Seguradoras
+## ROI 2: Reducao de Reajuste do Plano (PROJETADO — dados internacionais)
 
-### Parametros de Entrada
+### Base da projecao
 
-| Parametro | Valor Padrao | Observacao |
-|-----------|-------------|------------|
-| Numero de vidas na carteira | 10.000 | Ajuste conforme a carteira |
-| Taxa de adesao | 60% | Conservador |
-| Custo VitaScore | R$2/vida ativa/mes | Preco B2B2C |
-| Ticket medio do plano/mes | R$400 | Media mercado |
-| Sinistralidade atual | 85% | Media do setor |
-| Sinistralidade com VitaScore | 77% | Reducao de 8 pontos percentuais |
+Os dados de reducao de sinistralidade vem do **Discovery Vitality (Africa do Sul)**, que reporta 10-30% de reducao em custos de saude ao longo de 5+ anos de programa. Esses dados **nao foram validados no mercado brasileiro de planos de saude**.
 
-### Calculo — Carteira de 10.000 vidas
+### Clausula AMIL 14.7-14.9 (contratos 30-99 vidas)
 
-#### Investimento
+Contratos empresariais da AMIL (e operadoras similares) possuem clausula de **Indice Tecnico**: se a sinistralidade da empresa ultrapassar 65% da receita do contrato, um reajuste adicional e aplicado alem do reajuste anual padrao.
 
 ```
+Exemplo: empresa com 80 vidas, plano R$450/mes
+
+Receita anual do contrato: 80 x R$450 x 12 = R$432.000
+Limite de sinistralidade (65%): R$280.800
+
+SE sinistralidade > R$280.800 → Indice Tecnico ativado → reajuste extra
+
+Reajuste padrao ANS 2024: ~15%
+Reajuste com Indice Tecnico: pode chegar a 25-40%
+```
+
+### Projecao (cenario otimista)
+
+```
+SE o VitaScore mantiver sinistralidade abaixo de 65%:
+  Reajuste evitado: diferenca entre 15% (padrao) e 25%+ (com Indice Tecnico)
+  Sobre R$432.000: economia de R$43.200/ano (10 pontos percentuais)
+
+Custo VitaScore: R$2.304/ano
+Economia projetada: R$43.200/ano
+ROI projetado: ~18x
+```
+
+### Projecao (cenario conservador)
+
+```
+SE o VitaScore reduzir sinistralidade em 5 pontos (metade do minimo Vitality):
+  Economia no reajuste: ~R$15.000-20.000/ano (empresa de 80 vidas)
+
+Custo VitaScore: R$2.304/ano
+Economia projetada: R$15.000-20.000/ano
+ROI projetado: 6-8x
+```
+
+> **IMPORTANTE:** Projecao baseada em dados do Discovery Vitality (Africa do Sul). Resultado no Brasil precisa ser validado em piloto de 12-18 meses. A reducao depende de engajamento, perfil da populacao e tempo de programa.
+
+---
+
+## ROI 3: Reducao de Absenteismo (PARCIALMENTE PROVAVEL)
+
+### Base da estimativa
+
+Estudos internacionais (Mercer, Willis Towers Watson, Harvard Business Review) indicam que programas de wellness corporativo reduzem absenteismo em 25-35%. Esses estudos sao de empresas americanas e europeias — a transferibilidade para o contexto brasileiro e parcial.
+
+### Calculo estimado — Empresa com 80 funcionarios
+
+```
+Absenteismo medio brasileiro: ~12 dias/ano por funcionario
+Reducao estimada (25%): 3 dias/ano
+Custo medio por dia de ausencia: R$200 (salario + encargos + produtividade)
+
+Economia estimada: 80 x 3 dias x R$200 = R$48.000/ano
+```
+
+> Nota: a reducao de 25% e uma estimativa conservadora dentro da faixa de 25-35% reportada em estudos internacionais. Resultados variam significativamente por setor, perfil demografico e nivel de engajamento.
+
+---
+
+## Para Operadoras de Saude (PROJETADO)
+
+### Calculo projetado — Carteira de 10.000 vidas
+
+```
+Investimento:
 10.000 vidas x 60% adesao = 6.000 ativos
-6.000 ativos x R$2/mes = R$12.000/mes
-R$12.000 x 12 meses = R$144.000/ano
-```
+6.000 ativos x R$2/mes x 12 = R$144.000/ano
 
-#### Retorno: Reducao de Sinistralidade
-
-```
+Reducao projetada de sinistralidade (5 pontos percentuais — cenario conservador):
 Receita da carteira: 10.000 x R$400/mes x 12 = R$48.000.000/ano
+Sinistralidade atual (85%): R$40.800.000
+Sinistralidade projetada (80%): R$38.400.000
+Economia projetada: R$2.400.000/ano
 
-Sinistralidade SEM VitaScore (85%): R$40.800.000/ano
-Sinistralidade COM VitaScore (77%): R$36.960.000/ano
-
-Economia: R$3.840.000/ano
+ROI projetado: ~16x
 ```
 
-#### Resultado Final
-
-```
-Investimento anual:  R$144.000
-Economia anual:      R$3.840.000
-
-ROI:                 26,7x
-Payback:             14 dias
-```
-
-### Tabela para Diferentes Carteiras
-
-| Vidas | Ativos (60%) | Investimento/ano | Economia/ano | ROI |
-|-------|-------------|-----------------|-------------|-----|
-| 1.000 | 600 | R$14.400 | R$384.000 | 26x |
-| 5.000 | 3.000 | R$72.000 | R$1.920.000 | 26x |
-| 10.000 | 6.000 | R$144.000 | R$3.840.000 | 26x |
-| 50.000 | 30.000 | R$720.000 | R$19.200.000 | 26x |
-| 100.000 | 60.000 | R$1.440.000 | R$38.400.000 | 26x |
-| 200.000 | 120.000 | R$2.880.000 | R$76.800.000 | 26x |
-
-> Para seguradoras, o success fee adicional (sobre sinistralidade reduzida) nao esta incluido neste calculo.
+> Discovery Vitality reporta 8-13 pontos de reducao, mas em programas maduros (3-5 anos) com alto engajamento. Usamos 5 pontos como cenario conservador para o primeiro ano.
 
 ---
 
 ## Para Corretoras
 
-### Modelo de Receita
-
-Corretoras nao pagam pelo VitaScore — recebem comissao sobre a receita gerada nas empresas da sua carteira.
+Corretoras nao pagam pelo VitaScore — recebem comissao sobre a receita gerada.
 
 ```
-Carteira exemplo: 500 vidas distribuidas em 10 empresas
-Funcionarios ativos (60%): 300
+Carteira exemplo: 500 vidas em 10 empresas
+Ativos (60%): 300
 Receita VitaScore: 300 x R$4/mes x 12 = R$14.400/ano
-Comissao da corretora (25%): R$3.600/ano
+Comissao (25%): R$3.600/ano
 
-Custo para a corretora: R$0
+Custo: R$0
+Beneficio adicional: retencao de carteira (clientes com reajuste menor trocam menos de corretora)
 ```
-
-### Tabela por Tamanho de Carteira
-
-| Vidas na Carteira | Ativos (60%) | Receita VitaScore/ano | Comissao (25%) |
-|-------------------|-------------|----------------------|----------------|
-| 200 | 120 | R$5.760 | R$1.440/ano |
-| 500 | 300 | R$14.400 | R$3.600/ano |
-| 1.000 | 600 | R$28.800 | R$7.200/ano |
-| 2.000 | 1.200 | R$57.600 | R$14.400/ano |
-| 5.000 | 3.000 | R$144.000 | R$36.000/ano |
-| 10.000 | 6.000 | R$288.000 | R$72.000/ano |
-
-### Beneficios adicionais para a corretora
-
-- **Retencao de carteira:** Empresas com VitaScore tem reajustes menores, reduzindo churn
-- **Argumento comercial:** Diferencial competitivo na captacao de novas contas
-- **Upsell:** Facilita venda de planos premium com desconto VitaScore embutido
 
 ---
 
-## Premissas
+## Metricas realistas de operacao
 
-Todas as estimativas deste documento sao baseadas nas seguintes premissas:
+| Metrica | Valor estimado | Observacao |
+|---------|---------------|------------|
+| Taxa de adesao (ano 1) | 40-50% | Vitality reporta 70%+ em programas maduros; inicio e menor |
+| Taxa de adesao (ano 2+) | 55-65% | Cresce com resultados visiveis |
+| Churn mensal estimado | 3-5% | Usuarios que param de usar o app |
+| Tempo ate resultado no reajuste | 12-18 meses | Reajuste se aplica no ciclo seguinte |
+| Tempo ate resultado no absenteismo | 3-6 meses | Efeito mais rapido |
+| CAC estimado (venda direta B2B) | R$500-1.500 | Depende do canal (corretora = menor) |
+| LTV estimado (empresa de 80 vidas) | R$6.912 (3 anos) | 48 ativos x R$4 x 36 meses |
 
-| Premissa | Valor | Justificativa |
-|----------|-------|---------------|
-| Taxa de adesao | 60% | Conservador; Discovery Vitality reporta 70%+ em programas maduros |
-| Reducao de sinistralidade | 8 pontos percentuais | Baseado em dados da Vitality (Africa do Sul) e programas similares |
-| Reducao de absenteismo | 33% (de 12 para 8 dias) | Alinhado com estudos de wellness corporativo (Mercer, Willis Towers Watson) |
-| Reajuste menor | 7 pontos percentuais (de 15% para 8%) | Correlacao direta com sinistralidade reduzida |
-| Desconto coparticipacao Score Ouro | 20% | Politica configuravel por operadora |
-| Custo por dia de ausencia | R$200 | Inclui salario, encargos e perda de produtividade (media PME) |
-| Ticket medio plano empresarial | R$450/mes | Media ANS para PMEs (2024) |
-| Ticket medio plano seguradora | R$400/mes | Media ponderada de carteiras mistas |
+---
 
-### Observacoes importantes
+## Premissas e fontes
 
-- Os valores apresentados sao **estimativas conservadoras**. Resultados reais dependem do perfil da populacao, engajamento e tempo de programa.
-- A economia com reajuste se materializa no **ciclo anual seguinte** (12-18 meses).
-- A reducao de absenteismo tem efeito **imediato** (primeiros 3-6 meses).
-- O desconto na coparticipacao beneficia o **funcionario diretamente**, aumentando a percepcao de valor.
+| Premissa | Valor | Fonte | Nivel de evidencia |
+|----------|-------|-------|-------------------|
+| Multa NR-1 | R$6.708/trabalhador | Portaria MTE 1.419/2024 | Comprovado (lei brasileira) |
+| Reducao de sinistralidade | 10-30% | Discovery Vitality Health Reports | Internacional (nao validado no Brasil) |
+| Reducao de absenteismo | 25-35% | Mercer, WTW, HBR | Internacional (parcialmente aplicavel) |
+| Reajuste medio ANS | ~15% | ANS Dados do Setor 2024 | Comprovado (dados brasileiros) |
+| Sinistralidade media | 85% | IESS, ANS | Comprovado (dados brasileiros) |
+| Limiar Indice Tecnico AMIL | 65% da receita | Contrato AMIL clausulas 14.7-14.9 | Comprovado (contrato real) |
+| Engajamento ano 1 | 40-50% | Estimativa propria | Nao validado |
+
+---
+
+## Disclaimers
+
+1. **Esses calculos sao estimativas.** Resultados reais dependem de engajamento, perfil da empresa e tempo de uso.
+
+2. **A reducao de sinistralidade e baseada em dados internacionais** (Discovery Vitality, Africa do Sul) e precisa ser validada no contexto brasileiro com piloto de 12-18 meses.
+
+3. **O unico ROI imediato e comprovavel e o de compliance NR-1.** Os demais sao projecoes que precisam de validacao em campo.
+
+4. **Taxas de adesao no primeiro ano tendem a ser menores** do que em programas maduros. Os calculos com 60% podem ser otimistas para o ano 1.
+
+5. **O ROI nao e 40x.** O ROI comprovavel (NR-1) e uma relacao custo/multa. O ROI projetado (reajuste + absenteismo) varia de 6x a 18x dependendo do cenario, e precisa de validacao.
 
 ---
 
 ## Fontes
 
-- **Discovery Vitality Health Impact Report 2023** — Dados de impacto em sinistralidade e engajamento em programas de wellness
-- **ANS - Dados do Setor (2024)** — Reajustes medios, sinistralidade e indicadores do mercado de saude suplementar brasileiro
-- **IESS - Instituto de Estudos de Saude Suplementar** — Estudos sobre custos assistenciais e absenteismo
-- **Mercer Marsh Benefits Survey Brazil 2024** — Benchmarks de beneficios corporativos e wellness
-- **Willis Towers Watson Global Benefits Attitudes Survey** — Impacto de programas de saude na produtividade
+- **Portaria MTE 1.419/2024** — NR-1, gestao de riscos psicossociais
+- **Discovery Vitality Health Impact Reports** — Dados de programas de wellness (Africa do Sul, 25+ anos de operacao)
+- **ANS - Dados do Setor 2024** — Reajustes e sinistralidade do mercado brasileiro
+- **IESS** — Estudos sobre custos assistenciais no Brasil
+- **Contrato AMIL PME** — Clausulas 14.7-14.9 sobre Indice Tecnico
+- **Mercer Marsh Benefits Survey 2024** — Benchmarks de wellness corporativo
+- **Willis Towers Watson Global Benefits Survey** — Impacto de programas de saude
 
 ---
 
-*Documento gerado para fins de projecao comercial. Valores reais podem variar conforme perfil da populacao e nivel de engajamento.*
+*Documento atualizado em abril/2026. Valores sao estimativas para fins de projecao comercial. Resultados reais dependem de validacao em campo.*

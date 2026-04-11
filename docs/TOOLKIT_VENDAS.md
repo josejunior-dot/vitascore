@@ -1,75 +1,73 @@
 # VitaScore — Toolkit de Vendas
 
-> Referência rápida para apresentações e negociações. Imprima e leve nas reuniões.
+> Referencia rapida para apresentacoes e negociacoes. Atualizado com numeros honestos e posicionamento corrigido.
 
 ---
 
 ## Elevator Pitch (30 segundos)
 
 ### Para o RH da empresa:
-*"Seu plano de saúde reajusta todo ano e você não tem como controlar. O VitaScore é um app que os funcionários usam no celular — monitora passos, sono, alimentação — e gera um relatório com dados verificados. Com esses dados, a corretora negocia reajuste menor com a seguradora. Empresas do seu porte economizam de R$30 mil a R$90 mil por ano. Posso fazer um piloto gratuito de 90 dias."*
+*"A NR-1 entrou em vigor e sua empresa precisa comprovar gestao de riscos psicossociais — a multa chega a R$6.700 por funcionario. O VitaScore e um app que os funcionarios usam no celular, monitora saude e gera o relatorio de compliance que voce precisa. Alem disso, os dados ajudam a corretora a negociar reajuste menor no plano. Posso fazer um piloto gratuito de 90 dias."*
 
 ### Para o dono da corretora:
-*"Toda renovação você perde clientes por causa de reajuste e não tem argumento. O VitaScore te dá dados verificados de saúde dos funcionários para negociar reajuste menor. Custo zero pra você, comissão de 25% sobre a receita, e o mais importante: seus clientes param de trocar de corretora. Piloto gratuito de 90 dias."*
+*"Toda renovacao voce perde clientes por reajuste e nao tem argumento. O VitaScore te da dados verificados de saude para negociar reajuste menor. Alem disso, com a NR-1 em vigor, toda empresa precisa de gestao de riscos psicossociais — voce oferece isso junto. Custo zero pra voce, comissao de 25%. Piloto gratuito de 90 dias."*
 
-### Para o diretor da seguradora:
-*"70% das internações são por doenças evitáveis. O VitaScore monitora hábitos de saúde dos beneficiários com dados verificados — não é auto-relato. Seguradoras que adotam esse modelo reduzem sinistralidade em 8 a 13 pontos e diminuem cancelamentos por reajuste. A Discovery Vitality faz isso em 40 países e vale US$10 bilhões."*
-
----
-
-## Números que impressionam
-
-Decore estes números. Use-os em conversas, emails e apresentações:
-
-| Número | O que significa |
-|--------|----------------|
-| **R$270 bilhões** | Mercado de planos de saúde no Brasil |
-| **85%** | Sinistralidade média das operadoras |
-| **70%** | Das internações são por doenças evitáveis |
-| **15-25%** | Reajuste anual médio dos planos |
-| **35%** | Redução de sinistros com programa de wellness (Discovery Vitality) |
-| **US$10B** | Valuation da Discovery — comprova que o modelo funciona |
-| **0** | Concorrentes diretos no Brasil |
-| **40x** | ROI médio para empresas |
-| **9 dias** | Payback do investimento |
-| **R$0** | Custo para a corretora |
-| **90 dias** | Piloto gratuito — sem risco |
-| **60%** | Taxa de engajamento dos funcionários |
-| **R$4/mês** | Custo por funcionário ativo |
+### Para o diretor da operadora de saude:
+*"A RN 499 da ANS incentiva operadoras a criar programas de promocao de saude com beneficios ao beneficiario. O VitaScore e a ferramenta pronta para voce implementar isso: monitora habitos com dados verificados, gera score de saude e permite oferecer descontos vinculados a comportamento real. Dados internacionais apontam 10-30% de reducao em custos — propomos um piloto para validar na sua carteira."*
 
 ---
 
-## Calculadora rápida de ROI
+## Numeros de referencia
 
-Use durante reuniões para calcular na hora.
+| Numero | O que significa | Nivel de evidencia |
+|--------|----------------|--------------------|
+| **R$270 bilhoes** | Mercado de planos de saude no Brasil | Dado publico (ANS) |
+| **85%** | Sinistralidade media das operadoras | Dado publico (ANS/IESS) |
+| **70%** | Das internacoes sao por doencas evitaveis | Dado publico (OMS/MS) |
+| **15-25%** | Reajuste anual medio dos planos PME | Dado publico (ANS) |
+| **R$6.708** | Multa NR-1 por trabalhador (grau 4) | Lei brasileira (comprovado) |
+| **10-30%** | Reducao de custos de saude (Discovery Vitality) | Internacional (nao validado no Brasil) |
+| **65%** | Limiar de sinistralidade que ativa Indice Tecnico (AMIL) | Contrato real |
+| **R$4/mes** | Custo por funcionario ativo | Preco definido |
+| **R$0** | Custo para a corretora | Modelo de negocio |
+| **90 dias** | Piloto gratuito — sem risco | Oferta comercial |
 
-### Para empresa (economia no reajuste):
+> Nota: nao usamos mais "ROI 40x" ou "0 concorrentes". Veja secao de concorrencia abaixo.
+
+---
+
+## Calculadora rapida de ROI
+
+### Para empresa (compliance NR-1 — comprovavel):
 
 ```
-Economia anual = funcionários × R$420 × 0.07
+Multa evitada = funcionarios x R$6.708 (pior caso)
+Custo VitaScore = funcionarios x 60% x R$4 x 12
 
-Exemplo: 100 funcionários × R$420 × 0.07 = R$2.940/mês = R$35.280/ano
-Custo VitaScore: 60 ativos × R$4 × 12 = R$2.880/ano
-ROI: 12x
+Exemplo: 80 funcionarios
+Multa evitada: ate R$536.640
+Custo VitaScore: R$2.304/ano
 ```
 
-### Para seguradora (redução de sinistralidade):
+### Para empresa (reajuste — PROJETADO):
 
 ```
-Economia anual = vidas × R$400 × 12 × 0.08
+Economia projetada = funcionarios x R$450/mes x 12 x [5-10% reducao]
 
-Exemplo: 10.000 vidas × R$400 × 12 × 0.08 = R$3.840.000/ano
+Exemplo (cenario conservador, 5%): 80 x R$450 x 12 x 0.05 = R$21.600/ano
+Exemplo (cenario otimista, 10%):   80 x R$450 x 12 x 0.10 = R$43.200/ano
+
+Custo VitaScore: R$2.304/ano
+ROI projetado: 9x a 18x (precisa validacao)
 ```
 
-### Para corretora (comissão + retenção):
+### Para corretora (comissao + retencao):
 
 ```
-Comissão VitaScore = vidas ativas × R$4 × 12 × 0.25
-Valor da retenção = comissão plano × meses extras retidos
+Comissao VitaScore = vidas ativas x R$4 x 12 x 0.25
 
-Exemplo (30 empresas, 900 ativos):
-Comissão: R$10.800/ano
-Retenção extra: R$2.332.800 em 5 anos
+Exemplo (500 vidas, 300 ativos): R$3.600/ano
+Beneficio real: retencao de carteira (clientes com reajuste menor nao trocam)
 ```
 
 ---
@@ -77,159 +75,151 @@ Retenção extra: R$2.332.800 em 5 anos
 ## Perguntas de abertura (para descobrir a dor)
 
 ### Para RH:
-1. "Quanto foi o reajuste do plano este ano?"
-2. "Quantos funcionários faltaram por problema de saúde no último mês?"
-3. "Vocês já fizeram alguma ação de prevenção de saúde?"
-4. "Como estão se preparando para a NR-1?"
-5. "Se pudesse reduzir o reajuste pela metade, quanto economizaria?"
-6. "Qual a maior reclamação dos funcionários sobre o plano?"
+1. "Como voces estao se preparando para a NR-1? Ja tem relatorio de riscos psicossociais?"
+2. "Quanto foi o reajuste do plano este ano?"
+3. "Vocaram no Indice Tecnico na ultima renovacao?"
+4. "Quantos funcionarios faltaram por problema de saude no ultimo mes?"
+5. "Se pudesse comprovar compliance NR-1 e ainda reduzir reajuste, quanto vale isso?"
 
-### Para seguradora:
-1. "Qual a sinistralidade média da carteira PME?"
-2. "Quanto perde por ano em cancelamentos por reajuste?"
-3. "Já considerou programas de prevenção com dados verificados?"
-4. "Como diferencia seu produto das outras operadoras?"
-5. "Se pudesse reduzir sinistralidade em 8 pontos, qual o impacto?"
+### Para operadora:
+1. "Ja implementaram programa de promocao de saude conforme RN 499?"
+2. "Qual a sinistralidade media da carteira PME?"
+3. "Quantos contratos ativaram Indice Tecnico no ultimo ciclo?"
+4. "Como diferenciam o produto das outras operadoras?"
+5. "Ja consideraram dados verificados (nao auto-relato) para programa de wellness?"
 
 ### Para corretora:
-1. "Quantos clientes perdeu na última renovação?"
-2. "Qual seu argumento quando o reajuste vem alto?"
-3. "Quanto da sua receita vem de comissão de plano de saúde?"
-4. "E se pudesse ganhar 25% a mais sem vender nada novo?"
-5. "Quanto custa perder um cliente de 80 vidas?"
+1. "Quantos clientes perdeu na ultima renovacao por reajuste?"
+2. "Seus clientes estao em conformidade com a NR-1?"
+3. "Qual seu argumento quando o reajuste vem acima de 20%?"
+4. "E se pudesse oferecer compliance NR-1 + negociacao de reajuste como servico?"
 
 ---
 
-## Comparativo rápido
+## Comparativo com concorrentes
 
-| Funcionalidade | VitaScore | Gympass | Zenklub | Google Fit |
+| Funcionalidade | VitaScore | Gympass | Zenklub | Prudential Vitality |
 |---|:---:|:---:|:---:|:---:|
-| Monitora exercício | ✅ | ✅ | ❌ | ✅ |
-| Monitora sono | ✅ | ❌ | ❌ | ✅ |
-| Monitora nutrição | ✅ (foto + IA) | ❌ | ❌ | ❌ |
-| Monitora peso | ✅ (foto balança) | ❌ | ❌ | ❌ |
-| Saúde mental | ✅ (tempo tela) | ❌ | ✅ | ❌ |
-| Anti-fraude | ✅ (5 camadas) | N/A | N/A | ❌ |
-| Relatório para RH | ✅ | ✅ | ✅ | ❌ |
-| Desconto no plano | ✅ | ❌ | ❌ | ❌ |
-| Negocia reajuste | ✅ | ❌ | ❌ | ❌ |
-| LGPD by design | ✅ | ❌ | ❌ | ❌ |
-| Score unificado | ✅ | ❌ | ❌ | ❌ |
+| Monitora exercicio | Sim | Sim | Nao | Sim |
+| Monitora sono | Sim | Nao | Nao | Sim |
+| Monitora nutricao (foto + IA) | Sim | Nao | Nao | Nao |
+| Saude mental | Sim | Nao | Sim | Parcial |
+| Anti-fraude (dados verificados) | Sim (5 camadas) | N/A | N/A | Parcial |
+| Relatorio para RH / compliance NR-1 | Sim | Sim (parcial) | Sim (parcial) | Nao |
+| Score unificado de saude | Sim | Nao | Nao | Sim |
+| Desconto no plano de saude | Sim | Nao | Nao | Nao (*) |
+| Regulado pela ANS | Sim (foco) | N/A | N/A | Nao (SUSEP) |
+| Opera no Brasil | Sim | Sim | Sim | Sim |
 
-**Frase-chave:** *"Gympass resolve academia. Zenklub resolve terapia. VitaScore resolve o plano de saúde inteiro."*
+> (*) Prudential Vitality oferece descontos em **seguro de vida** (regulado pela SUSEP), nao em **plano de saude** (regulado pela ANS). Sao mercados diferentes com regulacoes diferentes.
+
+### Posicionamento vs Prudential Vitality
+
+O Prudential Vitality e o programa mais proximo do VitaScore no Brasil. Diferenca fundamental:
+
+- **Prudential Vitality**: opera em **seguro de vida** (SUSEP). Beneficiario ganha descontos em produtos Prudential. Foco em longevidade e mortalidade.
+- **VitaScore**: opera em **plano de saude** (ANS/RN 499). Gera dados para operadoras reduzirem sinistralidade e empresas comprovarem compliance NR-1.
+
+**Frase-chave:** *"Vitality resolve seguro de vida. VitaScore resolve plano de saude. Gympass resolve academia. Zenklub resolve terapia."*
 
 ---
 
-## Respostas rápidas para objeções
+## Respostas rapidas para objecoes
 
 ### RH da empresa
 
-| Objeção | Resposta |
+| Objecao | Resposta |
 |---------|----------|
-| "Funcionário não vai usar" | "60% usam — ganha desconto na coparticipação. Piloto gratuito: se não usar, não custa nada." |
-| "Já temos Gympass" | "Gympass é academia. VitaScore gera relatório para negociar reajuste menor. Complementam-se." |
-| "É caro?" | "R$4/funcionário/mês. Se reajuste cair 7 pontos, economia de R$30K+. ROI de 40x." |
-| "E a LGPD?" | "Dados no celular. Relatório agregado, sem nomes. Conformidade total." |
-| "Vou pensar" | "Posso já agendar o piloto gratuito? 90 dias sem compromisso." |
-| "Preciso de aprovação" | "Piloto é gratuito — não precisa de orçamento. Depois de 90 dias, apresenta os resultados." |
+| "Funcionario nao vai usar" | "Historicamente, 40-50% engajam no primeiro ano, subindo com o tempo. O incentivo e desconto na coparticipacao. Piloto gratuito: se nao usar, nao custa nada." |
+| "Ja temos Gympass" | "Gympass e academia. VitaScore gera relatorio de compliance NR-1 e dados para negociar reajuste. Complementam-se." |
+| "E caro?" | "R$4/funcionario/mes. So o compliance NR-1 ja justifica — a multa e R$6.708 por trabalhador." |
+| "E a LGPD?" | "Dados ficam no celular. Relatorio agregado, sem identificacao individual. Privacy by design." |
+| "Quanto reduz o reajuste?" | "Dados internacionais apontam 10-30%. No Brasil, precisamos validar com piloto de 12-18 meses. O que podemos provar HOJE e o compliance NR-1." |
+| "Preciso de aprovacao" | "Piloto e gratuito — nao precisa de orcamento. Apos 90 dias, apresenta os resultados ao decisor." |
 
-### Seguradora
+### Operadora de saude
 
-| Objeção | Resposta |
+| Objecao | Resposta |
 |---------|----------|
-| "Já temos programa de wellness" | "Auto-relato? VitaScore tem 5 camadas anti-fraude. Dados verificados = atuária confia." |
-| "Não temos orçamento" | "Quem paga é a empresa contratante. Vocês só reduzem sinistro." |
-| "Precisa de evidência" | "Discovery Vitality: 35% de redução em 40 países. Propomos piloto para gerar dados locais." |
+| "Ja temos programa de wellness" | "Com dados verificados ou auto-relato? VitaScore tem 5 camadas anti-fraude. Dados verificados = atuaria confia." |
+| "Ja existe o Vitality" | "Sim, mas o Prudential Vitality opera em seguro de vida (SUSEP), nao em plano de saude (ANS). Nos somos a ferramenta para operadoras implementarem a RN 499 com dados verificados." |
+| "Precisa de evidencia" | "Discovery Vitality reporta 10-30% de reducao em 25 anos de operacao. Propomos piloto de 12 meses para gerar dados no contexto brasileiro." |
+| "Nao temos orcamento" | "Modelo white-label: quem paga e a empresa contratante. Voces reduzem sinistralidade sem custo direto." |
 
 ### Corretora
 
-| Objeção | Resposta |
+| Objecao | Resposta |
 |---------|----------|
-| "Não tenho tempo" | "2 horas na primeira semana. Modelos prontos de email e WhatsApp. Copiar e colar." |
-| "Meu cliente não vai querer" | "Seu cliente reclama de reajuste? Então vai querer. E o piloto é gratuito." |
-| "E se não funcionar?" | "90 dias grátis. Se não funcionar, cancela. Você não perdeu nada." |
+| "Nao tenho tempo" | "2 horas na primeira semana. Templates prontos de email e WhatsApp. Nos fazemos o onboarding." |
+| "Meu cliente nao vai querer" | "Seu cliente esta em conformidade com a NR-1? Se nao, precisa resolver isso. E o piloto e gratuito." |
+| "E se nao funcionar?" | "90 dias gratis. Se nao funcionar, cancela. Voce nao perdeu nada e ainda ofereceu algo diferente." |
 
 ---
 
-## Materiais disponíveis
+## Gatilhos de urgencia
+
+### NR-1 (urgencia real e comprovavel):
+- "A NR-1 ja esta em vigor. Sua empresa tem relatorio de gestao de riscos psicossociais?"
+- "A multa e de R$6.708 por trabalhador. Para uma empresa de 80 funcionarios, sao R$536 mil."
+- "Nao e questao de 'se' vai ter fiscalizacao. E questao de 'quando'."
+
+### Reajuste (urgencia sazonal):
+- "A proxima renovacao e em [X] meses. Se comecar o piloto agora, vai ter dados na hora de negociar."
+- "Quanto custou o ultimo reajuste de 20%? Multiplica por 5 anos."
+- "Se a sinistralidade passar de 65%, o Indice Tecnico ativa e o reajuste dispara."
+
+---
+
+## Materiais disponiveis
 
 | Material | Formato | Para quem | Quando usar |
 |----------|---------|-----------|-------------|
-| Pitch Comercial | PDF | Seguradora/Corretora | Primeiro contato |
-| Pitch Corretoras | PDF | Corretora parceira | Recrutamento de canal |
-| Calculadora de ROI | Planilha/PDF | RH da empresa | Reunião de apresentação |
-| Demo do app | App no celular | Qualquer um | Toda reunião |
-| Relatório RH exemplo | PDF | RH da empresa | Após interesse inicial |
-| Caso de uso (piloto) | PDF | Todos | Quando pedir evidência |
-| Modelos de email/WhatsApp | Texto | Corretora | Prospecção diária |
+| Pitch Comercial | PDF | Operadora/Corretora | Primeiro contato |
+| Calculadora de ROI (honesta) | PDF | RH da empresa | Reuniao de apresentacao |
+| Demo do app | App no celular | Qualquer um | Toda reuniao |
+| Relatorio NR-1 exemplo | PDF | RH da empresa | Quando mencionar compliance |
+| Comparativo com Vitality | PDF | Operadora | Quando mencionarem concorrencia |
+| Modelos de email/WhatsApp | Texto | Corretora | Prospeccao diaria |
 
 ---
 
-## Checklist de apresentação
+## Checklist de apresentacao
 
-### Antes da reunião
-- [ ] Personalizar economia estimada (funcionários x R$420 x 0.07)
-- [ ] Ter o app instalado no celular para demo ao vivo
-- [ ] Abrir o relatório RH de exemplo
-- [ ] Saber o último reajuste do prospect (perguntar antes)
+### Antes da reuniao
+- [ ] Saber se a empresa esta em conformidade com NR-1
+- [ ] Saber o ultimo reajuste e se ativou Indice Tecnico
+- [ ] Personalizar economia estimada (compliance + reajuste projetado)
+- [ ] Ter o app instalado para demo ao vivo
 - [ ] Preparar proposta de piloto 90 dias
-- [ ] Saber o nome da seguradora atual do prospect
 
-### Durante a reunião
-- [ ] Começar pela dor ("quanto foi o reajuste?")
-- [ ] Mostrar o app (3 telas: home, nutrição com foto, relatório)
-- [ ] Mostrar os números (ROI, economia personalizada)
-- [ ] Usar o comparativo (VitaScore vs Gympass vs nada)
+### Durante a reuniao
+- [ ] Comecar pela NR-1 ("voces ja estao em conformidade?")
+- [ ] Mostrar o app (3 telas: home, nutricao com foto, relatorio)
+- [ ] Separar ROI comprovavel (NR-1) de projetado (reajuste)
+- [ ] Se mencionarem Vitality: explicar diferenca SUSEP vs ANS
 - [ ] Propor piloto gratuito de 90 dias
-- [ ] Agendar próximo passo antes de sair
+- [ ] Agendar proximo passo antes de sair
 
-### Depois da reunião
-- [ ] Enviar email de follow-up com ROI personalizado (em até 2h)
-- [ ] Enviar link do pitch comercial
-- [ ] Agendar início do piloto (se aceitar)
-- [ ] Follow-up em 48h se não responder
+### Depois da reuniao
+- [ ] Enviar email com ROI personalizado — separando comprovavel de projetado (em ate 2h)
+- [ ] Follow-up em 48h se nao responder
 - [ ] Registrar no CRM
 
 ---
 
-## Fluxo de qualificação (BANT)
-
-| Critério | Pergunta | Qualificado se... |
-|----------|----------|--------------------|
-| **Budget** | "Quanto gastam com plano de saúde?" | > R$50K/ano |
-| **Authority** | "Quem decide sobre o plano?" | Você está falando com o decisor |
-| **Need** | "Qual foi o último reajuste?" | > 10% ou insatisfação |
-| **Timeline** | "Quando é a próxima renovação?" | < 6 meses |
-
-**Prospect ideal:** empresa com 50+ funcionários, reajuste > 12%, renovação em até 6 meses.
-
----
-
-## Gatilhos de urgência
-
-Frases para criar senso de urgência (use com moderação):
-
-- "A próxima renovação é em [X] meses. Se começar o piloto agora, vai ter 90 dias de dados na hora de negociar."
-- "Nenhuma corretora no Brasil está oferecendo isso ainda. Quem começar primeiro, leva vantagem."
-- "O piloto gratuito tem vagas limitadas por região — estou oferecendo para [X] empresas aqui."
-- "Quanto custou o último reajuste de 15%? Multiplica por 5 anos. Esse é o custo de não fazer nada."
-
----
-
-## Resumo de uma página
+## Resumo de uma pagina
 
 ```
-O QUE É:    App que monitora saúde dos funcionários com dados verificados
-PRA QUÊ:    Negociar reajuste menor do plano de saúde
-QUANTO:     R$4/funcionário ativo/mês
-ECONOMIA:   R$30K-90K/ano para empresa de 80 funcionários
-ROI:        40x
-PILOTO:     90 dias gratuito
-COMISSÃO:   25% para corretoras
-RISCO:      Zero (cancela quando quiser)
-DIFERENCIAL: Único no Brasil com dados verificados + anti-fraude
+O QUE E:      App que monitora saude com dados verificados (5 camadas anti-fraude)
+PRA QUE:      1) Compliance NR-1  2) Negociar reajuste menor  3) Implementar RN 499
+QUANTO:       R$4/funcionario ativo/mes (R$0 para corretoras)
+ROI PROVAVEL: Compliance NR-1 — evita multa de R$6.708/trabalhador
+ROI PROJETADO: 6x-18x na reducao de reajuste (precisa validacao em piloto)
+PILOTO:       90 dias gratuito
+DIFERENCIAL:  Unico focado em plano de saude (ANS) com dados verificados
+CONCORRENCIA: Prudential Vitality atua em seguro de vida (SUSEP), nao plano de saude
 ```
 
 ---
 
-*Toolkit atualizado em abril/2026 | VitaScore*
+*Toolkit atualizado em abril/2026 | VitaScore — Numeros honestos, posicionamento real.*
