@@ -315,11 +315,13 @@ export default function HomePage() {
           >
             <div className="flex gap-2 overflow-x-auto pb-1 hide-scrollbar">
               {[
+                { href: "/checkin", label: "Bem-estar", icon: "💚" },
                 { href: "/sono", label: "Sono", icon: "🌙" },
-                { href: "/nutricao", label: "Nutricao", icon: "🥗" },
+                { href: "/nutricao", label: "Nutrição", icon: "🥗" },
                 { href: "/peso", label: "Peso", icon: "⚖️" },
                 { href: "/digital", label: "Digital", icon: "📱" },
                 { href: "/monitorar", label: "Treino", icon: "🗺️" },
+                { href: "/nr1", label: "NR-1", icon: "🛡️" },
                 { href: "/desafios", label: "Desafios", icon: "🏆" },
                 { href: "/relatorio", label: "RH", icon: "📊" },
               ].map((item) => (

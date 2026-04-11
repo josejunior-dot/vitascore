@@ -567,9 +567,36 @@ export default function RelatorioPage() {
               </div>
             </motion.section>
 
-            {/* ---- Footer LGPD ---- */}
+            {/* ---- Conformidade LGPD ---- */}
             <motion.section
               custom={7}
+              variants={sectionVariants}
+              initial="hidden"
+              animate="visible"
+              className="rounded-2xl bg-[#E8F5E9] border border-[#A5D6A7] p-5"
+            >
+              <div className="flex items-start gap-3">
+                <Shield className="w-5 h-5 text-[#2E7D32] shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1.5">
+                  <p className="text-sm font-semibold text-[#202124]">
+                    Conformidade LGPD
+                  </p>
+                  <p className="text-xs text-[#202124]">
+                    Este relatorio contem apenas dados agregados. Nenhum dado
+                    individual de funcionario e coletado, armazenado ou exibido.
+                  </p>
+                  <p className="text-xs text-[#5F6368]">
+                    Bonificacao baseada em participacao, nao em resultados
+                    individuais (RN 499 ANS). Nenhum score individual e visivel
+                    para o RH.
+                  </p>
+                </div>
+              </div>
+            </motion.section>
+
+            {/* ---- Footer Hash ---- */}
+            <motion.section
+              custom={8}
               variants={sectionVariants}
               initial="hidden"
               animate="visible"
@@ -578,7 +605,7 @@ export default function RelatorioPage() {
               <Shield className="w-5 h-5 text-[#9AA0A6] shrink-0" />
               <p className="text-xs text-[#9AA0A6]">
                 Dados anonimizados &middot; Conformidade LGPD &middot; Hash de
-                verificação:{" "}
+                verificacao:{" "}
                 <span className="font-mono">
                   {report.reportDate.replace(/-/g, "")}
                   -a3f8

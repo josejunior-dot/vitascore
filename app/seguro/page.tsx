@@ -177,7 +177,7 @@ export default function SeguroPage() {
           <div className="w-6" />
         </motion.div>
 
-        {/* Hero Card — Desconto Atual */}
+        {/* Hero Card — Bonus Atual */}
         <motion.div
           variants={itemVariants}
           className="relative overflow-hidden rounded-2xl p-6"
@@ -193,7 +193,7 @@ export default function SeguroPage() {
               className="text-6xl font-mono-score text-[#30D158]"
             />
             <p className="text-[#5F6368] text-sm">
-              de desconto na próxima renovação
+              de bonus por participacao ativa
             </p>
             <div className="flex items-center gap-4 mt-2 text-xs text-[#5F6368]">
               <span className="flex items-center gap-1">
@@ -216,10 +216,10 @@ export default function SeguroPage() {
           <DiscountGauge />
         </motion.div>
 
-        {/* Como aumentar o desconto */}
+        {/* Como aumentar o bonus */}
         <motion.div variants={itemVariants} className="flex flex-col gap-2">
           <h2 className="text-[#202124] font-semibold text-base px-1">
-            Como aumentar o desconto
+            Como aumentar seu bonus
           </h2>
           <div className="flex flex-col gap-2">
             {mockInsuranceActions.map((action) => (
@@ -255,10 +255,10 @@ export default function SeguroPage() {
           </div>
         </motion.div>
 
-        {/* Desconto na Coparticipação */}
+        {/* Bonus de Participacao */}
         <motion.div variants={itemVariants} className="flex flex-col gap-3">
           <h2 className="text-[#202124] font-semibold text-base px-1">
-            Desconto na Coparticipação
+            Bonus de Participacao
           </h2>
 
           {/* Tier Badge + Next Tier */}
@@ -269,8 +269,8 @@ export default function SeguroPage() {
                   className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-semibold text-white"
                   style={{ backgroundColor: copayProfile.currentDiscount.color }}
                 >
-                  {copayProfile.currentDiscount.label} &middot;{" "}
-                  {copayProfile.currentDiscount.discountPercent}% de desconto
+                  {copayProfile.currentDiscount.label} &middot; R${" "}
+                  {(copayProfile.currentDiscount.discountPercent * 1.5).toFixed(0)}/mes em bonus
                 </span>
               </div>
               <span className="text-xs text-[#5F6368]">
@@ -292,7 +292,7 @@ export default function SeguroPage() {
                       className="font-semibold"
                       style={{ color: copayProfile.nextTier.color }}
                     >
-                      {copayProfile.nextTier.label} ({copayProfile.nextTier.discountPercent}%)
+                      {copayProfile.nextTier.label} (R$ {(copayProfile.nextTier.discountPercent * 1.5).toFixed(0)}/mes)
                     </span>
                   </span>
                 </div>
@@ -321,7 +321,7 @@ export default function SeguroPage() {
             )}
             {!copayProfile.nextTier && (
               <p className="text-xs text-[#30D158] font-medium">
-                Parabéns! Você está no nível máximo de desconto.
+                Parabens! Voce esta no nivel maximo de bonus por participacao.
               </p>
             )}
           </div>
@@ -330,7 +330,7 @@ export default function SeguroPage() {
           <div className="rounded-2xl border border-[#DADCE0] bg-white shadow-sm overflow-hidden">
             <div className="px-5 pt-4 pb-2">
               <p className="text-sm font-medium text-[#202124]">
-                Simulação de economia
+                Credito de bem-estar por participacao
               </p>
             </div>
             <div className="divide-y divide-[#DADCE0]">
@@ -342,13 +342,15 @@ export default function SeguroPage() {
                   <span className="text-sm text-[#202124] flex-1">
                     {sim.procedureName}
                   </span>
-                  <div className="flex items-center gap-3 text-sm">
-                    <span className="text-[#9AA0A6] line-through">
-                      R$ {sim.originalCopay.toFixed(2).replace(".", ",")}
+                  <div className="flex flex-col items-end text-sm">
+                    <span className="text-[#5F6368]">
+                      R$ {sim.originalCopay.toFixed(2).replace(".", ",")} (base)
                     </span>
-                    <span className="text-[#30D158] font-semibold">
-                      R$ {sim.finalCopay.toFixed(2).replace(".", ",")}
-                    </span>
+                    {sim.discountAmount > 0 && (
+                      <span className="text-[#30D158] text-xs font-semibold">
+                        +R$ {sim.discountAmount.toFixed(2).replace(".", ",")} em credito
+                      </span>
+                    )}
                   </div>
                 </div>
               ))}
@@ -360,7 +362,7 @@ export default function SeguroPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-[#5F6368] mb-1">
-                  Economia estimada (2 procedimentos/mês)
+                  Bonus estimado por participacao ativa (2 proc./mes)
                 </p>
                 <p className="text-lg font-semibold text-[#202124]">
                   R$ {copayProfile.monthlySavings.toFixed(2).replace(".", ",")}/mês{" "}
@@ -385,10 +387,10 @@ export default function SeguroPage() {
           </div>
         </motion.div>
 
-        {/* Histórico de Descontos */}
+        {/* Historico de Bonus */}
         <motion.div variants={itemVariants} className="flex flex-col gap-2">
           <h2 className="text-[#202124] font-semibold text-base px-1">
-            Histórico de Descontos
+            Historico de Bonus
           </h2>
           <div className="rounded-2xl bg-[#F8F9FA] p-4">
             <ScoreHistoryChart data={[]} discountData={mockDiscountHistory} />
