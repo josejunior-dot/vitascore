@@ -1,5 +1,5 @@
 export const mockUser = {
-  name: "Carlos Silva",
+  name: "Você",
   age: 34,
   score: 742,
   maxScore: 1000,
@@ -279,7 +279,7 @@ export const mockRanking = [
   { position: 1, name: "Segurado #2341", score: 892, isUser: false },
   { position: 2, name: "Segurado #1087", score: 856, isUser: false },
   { position: 3, name: "Segurado #4520", score: 831, isUser: false },
-  { position: 4, name: "Carlos Silva", score: 742, isUser: true },
+  { position: 4, name: "Você", score: 742, isUser: true },
   { position: 5, name: "Segurado #3192", score: 718, isUser: false },
   { position: 6, name: "Segurado #5678", score: 695, isUser: false },
   { position: 7, name: "Segurado #9012", score: 672, isUser: false },
