@@ -228,10 +228,7 @@ export default function HomePage() {
       <div className="flex flex-col min-h-screen pb-24 bg-white">
         {/* ── Header (clean, minimal) ── */}
         <header className="sticky top-0 z-50 bg-white px-4 pt-4 pb-3 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <img src="/Borboleta.png" alt="SaluFlow" className="w-7 h-7 object-contain" />
-            <span className="font-display text-base font-bold text-[#1A73E8]">SaluFlow</span>
-          </div>
+          <img src="/logo.png" alt="SaluFlow" className="h-8 object-contain" />
           <div className="flex items-center gap-3">
             {!loading && source && source !== "loading" && (
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium bg-[#E8F0FE] text-[#1A73E8]">
