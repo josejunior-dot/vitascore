@@ -11,10 +11,9 @@ export default function RootPage() {
   }, [router]);
 
   return (
-    <div className="flex h-screen items-center justify-center bg-[#0A0A0A]">
-      <div className="animate-pulse font-display text-3xl font-bold text-[#1877F2]">
-        SaluFlow
-      </div>
+    <div className="flex h-screen flex-col items-center justify-center bg-white gap-4">
+      <img src="/Borboleta.png" alt="SaluFlow" className="w-20 h-20 object-contain animate-pulse" />
+      <span className="font-display text-2xl font-bold text-[#1A73E8]">SaluFlow</span>
     </div>
   );
 }

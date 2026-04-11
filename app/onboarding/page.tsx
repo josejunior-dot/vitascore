@@ -72,11 +72,11 @@ function SlideHero() {
       }}
     >
       <motion.div
-        animate={{ scale: [1, 1.2, 1] }}
-        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         className="mb-8"
       >
-        <Heart className="w-20 h-20 text-white fill-white" />
+        <img src="/Borboleta.png" alt="SaluFlow" className="w-24 h-24 object-contain" />
       </motion.div>
 
       <h1
