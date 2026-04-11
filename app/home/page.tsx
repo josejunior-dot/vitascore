@@ -315,6 +315,7 @@ export default function HomePage() {
           >
             <div className="flex gap-2 overflow-x-auto pb-1 hide-scrollbar">
               {[
+                { href: "/metas", label: "Metas", icon: "🎯" },
                 { href: "/checkin", label: "Bem-estar", icon: "💚" },
                 { href: "/sono", label: "Sono", icon: "🌙" },
                 { href: "/nutricao", label: "Nutrição", icon: "🥗" },
