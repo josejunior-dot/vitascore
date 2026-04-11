@@ -93,6 +93,7 @@ export default function ConfigPage() {
   // --- Health connection ---
   const [healthConnected, setHealthConnected] = useState(false);
   const [checking, setChecking] = useState(false);
+  const [healthError, setHealthError] = useState<string | null>(null);
 
   // --- Sensors ---
   const [sensors, setSensors] = useState({
@@ -163,14 +164,25 @@ export default function ConfigPage() {
   const handleConnectHealth = async () => {
     setChecking(true);
     try {
-      const { getHealthService } = await import("@/lib/health");
-      const service = await getHealthService();
-      const granted = await service.requestPermissions();
-      setHealthConnected(granted);
-      localStorage.setItem("health-connected", String(granted));
-    } catch {
+      // Timeout de 5 segundos para evitar travamento
+      const result = await Promise.race([
+        (async () => {
+          const { getHealthService } = await import("@/lib/health");
+          const service = await getHealthService();
+          const granted = await service.requestPermissions();
+          return granted;
+        })(),
+        new Promise<boolean>((_, reject) =>
+          setTimeout(() => reject(new Error("timeout")), 5000)
+        ),
+      ]);
+      setHealthConnected(result);
+      localStorage.setItem("health-connected", String(result));
+    } catch (err) {
+      console.log("Health Connect não disponível:", err);
       setHealthConnected(false);
       localStorage.setItem("health-connected", "false");
+      setHealthError("Health Connect não disponível neste dispositivo. Instale o app Health Connect da Play Store.");
     }
     setChecking(false);
   };
@@ -290,14 +302,22 @@ export default function ConfigPage() {
                 onClick={handleConnectHealth}
                 disabled={checking || healthConnected}
                 className="w-full py-2.5 rounded-xl text-sm font-medium text-white transition-opacity disabled:opacity-50"
-                style={{ backgroundColor: healthConnected ? "#34A853" : "#1A73E8" }}
+                style={{ backgroundColor: healthConnected ? "#34A853" : healthError ? "#9AA0A6" : "#1A73E8" }}
               >
                 {checking
                   ? "Verificando..."
                   : healthConnected
-                    ? "Conectado"
-                    : "Conectar"}
+                    ? "Conectado ✓"
+                    : healthError
+                      ? "Tentar novamente"
+                      : "Conectar"}
               </button>
+              {healthError && (
+                <p className="text-xs text-[#EA4335] mt-2 flex items-start gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
+                  {healthError}
+                </p>
+              )}
             </div>
 
             {/* Sensors */}
