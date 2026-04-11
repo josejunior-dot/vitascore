@@ -1,4 +1,4 @@
-# VitaScore — Pitch Comercial para Operadoras de Saude
+# SaluFlow — Pitch Comercial para Operadoras de Saude
 
 ## A ferramenta que faltava para operadoras implementarem a RN 498/499 da ANS
 
@@ -22,17 +22,17 @@ Por que? Porque a RN diz o que fazer, mas nao oferece a ferramenta para fazer. O
 - Gerar relatorios que atendam aos criterios da ANS
 - Escalar o programa para milhares de vidas sem custos operacionais proibitivos
 
-**VitaScore e essa ferramenta.**
+**SaluFlow e essa ferramenta.**
 
 ---
 
-### O que e o VitaScore
+### O que e o SaluFlow
 
-VitaScore e um SaaS (Software as a Service) que permite operadoras de planos de saude implementarem programas de promocao da saude conforme a RN 498/499 da ANS.
+SaluFlow e um SaaS (Software as a Service) que permite operadoras de planos de saude implementarem programas de promocao da saude conforme a RN 498/499 da ANS.
 
 O beneficiario instala o app. O app monitora 6 pilares de saude com verificacao automatica. A operadora recebe dados agregados e verificados de participacao. O beneficiario que participa recebe bonificacao — conforme previsto na regulamentacao.
 
-**Ponto critico:** a bonificacao prevista na RN 499 e por **participacao**, nao por resultado. O beneficiario nao precisa emagrecer 10kg — ele precisa demonstrar que esta participando ativamente do programa. O VitaScore documenta essa participacao de forma verificavel.
+**Ponto critico:** a bonificacao prevista na RN 499 e por **participacao**, nao por resultado. O beneficiario nao precisa emagrecer 10kg — ele precisa demonstrar que esta participando ativamente do programa. O SaluFlow documenta essa participacao de forma verificavel.
 
 ---
 
@@ -47,7 +47,7 @@ O beneficiario instala o app. O app monitora 6 pilares de saude com verificacao 
 | **Bem-estar Digital** | Tempo de tela, pausas, equilibrio | Monitoramento do dispositivo |
 | **Engajamento** | Consistencia, evolucao, adesao | Algoritmo de comportamento |
 
-Cada pilar gera um sub-score. A combinacao dos 6 gera o **VitaScore** — um numero unico de 0 a 1000, auditavel e comparavel.
+Cada pilar gera um sub-score. A combinacao dos 6 gera o **SaluFlow** — um numero unico de 0 a 1000, auditavel e comparavel.
 
 ---
 
@@ -79,7 +79,7 @@ Dados do **Discovery Vitality** (Africa do Sul, 25+ anos de operacao) e programa
 
 #### 4. Compliance regulatorio pronto
 
-O VitaScore gera automaticamente a documentacao que a ANS exige para programas de promocao da saude:
+O SaluFlow gera automaticamente a documentacao que a ANS exige para programas de promocao da saude:
 
 - Relatorio de participacao por beneficiario
 - Metricas agregadas por grupo/empresa
@@ -91,7 +91,7 @@ O VitaScore gera automaticamente a documentacao que a ANS exige para programas d
 ### Como funciona na pratica
 
 ```
-Operadora contrata o VitaScore
+Operadora contrata o SaluFlow
         |
         v
 Beneficiarios instalam o app (gratuito para eles)
@@ -120,7 +120,7 @@ Relatorio mensal para compliance ANS
 
 ### Sistema anti-fraude — 5 camadas
 
-Operadoras precisam confiar nos dados. Por isso o VitaScore tem 5 camadas de verificacao independentes:
+Operadoras precisam confiar nos dados. Por isso o SaluFlow tem 5 camadas de verificacao independentes:
 
 1. **Camera obrigatoria** — fotos de refeicoes e balanca em tempo real. Galeria bloqueada.
 2. **Deteccao de foto-de-foto** — IA analisa padroes de moire, reflexo de tela e distorcao optica.
@@ -154,7 +154,7 @@ Arquitetura com **privacy by design**:
 | **"E uma operadora de saude?"** | Nao. Somos uma **ferramenta SaaS** que operadoras usam para implementar seus proprios programas. |
 | **"E um app de saude para o consumidor?"** | Nao. O usuario final e a **operadora**. O app do beneficiario e o meio, nao o fim. |
 
-**VitaScore e uma ferramenta SaaS para operadoras implementarem programas de promocao da saude conforme RN 498/499 da ANS, com monitoramento verificavel de participacao e geracao automatica de relatorios de compliance.**
+**SaluFlow e uma ferramenta SaaS para operadoras implementarem programas de promocao da saude conforme RN 498/499 da ANS, com monitoramento verificavel de participacao e geracao automatica de relatorios de compliance.**
 
 ---
 
@@ -184,7 +184,7 @@ Economia anual:                      R$ 2.040.000
 Cenario moderado (reducao de 10%):   R$ 36.720.000
 Economia anual:                      R$ 4.080.000
 
-Investimento no VitaScore:           R$ 240.000/ano
+Investimento no SaluFlow:           R$ 240.000/ano
 ```
 
 > **Transparencia:** esses cenarios sao projecoes baseadas em dados do Discovery Vitality (Africa do Sul), John Hancock Vitality (EUA) e AIA Vitality (Asia-Pacifico). **Ainda nao foram validados no mercado brasileiro de planos de saude.** A reducao real de sinistralidade depende de adesao, perfil da carteira e tempo de implementacao. Resultados significativos em sinistralidade tipicamente levam **12 a 18 meses** para se materializarem.
@@ -197,7 +197,7 @@ Investimento no VitaScore:           R$ 240.000/ano
 
 2. **Quase nenhuma operadora implementou** — porque nao existe ferramenta para monitorar participacao de forma verificavel, escalavel e auditavel.
 
-3. **VitaScore e essa ferramenta** — monitora 6 pilares de saude com verificacao anti-fraude em 5 camadas, gera relatorios de compliance e documenta participacao.
+3. **SaluFlow e essa ferramenta** — monitora 6 pilares de saude com verificacao anti-fraude em 5 camadas, gera relatorios de compliance e documenta participacao.
 
 4. **Operadoras que implementam ganham bonus regulatorio** — pontuacao no IDSS e potencial reducao na margem de solvencia.
 
@@ -213,7 +213,7 @@ Investimento no VitaScore:           R$ 240.000/ano
 
 2. **Sinistralidade no pico historico** — operadoras precisam de solucoes reais, nao de mais planilhas.
 
-3. **NR-1 entrou em vigor** — empresas contratantes de planos estao buscando operadoras que oferecam programas de saude mental. O pilar de bem-estar digital do VitaScore atende esse requisito.
+3. **NR-1 entrou em vigor** — empresas contratantes de planos estao buscando operadoras que oferecam programas de saude mental. O pilar de bem-estar digital do SaluFlow atende esse requisito.
 
 4. **Smartphones com sensores** — 68% dos brasileiros com plano de saude tem smartphone com sensores de saude. A infraestrutura ja existe no bolso do beneficiario.
 
@@ -238,7 +238,7 @@ Investimento no VitaScore:           R$ 240.000/ano
 
 **Piloto gratuito de 90 dias:**
 
-Implantamos o VitaScore em 3 a 5 empresas da sua carteira, sem custo. Voce acompanha os resultados em tempo real pelo dashboard. Ao final, decidimos juntos se faz sentido escalar.
+Implantamos o SaluFlow em 3 a 5 empresas da sua carteira, sem custo. Voce acompanha os resultados em tempo real pelo dashboard. Ao final, decidimos juntos se faz sentido escalar.
 
 Sem contrato de fidelidade. Sem custo de implantacao. Sem risco.
 
@@ -257,14 +257,14 @@ Se os dados nao mostrarem valor, voce cancela sem pagar nada. Se mostrarem, conv
 
 ### Contato
 
-**Julio Pires** — Fundador, VitaScore
+**Julio Pires** — Fundador, SaluFlow
 [E-mail para contato]
 [Telefone / WhatsApp]
 [LinkedIn]
 
 ---
 
-> *A ANS criou o caminho. VitaScore e o veiculo.*
+> *A ANS criou o caminho. SaluFlow e o veiculo.*
 >
 > Programas de promocao da saude com bonificacao por participacao
 > ja sao regulamentados. O que falta e a ferramenta para implementar.

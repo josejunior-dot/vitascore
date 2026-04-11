@@ -1,4 +1,4 @@
-# VitaScore — Estratégia de Guerra
+# SaluFlow — Estratégia de Guerra
 
 > 4 soldados. Sem exército. Sem bala infinita. Cada tiro precisa acertar.
 
@@ -274,7 +274,7 @@ Posso mostrar em 15 minutos? Tenho horário [dia] às [hora]."
 ```
 "Olá [Nome], tudo bem?
 
-Sou da VitaScore, uma plataforma de compliance para a NR-1 
+Sou da SaluFlow, uma plataforma de compliance para a NR-1 
 (riscos psicossociais).
 
 A fiscalização punitiva começa em maio/2026 e a multa chega 
@@ -309,7 +309,7 @@ Slide 7: Perguntas (3 min)
 
 **Script do José (pitch para dono de corretora):**
 ```
-"[Nome], prazer. José, criador do VitaScore.
+"[Nome], prazer. José, criador do SaluFlow.
 
 Sou direto: você perde quantos clientes por ano por causa 
 de reajuste do plano de saúde?

@@ -13,7 +13,7 @@ export default function RootPage() {
   return (
     <div className="flex h-screen items-center justify-center bg-[#0A0A0A]">
       <div className="animate-pulse font-display text-3xl font-bold text-[#1877F2]">
-        VitaScore
+        SaluFlow
       </div>
     </div>
   );

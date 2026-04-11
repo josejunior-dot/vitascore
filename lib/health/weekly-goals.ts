@@ -107,10 +107,10 @@ export interface UserGoalProfile {
 // ---------------------------------------------------------------------------
 
 const STORE_KEYS = {
-  WEEK_PLAN: "vitascore_week_plan",
-  WEEK_HISTORY: "vitascore_week_history",
-  COIN_BALANCE: "vitascore_coin_balance",
-  GOAL_PROFILE: "vitascore_goal_profile",
+  WEEK_PLAN: "saluflow_week_plan",
+  WEEK_HISTORY: "saluflow_week_history",
+  COIN_BALANCE: "saluflow_coin_balance",
+  GOAL_PROFILE: "saluflow_goal_profile",
 } as const;
 
 const COINS_PER_GOAL = 50;

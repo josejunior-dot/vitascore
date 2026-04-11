@@ -282,7 +282,7 @@ export class DataExporter {
   // -----------------------------------------------------------------------
   static async downloadAsJson(data: ExportedHealthData): Promise<void> {
     const json = JSON.stringify(data, null, 2);
-    const filename = `vitascore-export-${todayISO()}.json`;
+    const filename = `saluflow-export-${todayISO()}.json`;
 
     // Try native share (Capacitor)
     try {
@@ -303,9 +303,9 @@ export class DataExporter {
       });
 
       await Share.share({
-        title: "VitaScore — Meus Dados",
+        title: "SaluFlow — Meus Dados",
         url: uri.uri,
-        dialogTitle: "Exportar dados VitaScore",
+        dialogTitle: "Exportar dados SaluFlow",
       });
       return;
     } catch {
@@ -381,7 +381,7 @@ export class DataExporter {
   static async deleteAllData(): Promise<void> {
     const keys = await getAllKeys();
 
-    // Known VitaScore prefixes
+    // Known SaluFlow prefixes
     const vitaKeys = keys.filter(
       (k) =>
         k.startsWith("user-profile") ||
@@ -391,7 +391,7 @@ export class DataExporter {
         k.startsWith("nutrition-") ||
         k.startsWith("screen-") ||
         k.startsWith("activity-") ||
-        k.startsWith("vitascore-") ||
+        k.startsWith("saluflow-") ||
         k.startsWith("lgpd-") ||
         k.startsWith("onboarding") ||
         k.startsWith("streak") ||

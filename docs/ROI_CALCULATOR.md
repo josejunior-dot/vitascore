@@ -1,4 +1,4 @@
-# VitaScore — Calculadora de ROI
+# SaluFlow — Calculadora de ROI
 
 > Estimativas de retorno sobre investimento, separadas por nivel de evidencia.
 
@@ -14,7 +14,7 @@ A NR-1 (Portaria MTE 1.419/2024) exige que empresas com funcionarios CLT impleme
 Multa potencial (pior caso):
 80 funcionarios x R$6.708 = R$536.640
 
-Custo do VitaScore:
+Custo do SaluFlow:
 80 funcionarios x 60% adesao = 48 ativos
 48 ativos x R$4/mes x 12 meses = R$2.304/ano
 
@@ -25,13 +25,13 @@ Multa evitada: ate R$536.640
 ### Por que este ROI e provavel
 
 - A multa e definida por **lei brasileira** (NR-1, vigente desde 26/05/2025)
-- O VitaScore gera **relatorio de gestao de riscos psicossociais** que comprova conformidade
+- O SaluFlow gera **relatorio de gestao de riscos psicossociais** que comprova conformidade
 - Nao depende de projecoes internacionais — e compliance regulatorio direto
 - A empresa investe R$2.304/ano para evitar multa de ate R$536.640
 
 ### Tabela por tamanho de empresa
 
-| Funcionarios | Custo VitaScore/ano | Multa evitada (pior caso) | Relacao custo/multa |
+| Funcionarios | Custo SaluFlow/ano | Multa evitada (pior caso) | Relacao custo/multa |
 |-------------|--------------------|--------------------------|--------------------|
 | 20 | R$576 | R$134.160 | 1:233 |
 | 50 | R$1.440 | R$335.400 | 1:233 |
@@ -68,11 +68,11 @@ Reajuste com Indice Tecnico: pode chegar a 25-40%
 ### Projecao (cenario otimista)
 
 ```
-SE o VitaScore mantiver sinistralidade abaixo de 65%:
+SE o SaluFlow mantiver sinistralidade abaixo de 65%:
   Reajuste evitado: diferenca entre 15% (padrao) e 25%+ (com Indice Tecnico)
   Sobre R$432.000: economia de R$43.200/ano (10 pontos percentuais)
 
-Custo VitaScore: R$2.304/ano
+Custo SaluFlow: R$2.304/ano
 Economia projetada: R$43.200/ano
 ROI projetado: ~18x
 ```
@@ -80,10 +80,10 @@ ROI projetado: ~18x
 ### Projecao (cenario conservador)
 
 ```
-SE o VitaScore reduzir sinistralidade em 5 pontos (metade do minimo Vitality):
+SE o SaluFlow reduzir sinistralidade em 5 pontos (metade do minimo Vitality):
   Economia no reajuste: ~R$15.000-20.000/ano (empresa de 80 vidas)
 
-Custo VitaScore: R$2.304/ano
+Custo SaluFlow: R$2.304/ano
 Economia projetada: R$15.000-20.000/ano
 ROI projetado: 6-8x
 ```
@@ -136,12 +136,12 @@ ROI projetado: ~16x
 
 ## Para Corretoras
 
-Corretoras nao pagam pelo VitaScore — recebem comissao sobre a receita gerada.
+Corretoras nao pagam pelo SaluFlow — recebem comissao sobre a receita gerada.
 
 ```
 Carteira exemplo: 500 vidas em 10 empresas
 Ativos (60%): 300
-Receita VitaScore: 300 x R$4/mes x 12 = R$14.400/ano
+Receita SaluFlow: 300 x R$4/mes x 12 = R$14.400/ano
 Comissao (25%): R$3.600/ano
 
 Custo: R$0

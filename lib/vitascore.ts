@@ -61,7 +61,7 @@ export function formatNumber(n: number): string {
 }
 
 /**
- * VitaScore breakdown por pilar (1000 pts total)
+ * SaluFlow breakdown por pilar (1000 pts total)
  *
  * Movimento:        300 pts (30%)
  * Sono:             250 pts (25%)

@@ -1,4 +1,4 @@
-# VitaScore — Plano de Negocios (v2.0)
+# SaluFlow — Plano de Negocios (v2.0)
 
 > Plataforma de monitoramento de habitos para programas de promocao da saude (RN 499/2022) e compliance NR-1
 
@@ -14,7 +14,7 @@ O problema e real e quantificavel. A sinistralidade media das operadoras de saud
 
 O arcabouco regulatorio para bonificacao ja existe. As Resolucoes Normativas 498/2022 e 499/2022 da ANS autorizam operadoras a conceder bonificacoes e descontos a beneficiarios que participem de programas de promocao da saude e prevencao de doencas. A palavra-chave e **participacao** — nao resultados. A operadora pode recompensar quem usa o app, registra refeicoes, faz check-ups. Nao pode penalizar quem tem score baixo, quem e PCD, quem esta gravida ou quem tem doenca cronica. O framework legal existe; o que falta e a ferramenta.
 
-O VitaScore nao e o primeiro no mercado brasileiro. A Prudential Vitality opera no Brasil desde 2020 (seguro de vida), tendo migrado para o app "Fully" em setembro de 2024. Gympass/Wellhub domina o wellness corporativo. Zenklub atende saude mental. O que nenhum deles faz e oferecer uma ferramenta verificavel para operadoras de **planos de saude** implementarem programas de bonificacao conforme a RN 499/2022. Esse e o espaco do VitaScore — e o caminho de entrada mais imediato e com menor resistencia e o compliance NR-1, cuja fiscalizacao punitiva comeca em maio de 2026.
+O SaluFlow nao e o primeiro no mercado brasileiro. A Prudential Vitality opera no Brasil desde 2020 (seguro de vida), tendo migrado para o app "Fully" em setembro de 2024. Gympass/Wellhub domina o wellness corporativo. Zenklub atende saude mental. O que nenhum deles faz e oferecer uma ferramenta verificavel para operadoras de **planos de saude** implementarem programas de bonificacao conforme a RN 499/2022. Esse e o espaco do SaluFlow — e o caminho de entrada mais imediato e com menor resistencia e o compliance NR-1, cuja fiscalizacao punitiva comeca em maio de 2026.
 
 ---
 
@@ -22,7 +22,7 @@ O VitaScore nao e o primeiro no mercado brasileiro. A Prudential Vitality opera 
 
 ### 1.1 O que JA existe no Brasil
 
-Antes de falar do VitaScore, e preciso ser honesto sobre quem ja esta no mercado:
+Antes de falar do SaluFlow, e preciso ser honesto sobre quem ja esta no mercado:
 
 | Player | O que faz | Mercado | Status no Brasil | Integracao com plano de saude |
 |--------|-----------|---------|-------------------|-------------------------------|
@@ -31,7 +31,7 @@ Antes de falar do VitaScore, e preciso ser honesto sobre quem ja esta no mercado
 | **Zenklub** | Terapia online e programas de saude mental corporativa | Saude mental | Ativo, 800+ empresas | NAO — foca apenas em saude mental |
 | **Vitalk** | Chatbot de saude mental + programas corporativos | Saude mental | Ativo | NAO — chatbot, sem monitoramento multipilar |
 | **Alice** | Operadora de saude com modelo de prevencao | Operadora de saude propria | Ativa, mas e operadora, nao ferramenta | SIM — mas e a propria operadora |
-| **VitaScore** | Ferramenta de monitoramento multipilar para operadoras implementarem RN 499/2022 + compliance NR-1 | Saude suplementar + RH | MVP pronto | SIM — esse e o proposito central |
+| **SaluFlow** | Ferramenta de monitoramento multipilar para operadoras implementarem RN 499/2022 + compliance NR-1 | Saude suplementar + RH | MVP pronto | SIM — esse e o proposito central |
 
 **Conclusao honesta:** Nao somos "zero competicao". Somos uma proposta diferente em um ecossistema que ja tem players relevantes. Nossa diferenciacao e especifica: ferramenta para operadoras de planos de saude implementarem programas de bonificacao (RN 499) com dados verificaveis de participacao. Se Prudential Vitality decidir expandir para planos de saude, sera um concorrente direto e com muito mais recursos.
 
@@ -48,7 +48,7 @@ A Resolucao Normativa 498, de 31 de marco de 2022 (DOU 01/04/2022), estabelece a
 
 #### RN 499/2022 — Bonificacoes e Descontos
 
-A Resolucao Normativa 499, de 31 de marco de 2022, e a mais relevante para o VitaScore. Ela autoriza operadoras a conceder bonificacoes e descontos:
+A Resolucao Normativa 499, de 31 de marco de 2022, e a mais relevante para o SaluFlow. Ela autoriza operadoras a conceder bonificacoes e descontos:
 
 - **Art. 2:** Operadoras podem conceder bonificacoes ou descontos nas contraprestacoes pecuniarias a beneficiarios que **participem** de programas de promocao da saude
 - **Art. 3, Paragrafo Unico:** A bonificacao deve ser vinculada a **participacao** do beneficiario, **NAO ao resultado** ou a condicao de saude
@@ -56,7 +56,7 @@ A Resolucao Normativa 499, de 31 de marco de 2022, e a mais relevante para o Vit
 - **Art. 7:** A operadora deve dar publicidade aos criterios de participacao e as bonificacoes oferecidas
 - **Art. 9:** Os programas devem ser submetidos a ANS para registro
 
-**Implicacao pratica para o VitaScore:** A bonificacao pode ser dada por: abrir o app X dias/mes, registrar refeicoes, registrar sono, fazer check-up anual. NAO pode ser baseada em: score alto, perda de peso, nivel de atividade fisica atingido, ou qualquer metrica de resultado. Isso muda fundamentalmente o design do produto — o score serve como feedback pessoal para o usuario, mas a bonificacao e calculada por **criterios de participacao**.
+**Implicacao pratica para o SaluFlow:** A bonificacao pode ser dada por: abrir o app X dias/mes, registrar refeicoes, registrar sono, fazer check-up anual. NAO pode ser baseada em: score alto, perda de peso, nivel de atividade fisica atingido, ou qualquer metrica de resultado. Isso muda fundamentalmente o design do produto — o score serve como feedback pessoal para o usuario, mas a bonificacao e calculada por **criterios de participacao**.
 
 #### NR-1 — Gerenciamento de Riscos Ocupacionais (Atualizada pela Portaria MTE 1.419/2024)
 
@@ -68,7 +68,7 @@ A Norma Regulamentadora 1 foi atualizada para incluir explicitamente riscos psic
 - **Contexto:** 530 mil afastamentos por saude mental em 2025 no Brasil (dado INSS)
 - **Problema das empresas:** A norma exige gestao de riscos, mas nao oferece ferramenta. Empresas de 30-200 funcionarios nao tem SESMT estruturado
 
-**Implicacao para o VitaScore:** Produto de entrada imediata. Empresas precisam demonstrar que monitoram e atuam sobre riscos psicossociais. O pilar de saude mental do VitaScore (registro de humor, tempo de tela, sono) gera dados agregados que alimentam o PGR. Nao e a solucao completa (o PGR exige mais), mas e um componente demonstravel e mensuravel.
+**Implicacao para o SaluFlow:** Produto de entrada imediata. Empresas precisam demonstrar que monitoram e atuam sobre riscos psicossociais. O pilar de saude mental do SaluFlow (registro de humor, tempo de tela, sono) gera dados agregados que alimentam o PGR. Nao e a solucao completa (o PGR exige mais), mas e um componente demonstravel e mensuravel.
 
 ### 1.3 O que o contrato AMIL PME revela
 
@@ -87,13 +87,13 @@ A clausula 14.8 estabelece que se a sinistralidade da empresa (valor dos sinistr
 - Empresa com sinistralidade de 80%: paga reajuste financeiro + indice tecnico (ex: 12% + 15% = 27%)
 - Empresa com sinistralidade de 120%: reajuste pode ultrapassar 40%
 
-**Implicacao para o VitaScore:** Para empresas de 30-99 vidas, a reducao de sinistralidade tem impacto direto e mensuravel no reajuste. Se o VitaScore ajudar a manter a sinistralidade abaixo de 65%, elimina o indice tecnico. Essa e a proposta de valor mais tangivel — nao e "pode ser que reduza", e "se manter abaixo de 65%, o reajuste adicional nao se aplica".
+**Implicacao para o SaluFlow:** Para empresas de 30-99 vidas, a reducao de sinistralidade tem impacto direto e mensuravel no reajuste. Se o SaluFlow ajudar a manter a sinistralidade abaixo de 65%, elimina o indice tecnico. Essa e a proposta de valor mais tangivel — nao e "pode ser que reduza", e "se manter abaixo de 65%, o reajuste adicional nao se aplica".
 
-**Ressalva importante:** Provar que o VitaScore causou a reducao de sinistralidade requer no minimo 12 meses de dados comparativos. No primeiro ano, a venda e baseada em hipotese, nao em prova.
+**Ressalva importante:** Provar que o SaluFlow causou a reducao de sinistralidade requer no minimo 12 meses de dados comparativos. No primeiro ano, a venda e baseada em hipotese, nao em prova.
 
 #### Clausula 12.5 — Programa de Extensao Assistencial (PEA)
 
-A AMIL ja preve programas de promocao da saude no contrato. A clausula 12.5 menciona programas de acompanhamento para doencas cronicas e promocao de habitos saudaveis. O VitaScore funciona como a extensao digital desse programa — transforma uma clausula contratual generica em um programa mensuravel.
+A AMIL ja preve programas de promocao da saude no contrato. A clausula 12.5 menciona programas de acompanhamento para doencas cronicas e promocao de habitos saudaveis. O SaluFlow funciona como a extensao digital desse programa — transforma uma clausula contratual generica em um programa mensuravel.
 
 #### Clausula 12.8 — Coparticipacao
 
@@ -112,7 +112,7 @@ Dados de saude sao dados **pessoais sensiveis** pela LGPD (Art. 5, II). Seu trat
 
 **Problema critico:** No contexto trabalhista, o **consentimento e questionavel**. A ANPD (Autoridade Nacional de Protecao de Dados) reconhece em seu Guia Orientativo sobre Tratamento de Dados Pessoais para Fins de Relacoes Trabalhistas que existe **assimetria de poder** entre empregador e empregado. O empregado pode se sentir coagido a consentir. Isso fragiliza o consentimento como base legal.
 
-**Mitigacao do VitaScore:**
+**Mitigacao do SaluFlow:**
 - Participacao deve ser **genuinamente voluntaria** (o empregado que nao participa nao pode sofrer qualquer prejuizo)
 - Dados granulares (o que comeu, quando dormiu, GPS) **nunca** sao compartilhados com RH ou empregador
 - RH recebe apenas dados **agregados** da empresa (ex: "72% dos funcionarios atingiram criterio de participacao este mes")
@@ -125,7 +125,7 @@ Dados de saude sao dados **pessoais sensiveis** pela LGPD (Art. 5, II). Seu trat
 - A RN 499/2022, Art. 5 veda explicitamente essa discriminacao
 - A CLT, Art. 373-A e a Lei 13.146/2015 (Estatuto da PCD) reforcam essa vedacao
 
-**Mitigacao do VitaScore:**
+**Mitigacao do SaluFlow:**
 - Bonificacao **exclusivamente por participacao**, nunca por resultado
 - Metas de participacao adaptadas: PCD, gestante e portadores de doencas cronicas tem criterios ajustados (ex: "registrou 10 refeicoes" em vez de "caminhou 8.000 passos")
 - Nenhuma categoria de participacao exige capacidade fisica especifica
@@ -137,7 +137,7 @@ Dados de saude sao dados **pessoais sensiveis** pela LGPD (Art. 5, II). Seu trat
 - Pressao de gestores para "melhorar o score da equipe" e situacao de risco
 - Jurisprudencia trabalhista reconhece assedio por metas de wellness em outros paises (ex: EEOC v. Orion Energy Systems, EUA, 2016)
 
-**Mitigacao do VitaScore:**
+**Mitigacao do SaluFlow:**
 - **Sem rankings individuais** visiveis para outros funcionarios ou gestores
 - Score e dado **pessoal** — visivel apenas para o proprio usuario
 - RH ve apenas percentual de participacao agregado (nao identifica quem participa ou nao)
@@ -156,9 +156,9 @@ Dados de saude sao dados **pessoais sensiveis** pela LGPD (Art. 5, II). Seu trat
 
 ### 2.1 Tres produtos, tres mercados
 
-O VitaScore nao e um produto unico vendido para todos. Sao tres produtos distintos, com timings diferentes:
+O SaluFlow nao e um produto unico vendido para todos. Sao tres produtos distintos, com timings diferentes:
 
-#### Produto 1: VitaScore NR-1 (Imediato — Mercado quente)
+#### Produto 1: SaluFlow NR-1 (Imediato — Mercado quente)
 
 | Aspecto | Detalhe |
 |---------|---------|
@@ -168,9 +168,9 @@ O VitaScore nao e um produto unico vendido para todos. Sao tres produtos distint
 | **Timing** | Fiscalizacao punitiva a partir de 26/mai/2026 — urgencia imediata |
 | **Entrega** | Relatorio mensal de indicadores psicossociais (sono, humor, tempo de tela) agregados para alimentar o PGR |
 | **Diferencial** | Dados quantitativos e continuos (vs. questionario anual de clima) |
-| **Limitacao** | NR-1 exige mais do que monitoramento (ex: acoes corretivas). VitaScore e um componente, nao a solucao completa |
+| **Limitacao** | NR-1 exige mais do que monitoramento (ex: acoes corretivas). SaluFlow e um componente, nao a solucao completa |
 
-#### Produto 2: VitaScore Saude (Medio prazo — 12-18 meses)
+#### Produto 2: SaluFlow Saude (Medio prazo — 12-18 meses)
 
 | Aspecto | Detalhe |
 |---------|---------|
@@ -182,7 +182,7 @@ O VitaScore nao e um produto unico vendido para todos. Sao tres produtos distint
 | **Diferencial** | Unica ferramenta desenhada especificamente para RN 499 com verificacao anti-fraude |
 | **Limitacao** | Ciclo de venda longo (6-12 meses com operadora). Provar reducao de sinistralidade leva 12-18 meses |
 
-#### Produto 3: VitaScore Vida (Longo prazo — 24+ meses)
+#### Produto 3: SaluFlow Vida (Longo prazo — 24+ meses)
 
 | Aspecto | Detalhe |
 |---------|---------|
@@ -265,9 +265,9 @@ O desenho da bonificacao e **fundamentalmente diferente** do que foi proposto na
 
 | Produto | Preco | Quem paga | Contrato minimo | Piloto |
 |---------|-------|-----------|-----------------|--------|
-| **VitaScore NR-1** | R$3-5/funcionario/mes | Empresa | 12 meses | 60 dias gratuito, ate 50 func. |
-| **VitaScore Saude** | R$2-3/beneficiario ativo/mes | Operadora + empresa (split negociavel) | 24 meses | 6 meses com 1 empresa-teste |
-| **VitaScore Vida** | Licenciamento ou revenue share | Seguradora de vida | Sob negociacao | — |
+| **SaluFlow NR-1** | R$3-5/funcionario/mes | Empresa | 12 meses | 60 dias gratuito, ate 50 func. |
+| **SaluFlow Saude** | R$2-3/beneficiario ativo/mes | Operadora + empresa (split negociavel) | 24 meses | 6 meses com 1 empresa-teste |
+| **SaluFlow Vida** | Licenciamento ou revenue share | Seguradora de vida | Sob negociacao | — |
 | **Setup/Implantacao** | R$2.000-10.000 (por porte) | Empresa | Unico | — |
 
 ### 3.2 O que NAO assumimos mais
@@ -351,7 +351,7 @@ Premissas: investimento anjo de R$200-300K, contratacao de 1 vendedor no mes 3, 
 
 **Objetivo:** 5-10 empresas usando o produto, mesmo que em piloto gratuito.
 
-- **Proposta de valor:** "A fiscalizacao punitiva da NR-1 comeca em 26/mai/2026. Sua empresa tem um programa de monitoramento de riscos psicossociais? O VitaScore gera relatorios mensais que alimentam seu PGR."
+- **Proposta de valor:** "A fiscalizacao punitiva da NR-1 comeca em 26/mai/2026. Sua empresa tem um programa de monitoramento de riscos psicossociais? O SaluFlow gera relatorios mensais que alimentam seu PGR."
 - **Perfil do cliente:** PMEs de 30-200 funcionarios, com plano de saude coletivo, sem SESMT proprio
 - **Canal:** LinkedIn outbound para diretores de RH + rede de contatos + corretoras de seguros (que ja visitam essas empresas)
 - **Preco:** Piloto gratuito de 60 dias (ate 50 funcionarios). Conversao para R$3-5/func/mes
@@ -383,7 +383,7 @@ Premissas: investimento anjo de R$200-300K, contratacao de 1 vendedor no mes 3, 
 
 ### Fase 4: Multiplas operadoras + consideracao do mercado Vida (Ano 3)
 
-**Objetivo:** VitaScore como ferramenta reconhecida para RN 499.
+**Objetivo:** SaluFlow como ferramenta reconhecida para RN 499.
 
 - Expandir para 5+ operadoras com programas de bonificacao ativos
 - Publicar primeiro estudo de impacto em sinistralidade (se dados suportarem)
@@ -432,7 +432,7 @@ Esta secao separa explicitamente o que sabemos de o que estamos assumindo. Inves
 
 | Afirmacao | Base da estimativa | Nivel de confianca |
 |-----------|-------------------|-------------------|
-| VitaScore pode atingir 20 empresas no ano 1 | Benchmark de startups SaaS B2B no Brasil (Distrito, ABStartups) | Media — depende de execucao comercial |
+| SaluFlow pode atingir 20 empresas no ano 1 | Benchmark de startups SaaS B2B no Brasil (Distrito, ABStartups) | Media — depende de execucao comercial |
 | Engajamento de 40%+ dos funcionarios | Apps de wellness com incentivo financeiro (Vitality: 60%+, mas contexto diferente) | Baixa — nao ha dados brasileiros comparaveis |
 | Reducao de sinistralidade de 5-15% | Discovery Vitality (Africa do Sul), Vitality Health (UK). Resultados apos 3+ anos | Baixa — contexto demografico, cultural e regulatorio completamente diferente |
 | Churn de 25-35% no ano 1 | Benchmark SaaS SMB (SaaSholic, ChartMogul) | Media — depende da qualidade do produto e suporte |
@@ -535,4 +535,4 @@ Esta secao separa explicitamente o que sabemos de o que estamos assumindo. Inves
 ---
 
 *Documento confidencial. Versao 2.0 — Revisao com analise regulatoria e de mercado.*
-*VitaScore (c) 2026. Todos os direitos reservados.*
+*SaluFlow (c) 2026. Todos os direitos reservados.*

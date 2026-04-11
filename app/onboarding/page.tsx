@@ -216,7 +216,7 @@ export default function OnboardingPage() {
       age: parseInt(userAge) || 0,
       onboarded: true,
     });
-    localStorage.setItem("vitascore-onboarded", "true");
+    localStorage.setItem("saluflow-onboarded", "true");
     router.push("/home");
   }
 
@@ -310,7 +310,7 @@ export default function OnboardingPage() {
             className="w-full max-w-xs py-4 rounded-full font-bold text-base transition-transform active:scale-95 disabled:opacity-40"
             style={{ backgroundColor: "#1A73E8", color: "#ffffff" }}
           >
-            Entrar no VitaScore
+            Entrar no SaluFlow
           </motion.button>
         )}
       </div>

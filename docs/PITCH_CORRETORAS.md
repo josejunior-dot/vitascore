@@ -1,4 +1,4 @@
-# VitaScore para Corretoras de Seguros
+# SaluFlow para Corretoras de Seguros
 
 > Pare de perder clientes no reajuste. Tenha o argumento que nenhuma outra corretora tem.
 
@@ -19,7 +19,7 @@ Vamos ser diretos:
 
 ---
 
-## O que é o VitaScore (em 30 segundos)
+## O que é o SaluFlow (em 30 segundos)
 
 - App no celular do funcionário
 - Monitora: passos, sono, alimentação (com foto + IA!), peso, tempo de tela
@@ -34,7 +34,7 @@ Não precisa entender de tecnologia. Não precisa instalar nada no seu computado
 
 ## O que muda na sua vida como corretora
 
-### ANTES (sem VitaScore)
+### ANTES (sem SaluFlow)
 
 ```
 Renovação → Reajuste 15% → RH puto → "consiga desconto" →
@@ -43,10 +43,10 @@ cliente insatisfeito → risco de perder a conta →
 adeus comissão recorrente
 ```
 
-### DEPOIS (com VitaScore)
+### DEPOIS (com SaluFlow)
 
 ```
-Renovação → Reajuste 15% → Você abre o relatório VitaScore →
+Renovação → Reajuste 15% → Você abre o relatório SaluFlow →
 "Olha os dados: funcionários 22% mais ativos, absenteísmo caiu 33%,
 sinistralidade caiu 8 pontos" →
 Negocia com seguradora com DADOS na mão →
@@ -66,7 +66,7 @@ Você vira herói da renovação
 | Item | Valor |
 |------|-------|
 | Custo para você | **R$0** |
-| Comissão sobre VitaScore | **25% da receita** |
+| Comissão sobre SaluFlow | **25% da receita** |
 | Investimento necessário | **Nenhum** |
 | Treinamento | **Gratuito** |
 | Material de vendas | **Incluído** |
@@ -76,7 +76,7 @@ Você não paga nada. Não investe nada. Só oferece para seus clientes e ganha 
 
 ### Simulação por tamanho de carteira
 
-| Sua carteira | Vidas | Ativos (60%) | Receita VitaScore/ano | Sua comissão (25%) | Por mês |
+| Sua carteira | Vidas | Ativos (60%) | Receita SaluFlow/ano | Sua comissão (25%) | Por mês |
 |-------------|-------|-------------|----------------------|-------------------|---------|
 | 5 empresas | 200 | 120 | R$5.760 | R$1.440 | **R$120** |
 | 15 empresas | 600 | 360 | R$17.280 | R$4.320 | **R$360** |
@@ -93,15 +93,15 @@ Você não paga nada. Não investe nada. Só oferece para seus clientes e ganha 
 ```
 Comissão do plano: 6% de R$450 × 80 vidas = R$2.160/mês
 
-SEM VitaScore: cliente fica 2 anos → R$51.840
-COM VitaScore: cliente fica 5 anos → R$129.600
+SEM SaluFlow: cliente fica 2 anos → R$51.840
+COM SaluFlow: cliente fica 5 anos → R$129.600
 
 DIFERENÇA: +R$77.760 por cliente retido
 ```
 
 Em **30 empresas**: +R$2.332.800 ao longo de 5 anos.
 
-Esse é o número que importa. A comissão do VitaScore é bônus. O **verdadeiro valor** é nunca mais perder cliente por causa de reajuste.
+Esse é o número que importa. A comissão do SaluFlow é bônus. O **verdadeiro valor** é nunca mais perder cliente por causa de reajuste.
 
 ---
 
@@ -150,7 +150,7 @@ Assunto: Redução de reajuste do plano de saúde — nova ferramenta
 Olá [NOME],
 
 Sei que o reajuste do plano de saúde é uma preocupação constante.
-Por isso, quero apresentar o VitaScore — uma plataforma que monitora
+Por isso, quero apresentar o SaluFlow — uma plataforma que monitora
 hábitos de saúde dos funcionários e gera dados verificados que podem
 ser usados para negociar reajustes menores com a seguradora.
 
@@ -198,7 +198,7 @@ Quer que eu mostre em 10 minutos?
 Estou ligando porque tenho uma ferramenta nova que pode ajudar
 a [EMPRESA] a pagar menos no plano de saúde.
 
-É um app chamado VitaScore — os funcionários instalam no celular,
+É um app chamado SaluFlow — os funcionários instalam no celular,
 ele monitora hábitos de saúde, e gera um relatório com dados
 verificados. Com esses dados, eu consigo negociar um reajuste
 menor com a [SEGURADORA].
@@ -221,7 +221,7 @@ Qual dia fica bom pra você?"
 ```
 Pessoal, novidade que pode interessar a todos:
 
-Comecei a trabalhar com o VitaScore — é uma plataforma que
+Comecei a trabalhar com o SaluFlow — é uma plataforma que
 monitora hábitos de saúde dos funcionários e gera relatórios
 verificados para negociar reajuste menor.
 
@@ -238,7 +238,7 @@ Se alguém quiser, posso fazer a ponte.
 ```
 Oi [NOME], tudo bem?
 
-Te mandei uma mensagem sobre o VitaScore — aquela ferramenta
+Te mandei uma mensagem sobre o SaluFlow — aquela ferramenta
 pra reduzir reajuste do plano de saúde.
 
 Sei que a rotina é corrida. Posso te explicar em 5 minutos
@@ -254,7 +254,7 @@ Qual o melhor horário?
 | O RH vai dizer | Você responde |
 |----------------|---------------|
 | "Funcionário não vai usar" | "60% usam — porque ganha desconto na coparticipação. É como programa de milhagem: quando tem benefício, a pessoa usa. E o piloto é gratuito: se não usar, não custa nada." |
-| "Já temos Gympass" | "Gympass é academia. VitaScore é saúde integral: sono, alimentação, peso, saúde mental. E o principal: gera relatório para negociar reajuste — Gympass não faz isso." |
+| "Já temos Gympass" | "Gympass é academia. SaluFlow é saúde integral: sono, alimentação, peso, saúde mental. E o principal: gera relatório para negociar reajuste — Gympass não faz isso." |
 | "É caro?" | "R$4 por funcionário ativo por mês. Se o reajuste cair 7 pontos, a economia é de R$30K+ por ano. ROI de 40x. E o piloto de 90 dias é gratuito." |
 | "E a LGPD?" | "Dados de saúde ficam no celular do funcionário. O relatório do RH é agregado — sem nome, sem CPF. Conformidade total com LGPD." |
 | "Preciso ver antes" | "Perfeito. Posso mostrar o app funcionando no meu celular agora mesmo — leva 5 minutos. Ou agendar uma videoconferência." |
@@ -262,7 +262,7 @@ Qual o melhor horário?
 | "Meu RH não vai aprovar" | "O piloto é gratuito e não exige aprovação de diretoria. Depois de 90 dias, você apresenta os resultados reais e a decisão fica fácil." |
 | "Não acredito que funciona" | "Por isso o piloto é gratuito. Em 90 dias você vai ter os dados da SUA empresa. Se não funcionar, cancela. Sem risco." |
 | "Seguradora não vai aceitar" | "A seguradora quer reduzir sinistralidade. Se você apresentar dados de que os funcionários estão mais saudáveis, ela TEM interesse em manter o cliente com reajuste menor. É melhor do que perder o contrato." |
-| "Já tentamos wellness e não deu certo" | "Programas de wellness tradicionais dependem de auto-relato. VitaScore tem 5 camadas anti-fraude — os dados são verificados. E o incentivo financeiro (desconto na coparticipação) muda completamente a adesão." |
+| "Já tentamos wellness e não deu certo" | "Programas de wellness tradicionais dependem de auto-relato. SaluFlow tem 5 camadas anti-fraude — os dados são verificados. E o incentivo financeiro (desconto na coparticipação) muda completamente a adesão." |
 
 ---
 
@@ -320,7 +320,7 @@ Sim: pitch em PDF, calculadora de ROI, relatório de exemplo, demo do app. Tudo 
 > **Não precisa entender de tecnologia.**
 > **Só precisa fazer o que já faz — visitar empresas e oferecer soluções.**
 >
-> O VitaScore é mais uma solução no seu portfólio:
+> O SaluFlow é mais uma solução no seu portfólio:
 > - **Comissão de 25%** sobre a receita
 > - **Fideliza seus clientes** (nunca mais perder conta por reajuste)
 > - **Piloto gratuito de 90 dias** (você não precisa convencer — só propor o teste)

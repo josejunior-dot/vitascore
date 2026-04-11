@@ -1,4 +1,4 @@
-# VitaScore — Toolkit de Vendas
+# SaluFlow — Toolkit de Vendas
 
 > Referencia rapida para apresentacoes e negociacoes. Atualizado com numeros honestos e posicionamento corrigido.
 
@@ -7,13 +7,13 @@
 ## Elevator Pitch (30 segundos)
 
 ### Para o RH da empresa:
-*"A NR-1 entrou em vigor e sua empresa precisa comprovar gestao de riscos psicossociais — a multa chega a R$6.700 por funcionario. O VitaScore e um app que os funcionarios usam no celular, monitora saude e gera o relatorio de compliance que voce precisa. Alem disso, os dados ajudam a corretora a negociar reajuste menor no plano. Posso fazer um piloto gratuito de 90 dias."*
+*"A NR-1 entrou em vigor e sua empresa precisa comprovar gestao de riscos psicossociais — a multa chega a R$6.700 por funcionario. O SaluFlow e um app que os funcionarios usam no celular, monitora saude e gera o relatorio de compliance que voce precisa. Alem disso, os dados ajudam a corretora a negociar reajuste menor no plano. Posso fazer um piloto gratuito de 90 dias."*
 
 ### Para o dono da corretora:
-*"Toda renovacao voce perde clientes por reajuste e nao tem argumento. O VitaScore te da dados verificados de saude para negociar reajuste menor. Alem disso, com a NR-1 em vigor, toda empresa precisa de gestao de riscos psicossociais — voce oferece isso junto. Custo zero pra voce, comissao de 25%. Piloto gratuito de 90 dias."*
+*"Toda renovacao voce perde clientes por reajuste e nao tem argumento. O SaluFlow te da dados verificados de saude para negociar reajuste menor. Alem disso, com a NR-1 em vigor, toda empresa precisa de gestao de riscos psicossociais — voce oferece isso junto. Custo zero pra voce, comissao de 25%. Piloto gratuito de 90 dias."*
 
 ### Para o diretor da operadora de saude:
-*"A RN 499 da ANS incentiva operadoras a criar programas de promocao de saude com beneficios ao beneficiario. O VitaScore e a ferramenta pronta para voce implementar isso: monitora habitos com dados verificados, gera score de saude e permite oferecer descontos vinculados a comportamento real. Dados internacionais apontam 10-30% de reducao em custos — propomos um piloto para validar na sua carteira."*
+*"A RN 499 da ANS incentiva operadoras a criar programas de promocao de saude com beneficios ao beneficiario. O SaluFlow e a ferramenta pronta para voce implementar isso: monitora habitos com dados verificados, gera score de saude e permite oferecer descontos vinculados a comportamento real. Dados internacionais apontam 10-30% de reducao em custos — propomos um piloto para validar na sua carteira."*
 
 ---
 
@@ -42,11 +42,11 @@
 
 ```
 Multa evitada = funcionarios x R$6.708 (pior caso)
-Custo VitaScore = funcionarios x 60% x R$4 x 12
+Custo SaluFlow = funcionarios x 60% x R$4 x 12
 
 Exemplo: 80 funcionarios
 Multa evitada: ate R$536.640
-Custo VitaScore: R$2.304/ano
+Custo SaluFlow: R$2.304/ano
 ```
 
 ### Para empresa (reajuste — PROJETADO):
@@ -57,14 +57,14 @@ Economia projetada = funcionarios x R$450/mes x 12 x [5-10% reducao]
 Exemplo (cenario conservador, 5%): 80 x R$450 x 12 x 0.05 = R$21.600/ano
 Exemplo (cenario otimista, 10%):   80 x R$450 x 12 x 0.10 = R$43.200/ano
 
-Custo VitaScore: R$2.304/ano
+Custo SaluFlow: R$2.304/ano
 ROI projetado: 9x a 18x (precisa validacao)
 ```
 
 ### Para corretora (comissao + retencao):
 
 ```
-Comissao VitaScore = vidas ativas x R$4 x 12 x 0.25
+Comissao SaluFlow = vidas ativas x R$4 x 12 x 0.25
 
 Exemplo (500 vidas, 300 ativos): R$3.600/ano
 Beneficio real: retencao de carteira (clientes com reajuste menor nao trocam)
@@ -98,7 +98,7 @@ Beneficio real: retencao de carteira (clientes com reajuste menor nao trocam)
 
 ## Comparativo com concorrentes
 
-| Funcionalidade | VitaScore | Gympass | Zenklub | Prudential Vitality |
+| Funcionalidade | SaluFlow | Gympass | Zenklub | Prudential Vitality |
 |---|:---:|:---:|:---:|:---:|
 | Monitora exercicio | Sim | Sim | Nao | Sim |
 | Monitora sono | Sim | Nao | Nao | Sim |
@@ -115,12 +115,12 @@ Beneficio real: retencao de carteira (clientes com reajuste menor nao trocam)
 
 ### Posicionamento vs Prudential Vitality
 
-O Prudential Vitality e o programa mais proximo do VitaScore no Brasil. Diferenca fundamental:
+O Prudential Vitality e o programa mais proximo do SaluFlow no Brasil. Diferenca fundamental:
 
 - **Prudential Vitality**: opera em **seguro de vida** (SUSEP). Beneficiario ganha descontos em produtos Prudential. Foco em longevidade e mortalidade.
-- **VitaScore**: opera em **plano de saude** (ANS/RN 499). Gera dados para operadoras reduzirem sinistralidade e empresas comprovarem compliance NR-1.
+- **SaluFlow**: opera em **plano de saude** (ANS/RN 499). Gera dados para operadoras reduzirem sinistralidade e empresas comprovarem compliance NR-1.
 
-**Frase-chave:** *"Vitality resolve seguro de vida. VitaScore resolve plano de saude. Gympass resolve academia. Zenklub resolve terapia."*
+**Frase-chave:** *"Vitality resolve seguro de vida. SaluFlow resolve plano de saude. Gympass resolve academia. Zenklub resolve terapia."*
 
 ---
 
@@ -131,7 +131,7 @@ O Prudential Vitality e o programa mais proximo do VitaScore no Brasil. Diferenc
 | Objecao | Resposta |
 |---------|----------|
 | "Funcionario nao vai usar" | "Historicamente, 40-50% engajam no primeiro ano, subindo com o tempo. O incentivo e desconto na coparticipacao. Piloto gratuito: se nao usar, nao custa nada." |
-| "Ja temos Gympass" | "Gympass e academia. VitaScore gera relatorio de compliance NR-1 e dados para negociar reajuste. Complementam-se." |
+| "Ja temos Gympass" | "Gympass e academia. SaluFlow gera relatorio de compliance NR-1 e dados para negociar reajuste. Complementam-se." |
 | "E caro?" | "R$4/funcionario/mes. So o compliance NR-1 ja justifica — a multa e R$6.708 por trabalhador." |
 | "E a LGPD?" | "Dados ficam no celular. Relatorio agregado, sem identificacao individual. Privacy by design." |
 | "Quanto reduz o reajuste?" | "Dados internacionais apontam 10-30%. No Brasil, precisamos validar com piloto de 12-18 meses. O que podemos provar HOJE e o compliance NR-1." |
@@ -141,7 +141,7 @@ O Prudential Vitality e o programa mais proximo do VitaScore no Brasil. Diferenc
 
 | Objecao | Resposta |
 |---------|----------|
-| "Ja temos programa de wellness" | "Com dados verificados ou auto-relato? VitaScore tem 5 camadas anti-fraude. Dados verificados = atuaria confia." |
+| "Ja temos programa de wellness" | "Com dados verificados ou auto-relato? SaluFlow tem 5 camadas anti-fraude. Dados verificados = atuaria confia." |
 | "Ja existe o Vitality" | "Sim, mas o Prudential Vitality opera em seguro de vida (SUSEP), nao em plano de saude (ANS). Nos somos a ferramenta para operadoras implementarem a RN 499 com dados verificados." |
 | "Precisa de evidencia" | "Discovery Vitality reporta 10-30% de reducao em 25 anos de operacao. Propomos piloto de 12 meses para gerar dados no contexto brasileiro." |
 | "Nao temos orcamento" | "Modelo white-label: quem paga e a empresa contratante. Voces reduzem sinistralidade sem custo direto." |
@@ -222,4 +222,4 @@ CONCORRENCIA: Prudential Vitality atua em seguro de vida (SUSEP), nao plano de s
 
 ---
 
-*Toolkit atualizado em abril/2026 | VitaScore — Numeros honestos, posicionamento real.*
+*Toolkit atualizado em abril/2026 | SaluFlow — Numeros honestos, posicionamento real.*

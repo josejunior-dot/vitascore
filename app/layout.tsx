@@ -21,14 +21,14 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "VitaScore — Viva melhor. Pague menos.",
+  title: "SaluFlow — Viva melhor. Pague menos.",
   description:
     "Acompanhe seus hábitos de vida e ganhe descontos na apólice de seguro.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "VitaScore",
+    title: "SaluFlow",
   },
 };
 

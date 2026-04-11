@@ -356,7 +356,7 @@ export default function NR1Page() {
           >
             <Shield className="w-5 h-5 text-[#9AA0A6] shrink-0" />
             <p className="text-xs text-[#9AA0A6]">
-              Relatorio gerado automaticamente pelo VitaScore NR-1 &middot;
+              Relatorio gerado automaticamente pelo SaluFlow NR-1 &middot;
               Dados agregados &middot; Conformidade LGPD
             </p>
           </motion.section>

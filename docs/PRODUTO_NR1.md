@@ -1,4 +1,4 @@
-# VitaScore NR-1 — Compliance de Riscos Psicossociais
+# SaluFlow NR-1 — Compliance de Riscos Psicossociais
 
 > Ferramenta para empresas atenderem a NR-1 antes da fiscalizacao punitiva (maio 2026)
 
@@ -40,9 +40,9 @@ A avaliacao nao pode ser pontual (1x por ano). A norma exige acompanhamento peri
 
 ---
 
-## Como o VitaScore NR-1 resolve
+## Como o SaluFlow NR-1 resolve
 
-O pilar **"Bem-estar Digital"** do VitaScore foi projetado especificamente para gerar evidencia documentada de monitoramento e acao preventiva em saude mental no trabalho.
+O pilar **"Bem-estar Digital"** do SaluFlow foi projetado especificamente para gerar evidencia documentada de monitoramento e acao preventiva em saude mental no trabalho.
 
 ### O que o app monitora
 
@@ -94,7 +94,7 @@ O pilar **"Bem-estar Digital"** do VitaScore foi projetado especificamente para 
 
 ## ROI para a empresa
 
-| Sem VitaScore NR-1 | Com VitaScore NR-1 |
+| Sem SaluFlow NR-1 | Com SaluFlow NR-1 |
 |---|---|
 | Multa possivel: R$6.708/trabalhador | Multa: R$0 (compliance documentado) |
 | Sem evidencia de acao preventiva | Relatorio mensal para PGR |
@@ -109,7 +109,7 @@ O pilar **"Bem-estar Digital"** do VitaScore foi projetado especificamente para 
 | Cenario | Valor |
 |---|---|
 | Risco de multa (sem compliance) | Ate R$536.640 |
-| Custo VitaScore NR-1 | R$320/mes = R$3.840/ano |
+| Custo SaluFlow NR-1 | R$320/mes = R$3.840/ano |
 | Protecao | Compliance documentado + relatorio mensal |
 | ROI | Cada R$1 investido protege contra R$139 em multas |
 
@@ -133,7 +133,7 @@ O pilar **"Bem-estar Digital"** do VitaScore foi projetado especificamente para 
 
 ## Diferencial vs. consultoria tradicional de SST
 
-| Aspecto | Consultoria de SST | VitaScore NR-1 |
+| Aspecto | Consultoria de SST | SaluFlow NR-1 |
 |---|---|---|
 | Frequencia | Avaliacao pontual (1x/ano) | Monitoramento continuo |
 | Metodo | Questionario auto-reportado | Dados de sensor (verificavel) |
@@ -143,7 +143,7 @@ O pilar **"Bem-estar Digital"** do VitaScore foi projetado especificamente para 
 | Escalabilidade | Limitada (depende de consultores) | Ilimitada (automatizado) |
 | Deteccao precoce | Nao (foto do momento) | Sim (tendencia ao longo de semanas) |
 
-**A consultoria de SST e complementar, nao concorrente.** Muitas empresas precisarao de ambas — a consultoria para a avaliacao inicial e o VitaScore para o monitoramento continuo.
+**A consultoria de SST e complementar, nao concorrente.** Muitas empresas precisarao de ambas — a consultoria para a avaliacao inicial e o SaluFlow para o monitoramento continuo.
 
 ---
 
@@ -185,7 +185,7 @@ Se o relatorio nao agregar valor ao PGR, cancela sem pagar nada.
 
 ## Contato
 
-**Julio Pires** — Fundador, VitaScore
+**Julio Pires** — Fundador, SaluFlow
 [E-mail para contato]
 [Telefone / WhatsApp]
 [LinkedIn]
@@ -195,5 +195,5 @@ Se o relatorio nao agregar valor ao PGR, cancela sem pagar nada.
 > *A fiscalizacao comeca em maio de 2026.*
 > *Sua empresa esta documentando acoes de prevencao em saude mental?*
 >
-> **VitaScore NR-1: compliance continuo, automatizado e auditavel.**
+> **SaluFlow NR-1: compliance continuo, automatizado e auditavel.**
 > **Antes que o fiscal pergunte.**

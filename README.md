@@ -1,12 +1,12 @@
-# VitaScore
+# SaluFlow
 
 > Plataforma de monitoramento de habitos de vida com desconto verificavel em planos de saude
 
-VitaScore e um aplicativo mobile-first que monitora 6 pilares de saude, gera um score verificavel (0-1000) e conecta habitos saudaveis a descontos reais no plano de saude. Desenvolvido com verificacao anti-fraude, conformidade LGPD e relatorios para RH.
+SaluFlow e um aplicativo mobile-first que monitora 6 pilares de saude, gera um score verificavel (0-1000) e conecta habitos saudaveis a descontos reais no plano de saude. Desenvolvido com verificacao anti-fraude, conformidade LGPD e relatorios para RH.
 
 ## Visao Geral
 
-O VitaScore transforma dados reais de saude (sono, atividade fisica, nutricao, peso, tempo de tela e check-ups) em um score unico que desbloqueia descontos progressivos no plano de saude. A plataforma valida cada dado com ate 5 camadas anti-fraude, garantindo que apenas habitos genuinos gerem beneficios.
+O SaluFlow transforma dados reais de saude (sono, atividade fisica, nutricao, peso, tempo de tela e check-ups) em um score unico que desbloqueia descontos progressivos no plano de saude. A plataforma valida cada dado com ate 5 camadas anti-fraude, garantindo que apenas habitos genuinos gerem beneficios.
 
 ## Stack Tecnologica
 
@@ -80,7 +80,7 @@ vitascore/
 │   ├── charts/            # Graficos (Recharts)
 │   ├── gamification/      # Desafios e conquistas
 │   ├── layout/            # AppShell, BottomNav
-│   ├── score/             # VitaScore Ring, Counter, Badge
+│   ├── score/             # SaluFlow Ring, Counter, Badge
 │   └── ui/                # shadcn/ui components
 ├── hooks/                  # Custom hooks
 │   ├── useActivity.ts     # Hook de atividade fisica
@@ -88,7 +88,7 @@ vitascore/
 │   ├── useScreenTime.ts   # Hook de tempo de tela
 │   ├── useSleep.ts        # Hook de sono
 │   ├── useSleepMonitor.ts # Monitor de sono em tempo real
-│   └── useVitaScore.ts    # Calculo do score
+│   └── useSaluFlow.ts    # Calculo do score
 ├── lib/
 │   ├── health/            # Modulos de saude
 │   │   ├── health-connect.ts  # Integracao Health Connect (Android)

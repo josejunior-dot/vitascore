@@ -336,7 +336,7 @@ export default function PerfilPage() {
                   className={baseClass}
                   onClick={() => {
                     if (item.danger) {
-                      localStorage.removeItem("vitascore-onboarded");
+                      localStorage.removeItem("saluflow-onboarded");
                       router.push("/onboarding");
                     }
                   }}

@@ -196,7 +196,7 @@ export default function RelatorioPage() {
               className="rounded-2xl bg-[#F8F9FA] border border-[#DADCE0] p-6 flex flex-col items-center gap-3"
             >
               <span className="text-xs font-semibold text-[#5F6368] uppercase tracking-wider">
-                VitaScore Médio
+                SaluFlow Médio
               </span>
 
               {/* Ring */}

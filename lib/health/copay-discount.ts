@@ -1,4 +1,4 @@
-// Copay (Coparticipação) Discount System based on VitaScore
+// Copay (Coparticipação) Discount System based on SaluFlow
 // Higher score = lower copay — direct financial incentive
 
 export interface CopayDiscount {

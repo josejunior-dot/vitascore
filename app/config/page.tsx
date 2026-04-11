@@ -222,7 +222,7 @@ export default function ConfigPage() {
 
   /* ---- Logout ---- */
   const handleLogout = () => {
-    localStorage.removeItem("vitascore-onboarded");
+    localStorage.removeItem("saluflow-onboarded");
     router.push("/onboarding");
   };
 
@@ -549,7 +549,7 @@ export default function ConfigPage() {
               style={{ borderColor: "#DADCE0", backgroundColor: "#FFFFFF" }}
             >
               <p className="text-sm text-[#202124] font-semibold mb-3">
-                VitaScore v1.0.0
+                SaluFlow v1.0.0
               </p>
               <div className="flex flex-col gap-2">
                 <button
@@ -594,7 +594,7 @@ export default function ConfigPage() {
             >
               <span className="flex items-center justify-center gap-2">
                 <LogOut className="w-4 h-4" />
-                Sair do VitaScore
+                Sair do SaluFlow
               </span>
             </button>
           </motion.section>
@@ -625,11 +625,11 @@ export default function ConfigPage() {
             </div>
             <div className="text-sm text-[#5F6368] space-y-3">
               <p>
-                Bem-vindo ao VitaScore. Ao utilizar este aplicativo, voce concorda
+                Bem-vindo ao SaluFlow. Ao utilizar este aplicativo, voce concorda
                 com os seguintes termos:
               </p>
               <p>
-                <strong>1. Uso do aplicativo:</strong> O VitaScore e uma ferramenta
+                <strong>1. Uso do aplicativo:</strong> O SaluFlow e uma ferramenta
                 de acompanhamento de saude pessoal. As informacoes fornecidas nao
                 substituem orientacao medica profissional.
               </p>
@@ -650,7 +650,7 @@ export default function ConfigPage() {
               </p>
               <p>
                 <strong>5. Contato:</strong> Para duvidas ou solicitacoes, entre em
-                contato pelo e-mail suporte@vitascore.app.
+                contato pelo e-mail suporte@saluflow.app.
               </p>
             </div>
           </motion.div>
@@ -683,7 +683,7 @@ export default function ConfigPage() {
             </div>
             <div className="text-sm text-[#5F6368] space-y-3">
               <p>
-                O VitaScore respeita sua privacidade e esta em conformidade com a
+                O SaluFlow respeita sua privacidade e esta em conformidade com a
                 Lei Geral de Protecao de Dados (LGPD - Lei 13.709/2018).
               </p>
               <p>

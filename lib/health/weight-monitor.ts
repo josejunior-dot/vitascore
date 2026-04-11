@@ -777,7 +777,7 @@ export class WeightMonitor {
           {
             id: 7002,
             title: "⚖️ Pesagem agora!",
-            body: "Abra o VitaScore e registre seu peso. Foto da balança = mais pontos!",
+            body: "Abra o SaluFlow e registre seu peso. Foto da balança = mais pontos!",
             schedule: {
               at: nextDate,
               repeats: true,

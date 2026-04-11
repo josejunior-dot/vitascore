@@ -164,10 +164,10 @@ Se parecer foto de tela, retorne isScreenPhoto: true.`,
 // Health check
 // ─────────────────────────────────────────────────────────────
 app.get("/", (req, res) => {
-  res.json({ status: "ok", service: "VitaScore API", endpoints: ["/analyze-meal", "/read-scale"] });
+  res.json({ status: "ok", service: "SaluFlow API", endpoints: ["/analyze-meal", "/read-scale"] });
 });
 
 const PORT = process.env.PORT || 3333;
 app.listen(PORT, () => {
-  console.log(`VitaScore API rodando em http://localhost:${PORT}`);
+  console.log(`SaluFlow API rodando em http://localhost:${PORT}`);
 });

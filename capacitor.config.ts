@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.vitascore.app',
-  appName: 'VitaScore',
+  appName: 'SaluFlow',
   webDir: 'out',
   server: {
     androidScheme: 'https',

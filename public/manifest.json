@@ -1,6 +1,6 @@
 {
-  "name": "VitaScore",
-  "short_name": "VitaScore",
+  "name": "SaluFlow",
+  "short_name": "SaluFlow",
   "description": "Acompanhe seus hábitos e ganhe descontos no seguro",
   "start_url": "/",
   "display": "standalone",

@@ -88,7 +88,7 @@ export interface CompanyHealthReport {
 
 // ---- Storage key ----------------------------------------------------------
 
-const STORAGE_KEY = "vitascore_hr_report";
+const STORAGE_KEY = "saluflow_hr_report";
 
 // ---- Month names (pt-BR) --------------------------------------------------
 
