@@ -16,6 +16,8 @@ import {
   Trash2,
   CheckCircle2,
 } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import AppShell from "@/components/layout/AppShell";
 import { ScoreBadge } from "@/components/score/ScoreBadge";
@@ -26,43 +28,50 @@ import { DataExporter, type LGPDStatus } from "@/lib/health/data-export";
 const settingsItems = [
   {
     icon: Smartphone,
-    label: "Conectar Apple Health / Google Fit",
+    label: "Conexoes e sensores",
     subtitle: null,
+    href: "/config" as string | null,
     danger: false,
   },
   {
     icon: Bell,
     label: "Notificacoes",
     subtitle: null,
+    href: "/config" as string | null,
     danger: false,
   },
   {
     icon: Shield,
     label: "Minha apolice",
     subtitle: null,
+    href: "/seguro" as string | null,
     danger: false,
   },
   {
     icon: FileText,
     label: "Privacidade e dados",
     subtitle: "(LGPD)",
+    href: "/config" as string | null,
     danger: false,
   },
   {
     icon: FileText,
     label: "Termos de uso",
     subtitle: null,
+    href: "/config" as string | null,
     danger: false,
   },
   {
     icon: LogOut,
     label: "Sair",
     subtitle: null,
+    href: null,
     danger: true,
   },
 ];
 
 export default function PerfilPage() {
+  const router = useRouter();
   const [user, setUser] = useState<UserProfile | null>(null);
   const [exporting, setExporting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -279,13 +288,8 @@ export default function PerfilPage() {
               const Icon = item.icon;
               const isLast = i === settingsItems.length - 1;
 
-              return (
-                <button
-                  key={i}
-                  className={`w-full flex items-center gap-3 py-4 px-4 text-left transition-colors hover:bg-[#F8F9FA] ${
-                    !isLast ? "border-b border-[#DADCE0]" : ""
-                  }`}
-                >
+              const inner = (
+                <>
                   <Icon
                     className="w-5 h-5 flex-shrink-0"
                     style={{
@@ -311,6 +315,33 @@ export default function PerfilPage() {
                   {!item.danger && (
                     <ChevronRight className="w-4 h-4 text-[#DADCE0] flex-shrink-0" />
                   )}
+                </>
+              );
+
+              const baseClass = `w-full flex items-center gap-3 py-4 px-4 text-left transition-colors hover:bg-[#F8F9FA] ${
+                !isLast ? "border-b border-[#DADCE0]" : ""
+              }`;
+
+              if (item.href) {
+                return (
+                  <Link key={i} href={item.href} className={baseClass}>
+                    {inner}
+                  </Link>
+                );
+              }
+
+              return (
+                <button
+                  key={i}
+                  className={baseClass}
+                  onClick={() => {
+                    if (item.danger) {
+                      localStorage.removeItem("vitascore-onboarded");
+                      router.push("/onboarding");
+                    }
+                  }}
+                >
+                  {inner}
                 </button>
               );
             })}
