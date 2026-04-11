@@ -23,12 +23,14 @@ import {
   getDaysUntilRenewal,
   calculateAnnualSavings,
 } from "@/lib/vitascore";
+import { CopayCalculator } from "@/lib/health/copay-discount";
 
 const daysUntilRenewal = getDaysUntilRenewal(mockUser.renewalDate);
 const annualSavings = calculateAnnualSavings(
   mockUser.premiumMonthly,
   mockUser.insuranceDiscount
 );
+const copayProfile = CopayCalculator.getUserCopayProfile(mockUser.score);
 
 const containerVariants = {
   hidden: {},
@@ -250,6 +252,136 @@ export default function SeguroPage() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </motion.div>
+
+        {/* Desconto na Coparticipação */}
+        <motion.div variants={itemVariants} className="flex flex-col gap-3">
+          <h2 className="text-[#202124] font-semibold text-base px-1">
+            Desconto na Coparticipação
+          </h2>
+
+          {/* Tier Badge + Next Tier */}
+          <div className="rounded-2xl border border-[#DADCE0] bg-white p-5 shadow-sm flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span
+                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-semibold text-white"
+                  style={{ backgroundColor: copayProfile.currentDiscount.color }}
+                >
+                  {copayProfile.currentDiscount.label} &middot;{" "}
+                  {copayProfile.currentDiscount.discountPercent}% de desconto
+                </span>
+              </div>
+              <span className="text-xs text-[#5F6368]">
+                Score {copayProfile.currentScore}
+              </span>
+            </div>
+
+            {/* Next tier progress */}
+            {copayProfile.nextTier && (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-[#5F6368]">
+                    Faltam{" "}
+                    <span className="font-semibold text-[#202124]">
+                      {copayProfile.pointsToNextTier} pontos
+                    </span>{" "}
+                    para{" "}
+                    <span
+                      className="font-semibold"
+                      style={{ color: copayProfile.nextTier.color }}
+                    >
+                      {copayProfile.nextTier.label} ({copayProfile.nextTier.discountPercent}%)
+                    </span>
+                  </span>
+                </div>
+                <div className="h-2 rounded-full bg-[#E8EAED] overflow-hidden">
+                  {(() => {
+                    const tierMin =
+                      copayProfile.currentDiscount.label === "Ouro"
+                        ? 600
+                        : copayProfile.currentDiscount.label === "Prata"
+                        ? 300
+                        : 0;
+                    const tierMax = copayProfile.currentScore + copayProfile.pointsToNextTier;
+                    const pct = Math.min(100, Math.max(5, ((copayProfile.currentScore - tierMin) / (tierMax - tierMin)) * 100));
+                    return (
+                      <div
+                        className="h-full rounded-full transition-all duration-700"
+                        style={{
+                          width: `${pct}%`,
+                          backgroundColor: copayProfile.nextTier!.color,
+                        }}
+                      />
+                    );
+                  })()}
+                </div>
+              </div>
+            )}
+            {!copayProfile.nextTier && (
+              <p className="text-xs text-[#30D158] font-medium">
+                Parabéns! Você está no nível máximo de desconto.
+              </p>
+            )}
+          </div>
+
+          {/* Simulation Table */}
+          <div className="rounded-2xl border border-[#DADCE0] bg-white shadow-sm overflow-hidden">
+            <div className="px-5 pt-4 pb-2">
+              <p className="text-sm font-medium text-[#202124]">
+                Simulação de economia
+              </p>
+            </div>
+            <div className="divide-y divide-[#DADCE0]">
+              {copayProfile.simulations.slice(0, 5).map((sim) => (
+                <div
+                  key={sim.procedureName}
+                  className="flex items-center justify-between px-5 py-3"
+                >
+                  <span className="text-sm text-[#202124] flex-1">
+                    {sim.procedureName}
+                  </span>
+                  <div className="flex items-center gap-3 text-sm">
+                    <span className="text-[#9AA0A6] line-through">
+                      R$ {sim.originalCopay.toFixed(2).replace(".", ",")}
+                    </span>
+                    <span className="text-[#30D158] font-semibold">
+                      R$ {sim.finalCopay.toFixed(2).replace(".", ",")}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Savings Estimate */}
+          <div className="rounded-2xl border border-[#DADCE0] bg-white p-5 shadow-sm">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-[#5F6368] mb-1">
+                  Economia estimada (2 procedimentos/mês)
+                </p>
+                <p className="text-lg font-semibold text-[#202124]">
+                  R$ {copayProfile.monthlySavings.toFixed(2).replace(".", ",")}/mês{" "}
+                  <span className="text-sm font-normal text-[#5F6368]">
+                    &middot; R${" "}
+                    {copayProfile.annualSavings.toFixed(2).replace(".", ",")}/ano
+                  </span>
+                </p>
+              </div>
+              <div
+                className="flex items-center justify-center w-10 h-10 rounded-full"
+                style={{
+                  backgroundColor: `${copayProfile.currentDiscount.color}15`,
+                }}
+              >
+                <TrendingUp
+                  size={20}
+                  style={{ color: copayProfile.currentDiscount.color }}
+                />
+              </div>
+            </div>
           </div>
         </motion.div>
 

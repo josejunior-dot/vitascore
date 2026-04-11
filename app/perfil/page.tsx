@@ -12,12 +12,16 @@ import {
   LogOut,
   ChevronRight,
   Smartphone,
+  Download,
+  Trash2,
+  CheckCircle2,
 } from "lucide-react";
 
 import AppShell from "@/components/layout/AppShell";
 import { ScoreBadge } from "@/components/score/ScoreBadge";
 import { statusConfig } from "@/lib/mock-data";
 import { getUserProfile, type UserProfile } from "@/lib/user-profile";
+import { DataExporter, type LGPDStatus } from "@/lib/health/data-export";
 
 const settingsItems = [
   {
@@ -60,9 +64,31 @@ const settingsItems = [
 
 export default function PerfilPage() {
   const [user, setUser] = useState<UserProfile | null>(null);
+  const [exporting, setExporting] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const lgpd: LGPDStatus = DataExporter.getLGPDStatus();
+
   useEffect(() => { getUserProfile().then(setUser); }, []);
   const u = user;
   const userStatus = statusConfig[u?.status ?? "bronze"];
+
+  const handleExport = async () => {
+    setExporting(true);
+    try {
+      const data = await DataExporter.exportAllData();
+      await DataExporter.downloadAsJson(data);
+    } catch (err) {
+      console.error("Export failed:", err);
+    } finally {
+      setExporting(false);
+    }
+  };
+
+  const handleDeleteAll = async () => {
+    await DataExporter.deleteAllData();
+    setShowDeleteConfirm(false);
+    window.location.reload();
+  };
   return (
     <AppShell>
       <div className="flex flex-col min-h-screen pb-24">
@@ -140,6 +166,105 @@ export default function PerfilPage() {
                 <span className="text-[10px] text-[#5F6368] mt-0.5">{stat.label}</span>
               </div>
             ))}
+          </motion.div>
+
+          {/* Selo LGPD */}
+          <motion.div
+            className="rounded-2xl p-4 border"
+            style={{
+              backgroundColor: "#FFFFFF",
+              borderColor: "#34A853",
+              borderWidth: 2,
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <Shield className="w-5 h-5" style={{ color: "#34A853" }} />
+              <span className="text-sm font-bold text-[#202124]">
+                Conformidade LGPD
+              </span>
+              <CheckCircle2 className="w-4 h-4" style={{ color: "#34A853" }} />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 mb-3">
+              {lgpd.features.map((f, i) => (
+                <div key={i} className="flex items-start gap-2">
+                  <span className="text-base leading-none mt-0.5">{f.icon}</span>
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold text-[#202124]">
+                      {f.name}
+                    </p>
+                    <p className="text-[10px] text-[#5F6368] leading-tight">
+                      {f.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p
+              className="text-xs font-medium text-center"
+              style={{ color: "#34A853" }}
+            >
+              Seus dados nunca saem do seu celular
+            </p>
+          </motion.div>
+
+          {/* Seus Dados */}
+          <motion.div
+            className="rounded-2xl p-4 border"
+            style={{ backgroundColor: "#FFFFFF", borderColor: "#DADCE0" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.18 }}
+          >
+            <h3 className="text-sm font-bold text-[#202124] mb-3">
+              Seus Dados
+            </h3>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={handleExport}
+                disabled={exporting}
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-medium text-white transition-opacity disabled:opacity-50"
+                style={{ backgroundColor: "#1A73E8" }}
+              >
+                <Download className="w-4 h-4" />
+                {exporting ? "Exportando..." : "Exportar meus dados"}
+              </button>
+
+              {!showDeleteConfirm ? (
+                <button
+                  onClick={() => setShowDeleteConfirm(true)}
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-medium text-red-500 transition-colors hover:bg-red-50"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  Apagar todos os dados
+                </button>
+              ) : (
+                <div className="flex flex-col gap-2 p-3 rounded-xl bg-red-50">
+                  <p className="text-xs text-red-600 text-center font-medium">
+                    Tem certeza? Todos os seus dados serao apagados
+                    permanentemente.
+                  </p>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setShowDeleteConfirm(false)}
+                      className="flex-1 py-2 rounded-lg text-xs font-medium text-[#5F6368] border border-[#DADCE0]"
+                    >
+                      Cancelar
+                    </button>
+                    <button
+                      onClick={handleDeleteAll}
+                      className="flex-1 py-2 rounded-lg text-xs font-medium text-white bg-red-500"
+                    >
+                      Apagar tudo
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </motion.div>
 
           {/* Settings List */}

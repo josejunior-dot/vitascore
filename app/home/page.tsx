@@ -319,7 +319,9 @@ export default function HomePage() {
                 { href: "/nutricao", label: "Nutricao", icon: "🥗" },
                 { href: "/peso", label: "Peso", icon: "⚖️" },
                 { href: "/digital", label: "Digital", icon: "📱" },
+                { href: "/monitorar", label: "Treino", icon: "🗺️" },
                 { href: "/desafios", label: "Desafios", icon: "🏆" },
+                { href: "/relatorio", label: "RH", icon: "📊" },
               ].map((item) => (
                 <Link
                   key={item.href}
