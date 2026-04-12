@@ -12,7 +12,7 @@ export default function RootPage() {
 
   return (
     <div className="flex h-screen items-center justify-center bg-white">
-      <img src="/logo.png" alt="SaluFlow" className="w-64 object-contain animate-pulse" />
+      <img src="/logo.png" alt="SaluFlow" className="w-[80vw] max-w-md object-contain animate-pulse" />
     </div>
   );
 }

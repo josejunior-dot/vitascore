@@ -76,7 +76,7 @@ function SlideHero() {
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         className="mb-8"
       >
-        <img src="/logo.png" alt="SaluFlow" className="w-56 object-contain" />
+        <img src="/logo.png" alt="SaluFlow" className="w-[85vw] max-w-md object-contain" />
       </motion.div>
 
       <h1
