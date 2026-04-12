@@ -156,20 +156,39 @@ function chance(p: number): boolean {
 // ---------------------------------------------------------------------------
 
 async function getLocation(): Promise<{ lat: number; lng: number } | null> {
+  // GPS é opcional (só anti-fraude). Só pega se a permissão JÁ estiver
+  // concedida — nunca dispara o diálogo de permissão aqui, para não
+  // conflitar com o diálogo da câmera.
   try {
     const { Geolocation } = await import("@capacitor/geolocation");
+    const perm = await Geolocation.checkPermissions();
+    if (perm.location !== "granted" && perm.coarseLocation !== "granted") {
+      return null; // sem permissão, pula sem pedir
+    }
     const pos = await Geolocation.getCurrentPosition({ timeout: 5000 });
     return { lat: pos.coords.latitude, lng: pos.coords.longitude };
   } catch {
-    // Fallback web
-    return new Promise((resolve) => {
-      if (!navigator.geolocation) { resolve(null); return; }
-      navigator.geolocation.getCurrentPosition(
-        (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-        () => resolve(null),
-        { timeout: 5000 }
-      );
-    });
+    // Fallback web: checa Permissions API antes de chamar getCurrentPosition
+    try {
+      if (typeof navigator === "undefined" || !navigator.geolocation) return null;
+      if (navigator.permissions?.query) {
+        const status = await navigator.permissions.query({
+          name: "geolocation" as PermissionName,
+        });
+        if (status.state !== "granted") return null;
+      } else {
+        return null; // sem API de Permissions, melhor não pedir
+      }
+      return await new Promise((resolve) => {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+          () => resolve(null),
+          { timeout: 5000 },
+        );
+      });
+    } catch {
+      return null;
+    }
   }
 }
 
@@ -406,10 +425,9 @@ export class MealAnalyzer {
   static async capturePhoto(): Promise<{ base64: string; metadata: PhotoMetadata } | null> {
     const capturedAt = new Date().toISOString();
 
-    // Capturar GPS em paralelo com a foto
-    const locationPromise = getLocation();
-
     // Tentar câmera nativa primeiro (Capacitor — bloqueia galeria 100%)
+    // IMPORTANTE: GPS só é solicitado DEPOIS da foto, para não colidir com
+    // o diálogo de permissão da câmera.
     let result: { base64: string; method: string } | null = await captureFromNativeCamera();
     let method: PhotoMetadata["captureMethod"] = "camera_native";
 
@@ -421,7 +439,9 @@ export class MealAnalyzer {
 
     if (!result) return null;
 
-    const location = await locationPromise;
+    // GPS só é checado depois da foto e só se a permissão já estiver concedida
+    // (getLocation nunca dispara diálogo de permissão)
+    const location = await getLocation();
     const photoHash = await generateHash(result.base64.slice(0, 5000));
 
     const metadata: PhotoMetadata = {
