@@ -319,6 +319,7 @@ export default function HomePage() {
                 { href: "/financeiro", label: "Financeiro", icon: "💰" },
                 { href: "/diario", label: "Diário", icon: "📔" },
                 { href: "/aprenda", label: "Aprenda", icon: "📚" },
+                { href: "/biblioteca", label: "Biblioteca", icon: "📖" },
                 { href: "/parceiros", label: "Parceiros", icon: "🎁" },
                 { href: "/checkin", label: "Bem-estar", icon: "💚" },
                 { href: "/sono", label: "Sono", icon: "🌙" },
