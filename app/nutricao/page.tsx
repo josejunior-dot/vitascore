@@ -15,6 +15,11 @@ import {
   CheckCircle2,
   AlertTriangle,
   Image,
+  Lightbulb,
+  ArrowRight,
+  Droplets,
+  Minus,
+  RefreshCw,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -25,6 +30,10 @@ import {
   type MealPhotoAnalysis,
   type PhotoMetadata,
 } from "@/lib/health/meal-analyzer";
+import {
+  generateBalanceTips,
+  getEncouragement,
+} from "@/lib/health/meal-tips";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const sectionVariants: any = {
@@ -652,6 +661,98 @@ export default function NutricaoPage() {
                             </div>
                           ))}
                         </div>
+
+                        {/* Dicas para equilibrar */}
+                        {(() => {
+                          const balance = generateBalanceTips(analysis);
+                          if (balance.tips.length === 0) {
+                            return (
+                              <div className="rounded-2xl p-4 border border-[#34A853]/20 bg-[#E6F4EA]">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <CheckCircle2 className="w-5 h-5 text-[#34A853]" />
+                                  <span className="text-sm font-semibold text-[#137333]">
+                                    Refeição equilibrada!
+                                  </span>
+                                </div>
+                                <p className="text-xs text-[#137333]">
+                                  {getEncouragement(analysis.mealScore)}
+                                </p>
+                              </div>
+                            );
+                          }
+                          const iconMap = {
+                            plus: Plus,
+                            swap: RefreshCw,
+                            reduce: Minus,
+                            water: Droplets,
+                          };
+                          return (
+                            <div className="rounded-2xl p-4 border border-[#FBBC04]/30 bg-[#FEF7E0]">
+                              {/* Header */}
+                              <div className="flex items-center gap-2 mb-1">
+                                <Lightbulb className="w-5 h-5 text-[#F9AB00]" />
+                                <span className="text-sm font-semibold text-[#202124]">
+                                  Como equilibrar essa refeição
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-[#5F6368] mb-3">
+                                {getEncouragement(analysis.mealScore)}
+                              </p>
+
+                              {/* Projeção de score */}
+                              <div className="flex items-center justify-center gap-2 mb-3 py-2 rounded-xl bg-white border border-[#FBBC04]/20">
+                                <span className="text-xs text-[#5F6368]">
+                                  Agora
+                                </span>
+                                <span
+                                  className="text-base font-bold"
+                                  style={{
+                                    color: getScoreColor(analysis.mealScore),
+                                  }}
+                                >
+                                  {analysis.mealScore}
+                                </span>
+                                <ArrowRight className="w-3.5 h-3.5 text-[#9AA0A6]" />
+                                <span className="text-xs text-[#5F6368]">
+                                  Com ajustes
+                                </span>
+                                <span
+                                  className="text-base font-bold"
+                                  style={{
+                                    color: getScoreColor(balance.projectedScore),
+                                  }}
+                                >
+                                  {balance.projectedScore}
+                                </span>
+                              </div>
+
+                              {/* Lista de dicas */}
+                              <div className="flex flex-col gap-2">
+                                {balance.tips.map((tip, i) => {
+                                  const Icon = iconMap[tip.icon];
+                                  return (
+                                    <div
+                                      key={i}
+                                      className="flex items-start gap-2 rounded-xl bg-white px-3 py-2 border border-[#DADCE0]"
+                                    >
+                                      <div className="w-6 h-6 rounded-full bg-[#FEF7E0] flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <Icon className="w-3.5 h-3.5 text-[#F9AB00]" />
+                                      </div>
+                                      <div className="flex-1 min-w-0">
+                                        <p className="text-xs text-[#202124] leading-snug">
+                                          {tip.text}
+                                        </p>
+                                        <p className="text-[10px] text-[#34A853] font-semibold mt-0.5">
+                                          +{tip.scoreGain} pontos
+                                        </p>
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })()}
 
                         {/* Save button */}
                         <motion.button
