@@ -503,16 +503,14 @@ export default function BibliotecaPage() {
                     </div>
                   )}
 
-                  {/* Link para texto completo */}
-                  <a
-                    href={selectedBook.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-[#1A73E8] text-[#1A73E8] text-sm font-medium mb-3"
+                  {/* Ler dentro do app */}
+                  <Link
+                    href={`/biblioteca/ler?id=${selectedBook.id}`}
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#1A73E8] text-white text-sm font-semibold mb-3"
                   >
-                    <ExternalLink className="w-4 h-4" />
-                    Ler texto completo (gratuito)
-                  </a>
+                    <BookOpen className="w-4 h-4" />
+                    Ler livro completo
+                  </Link>
 
                   {/* Buscar audiolivro completo no YouTube */}
                   <a
