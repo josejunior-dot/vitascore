@@ -8,7 +8,39 @@
  * nunca é enviada a nenhum servidor exceto o provider escolhido.
  */
 
-export type AiProvider = "claude" | "openai" | "none";
+export type AiProvider = "server" | "claude" | "openai" | "none";
+
+// URL do servidor SaluFlow hospedado no Vercel
+export const SALUFLOW_SERVER_URL = "https://saluflow-api.vercel.app";
+// Token público (o APK conhece — não é segredo forte)
+export const SALUFLOW_APP_TOKEN = "sf_0191765e5531c1a52451df8fcb3b5f47";
+
+export const SERVER_MODELS: AiModelOption[] = [
+  {
+    id: "server:openai:gpt-4o-mini",
+    label: "Servidor · GPT-4o mini",
+    hint: "Padrão do SaluFlow. Nenhuma configuração necessária.",
+    costHint: "grátis (embutido)",
+  },
+  {
+    id: "server:openai:gpt-4o",
+    label: "Servidor · GPT-4o",
+    hint: "Mais preciso, roda no mesmo servidor SaluFlow.",
+    costHint: "grátis (embutido)",
+  },
+  {
+    id: "server:claude:claude-haiku-4-5-20251001",
+    label: "Servidor · Claude Haiku 4.5",
+    hint: "Alternativa Claude, roda no servidor SaluFlow.",
+    costHint: "grátis (embutido)",
+  },
+  {
+    id: "server:claude:claude-sonnet-4-5-20250929",
+    label: "Servidor · Claude Sonnet 4.5",
+    hint: "Máxima qualidade Claude via servidor SaluFlow.",
+    costHint: "grátis (embutido)",
+  },
+];
 
 export interface AiModelOption {
   id: string;
@@ -80,8 +112,8 @@ export interface AiConfig {
 const STORE_KEY = "saluflow-ai-config";
 
 export const DEFAULT_CONFIG: AiConfig = {
-  provider: "none",
-  model: "",
+  provider: "server",
+  model: "server:openai:gpt-4o-mini",
   apiKey: "",
 };
 
@@ -367,6 +399,67 @@ async function analyzeWithOpenAi(
 }
 
 /* ─────────────────────────────────────────────────────────────────────── */
+/*  Servidor SaluFlow                                                       */
+/* ─────────────────────────────────────────────────────────────────────── */
+
+async function analyzeWithServer(
+  base64: string,
+  modelId: string,
+): Promise<AiMealResult | null> {
+  // modelId vem no formato "server:<provider>:<model>"
+  const parts = modelId.split(":");
+  const serverProvider = parts[1] || "openai";
+  const serverModel = parts[2] || "gpt-4o-mini";
+
+  const dataUrl = base64.startsWith("data:")
+    ? base64
+    : `data:image/jpeg;base64,${base64}`;
+
+  const res = await httpPost(
+    `${SALUFLOW_SERVER_URL}/analyze-meal`,
+    { "x-saluflow-token": SALUFLOW_APP_TOKEN },
+    { image: dataUrl, provider: serverProvider, model: serverModel },
+  );
+
+  if (!res.ok) {
+    console.error("SaluFlow server error", res.status, res.data);
+    return null;
+  }
+
+  const data = res.data;
+  if (!data || typeof data !== "object") return null;
+  // Normaliza igual parseJsonLoose
+  return {
+    isFood: !!data.isFood,
+    isScreenPhoto: !!data.isScreenPhoto,
+    confidence: typeof data.confidence === "number" ? data.confidence : 0.8,
+    hasVegetables: !!data.hasVegetables,
+    hasProtein: !!data.hasProtein,
+    hasWholeGrains: !!data.hasWholeGrains,
+    hasFruit: !!data.hasFruit,
+    isProcessed: !!data.isProcessed,
+    isDeepFried: !!data.isDeepFried,
+    portionSize: ["small", "adequate", "large"].includes(data.portionSize)
+      ? data.portionSize
+      : "adequate",
+    colorVariety:
+      typeof data.colorVariety === "number"
+        ? Math.max(1, Math.min(5, Math.round(data.colorVariety)))
+        : 3,
+    hydration: ["water", "juice", "soda", "none", "unknown"].includes(
+      data.hydration,
+    )
+      ? data.hydration
+      : "unknown",
+    description: typeof data.description === "string" ? data.description : "",
+    mealScore:
+      typeof data.mealScore === "number"
+        ? Math.max(0, Math.min(100, Math.round(data.mealScore)))
+        : 50,
+  };
+}
+
+/* ─────────────────────────────────────────────────────────────────────── */
 /*  Entry point                                                             */
 /* ─────────────────────────────────────────────────────────────────────── */
 
@@ -374,11 +467,15 @@ export async function analyzeMealImage(
   base64: string,
 ): Promise<AiMealResult | null> {
   const config = await getAiConfig();
-  if (config.provider === "none" || !config.apiKey || !config.model) {
+  if (config.provider === "none" || !config.model) {
     return null;
   }
 
   try {
+    if (config.provider === "server") {
+      return await analyzeWithServer(base64, config.model);
+    }
+    if (!config.apiKey) return null;
     if (config.provider === "claude") {
       return await analyzeWithClaude(base64, config.apiKey, config.model);
     }
@@ -406,16 +503,18 @@ export async function testConnection(
   if (config.provider === "none") {
     return { ok: false, message: "Nenhum provider selecionado" };
   }
-  if (!config.apiKey) {
-    return { ok: false, message: "API key vazia" };
-  }
   if (!config.model) {
     return { ok: false, message: "Modelo não selecionado" };
+  }
+  if (config.provider !== "server" && !config.apiKey) {
+    return { ok: false, message: "API key vazia" };
   }
 
   try {
     let result: AiMealResult | null = null;
-    if (config.provider === "claude") {
+    if (config.provider === "server") {
+      result = await analyzeWithServer(TINY_JPEG_BASE64, config.model);
+    } else if (config.provider === "claude") {
       result = await analyzeWithClaude(TINY_JPEG_BASE64, config.apiKey, config.model);
     } else if (config.provider === "openai") {
       result = await analyzeWithOpenAi(TINY_JPEG_BASE64, config.apiKey, config.model);

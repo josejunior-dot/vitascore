@@ -31,6 +31,7 @@ import {
   type AiProvider,
   CLAUDE_MODELS,
   OPENAI_MODELS,
+  SERVER_MODELS,
   DEFAULT_CONFIG,
   getAiConfig,
   setAiConfig as persistAiConfig,
@@ -190,6 +191,7 @@ export default function ConfigPage() {
   /* ---- AI config handlers ---- */
   const handleProviderChange = (provider: AiProvider) => {
     let model = "";
+    if (provider === "server") model = SERVER_MODELS[0].id;
     if (provider === "claude") model = CLAUDE_MODELS[0].id;
     if (provider === "openai") model = OPENAI_MODELS[0].id;
     setAiConfigState((p) => ({ ...p, provider, model }));
@@ -556,19 +558,20 @@ export default function ConfigPage() {
                     Modelo de IA para fotos
                   </p>
                   <p className="text-[11px] text-[#5F6368] leading-relaxed mt-0.5">
-                    Sem IA configurada, o app usa análise simulada (dados
-                    aleatórios). Configure uma chave real para obter
-                    reconhecimento correto.
+                    Por padrão, o SaluFlow usa seu próprio servidor com IA já
+                    configurada. Você pode trocar por sua conta Claude ou
+                    OpenAI se preferir usar créditos próprios.
                   </p>
                 </div>
               </div>
 
               {/* Provider selector */}
-              <div className="grid grid-cols-3 gap-2 mb-3">
+              <div className="grid grid-cols-2 gap-2 mb-3">
                 {([
+                  { id: "server", label: "Servidor SaluFlow" },
                   { id: "none", label: "Desligado" },
-                  { id: "claude", label: "Claude" },
-                  { id: "openai", label: "OpenAI" },
+                  { id: "claude", label: "Claude (chave própria)" },
+                  { id: "openai", label: "OpenAI (chave própria)" },
                 ] as { id: AiProvider; label: string }[]).map((p) => {
                   const active = aiConfig.provider === p.id;
                   return (
@@ -595,9 +598,11 @@ export default function ConfigPage() {
                       Modelo
                     </label>
                     <div className="flex flex-col gap-1.5">
-                      {(aiConfig.provider === "claude"
-                        ? CLAUDE_MODELS
-                        : OPENAI_MODELS
+                      {(aiConfig.provider === "server"
+                        ? SERVER_MODELS
+                        : aiConfig.provider === "claude"
+                          ? CLAUDE_MODELS
+                          : OPENAI_MODELS
                       ).map((m) => {
                         const active = aiConfig.model === m.id;
                         return (
@@ -627,38 +632,50 @@ export default function ConfigPage() {
                     </div>
                   </div>
 
-                  {/* API Key */}
-                  <div className="mb-3">
-                    <label className="text-[11px] font-bold tracking-wider text-[#9AA0A6] uppercase mb-1.5 block">
-                      Chave de API
-                    </label>
-                    <div className="relative">
-                      <Key className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9AA0A6]" />
-                      <input
-                        type={showApiKey ? "text" : "password"}
-                        value={aiConfig.apiKey}
-                        onChange={(e) => handleApiKeyChange(e.target.value)}
-                        placeholder={
-                          aiConfig.provider === "claude"
-                            ? "sk-ant-..."
-                            : "sk-..."
-                        }
-                        className="w-full pl-10 pr-16 py-2.5 rounded-xl border border-[#DADCE0] text-xs text-[#202124] bg-[#F8F9FA] focus:outline-none focus:border-[#1A73E8] font-mono"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowApiKey((v) => !v)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-semibold text-[#1A73E8]"
-                      >
-                        {showApiKey ? "Ocultar" : "Mostrar"}
-                      </button>
+                  {/* API Key — só pra Claude/OpenAI com chave própria */}
+                  {aiConfig.provider !== "server" && (
+                    <div className="mb-3">
+                      <label className="text-[11px] font-bold tracking-wider text-[#9AA0A6] uppercase mb-1.5 block">
+                        Chave de API
+                      </label>
+                      <div className="relative">
+                        <Key className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9AA0A6]" />
+                        <input
+                          type={showApiKey ? "text" : "password"}
+                          value={aiConfig.apiKey}
+                          onChange={(e) => handleApiKeyChange(e.target.value)}
+                          placeholder={
+                            aiConfig.provider === "claude"
+                              ? "sk-ant-..."
+                              : "sk-..."
+                          }
+                          className="w-full pl-10 pr-16 py-2.5 rounded-xl border border-[#DADCE0] text-xs text-[#202124] bg-[#F8F9FA] focus:outline-none focus:border-[#1A73E8] font-mono"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowApiKey((v) => !v)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-semibold text-[#1A73E8]"
+                        >
+                          {showApiKey ? "Ocultar" : "Mostrar"}
+                        </button>
+                      </div>
+                      <p className="text-[10px] text-[#9AA0A6] mt-1 flex items-start gap-1">
+                        <Shield className="w-3 h-3 flex-shrink-0 mt-0.5" />
+                        Sua chave fica só neste dispositivo. Nunca é enviada a
+                        servidores do SaluFlow.
+                      </p>
                     </div>
-                    <p className="text-[10px] text-[#9AA0A6] mt-1 flex items-start gap-1">
-                      <Shield className="w-3 h-3 flex-shrink-0 mt-0.5" />
-                      Sua chave fica só neste dispositivo. Nunca é enviada a
-                      servidores do SaluFlow.
-                    </p>
-                  </div>
+                  )}
+
+                  {aiConfig.provider === "server" && (
+                    <div className="mb-3 p-3 rounded-xl bg-[#E6F4EA] border border-[#34A853]/20">
+                      <p className="text-[11px] text-[#137333] flex items-start gap-1.5">
+                        <Check className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
+                        Nenhuma configuração necessária. O servidor SaluFlow
+                        já tem as chaves configuradas.
+                      </p>
+                    </div>
+                  )}
 
                   {/* Test result */}
                   {aiTestResult && (
@@ -682,7 +699,10 @@ export default function ConfigPage() {
                   <div className="flex gap-2">
                     <button
                       onClick={handleTestAi}
-                      disabled={aiTesting || !aiConfig.apiKey}
+                      disabled={
+                        aiTesting ||
+                        (aiConfig.provider !== "server" && !aiConfig.apiKey)
+                      }
                       className="flex-1 py-2.5 rounded-xl text-xs font-semibold border border-[#DADCE0] text-[#1A73E8] disabled:opacity-50 flex items-center justify-center gap-1.5"
                     >
                       {aiTesting ? (
@@ -696,7 +716,10 @@ export default function ConfigPage() {
                     </button>
                     <button
                       onClick={handleSaveAi}
-                      disabled={!aiConfig.apiKey || !aiConfig.model}
+                      disabled={
+                        !aiConfig.model ||
+                        (aiConfig.provider !== "server" && !aiConfig.apiKey)
+                      }
                       className="flex-1 py-2.5 rounded-xl text-xs font-semibold text-white disabled:opacity-50"
                       style={{
                         backgroundColor: aiSaved ? "#34A853" : "#1A73E8",
@@ -706,12 +729,14 @@ export default function ConfigPage() {
                     </button>
                   </div>
 
-                  <button
-                    onClick={handleDisableAi}
-                    className="w-full text-[11px] text-[#EA4335] font-medium mt-2 py-1"
-                  >
-                    Desligar IA e apagar chave
-                  </button>
+                  {aiConfig.provider !== "server" && (
+                    <button
+                      onClick={handleDisableAi}
+                      className="w-full text-[11px] text-[#EA4335] font-medium mt-2 py-1"
+                    >
+                      Desligar IA e apagar chave
+                    </button>
+                  )}
                 </>
               )}
 
