@@ -38,10 +38,10 @@ function LeitorContent() {
     );
   }
 
-  // Google Docs viewer envolve o PDF e renderiza dentro do iframe
-  // É a forma mais confiável de mostrar PDF dentro de WebView Android
-  const pdfUrl = book.sourceUrl;
-  const viewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
+  // Wikisource — texto HTML nativo, sem CORS, sem PDF
+  // Modo mobile do Wikisource é mais limpo e legível
+  const sourceUrl = book.sourceUrl;
+  const viewerUrl = sourceUrl.replace("pt.wikisource.org", "pt.m.wikisource.org");
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -63,7 +63,7 @@ function LeitorContent() {
             </p>
           </div>
           <a
-            href={pdfUrl}
+            href={sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 text-[#5F6368]"
@@ -102,7 +102,7 @@ function LeitorContent() {
             no navegador.
           </p>
           <a
-            href={pdfUrl}
+            href={sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-3 rounded-xl bg-[#1A73E8] text-white text-sm font-semibold"

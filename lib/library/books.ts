@@ -43,7 +43,7 @@ export const BOOKS: Book[] = [
     cover: "📕",
     color: "#EA4335",
     excerpt: "Uma noite destas, vindo da cidade para o Engenho Novo, encontrei num trem da Central um rapaz aqui do bairro, que eu conheço de vista e de chapéu. Cumprimentou-me, sentou-se ao pé de mim, falou da lua e dos ministros, e acabou recitando-me versos.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000180.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/Dom_Casmurro",
     pages: 250,
   },
   {
@@ -57,7 +57,7 @@ export const BOOKS: Book[] = [
     cover: "📕",
     color: "#EA4335",
     excerpt: "Algum tempo hesitei se devia abrir estas memórias pelo princípio ou pelo fim, isto é, se poria em primeiro lugar o meu nascimento ou a minha morte.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000172.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/Mem%C3%B3rias_P%C3%B3stumas_de_Br%C3%A1s_Cubas",
     pages: 320,
   },
   {
@@ -71,7 +71,7 @@ export const BOOKS: Book[] = [
     cover: "📗",
     color: "#34A853",
     excerpt: "João Romão foi, dos treze aos vinte e cinco anos, empregado de um vendeiro, que enriqueceu entre as quatro paredes de uma suja e obscura taverna nos refolhos do bairro do Botafogo.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000015.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/O_Corti%C3%A7o",
     pages: 280,
   },
   {
@@ -85,7 +85,7 @@ export const BOOKS: Book[] = [
     cover: "📗",
     color: "#34A853",
     excerpt: "Verdes mares bravios de minha terra natal, onde canta a jandaia nas frondes da carnaúba; verdes mares, que brilhais como líquida esmeralda aos raios do sol nascente.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000022.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/Iracema",
     pages: 180,
   },
   {
@@ -99,7 +99,7 @@ export const BOOKS: Book[] = [
     cover: "📘",
     color: "#1A73E8",
     excerpt: "Há quinze anos que, todos os dias, às quatro e meia da tarde, o major Policarpo Quaresma, mais conhecido pela alcunha de Ubirajara, transpunha a porta da sua casa, na rua Real Grandeza.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000175.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/Triste_Fim_de_Policarpo_Quaresma",
     pages: 250,
   },
   {
@@ -113,7 +113,7 @@ export const BOOKS: Book[] = [
     cover: "📕",
     color: "#EA4335",
     excerpt: "As crônicas da vila de Itaguaí dizem que em tempos remotos vivera ali um certo médico, o Doutor Simão Bacamarte, filho da nobreza da terra e o maior dos médicos do Brasil, de Portugal e das Espanhas.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000167.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/O_Alienista",
     pages: 80,
   },
   {
@@ -127,7 +127,7 @@ export const BOOKS: Book[] = [
     cover: "📕",
     color: "#EA4335",
     excerpt: "Hamlet observa a Horácio que há mais coisas no céu e na terra do que sonha a nossa filosofia. Era a mesma explicação que dava a bela Rita ao mancebo Camilo, numa sexta-feira de novembro de 1869.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000160.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/A_Cartomante",
     pages: 12,
   },
   {
@@ -141,7 +141,7 @@ export const BOOKS: Book[] = [
     cover: "📗",
     color: "#34A853",
     excerpt: "De um dos cabeços da Serra dos Órgãos desliza um fio de água que se dirige para o norte, e engrossando com os mananciais que recebe no seu curso de dez léguas, torna-se rio caudal.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000017.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/O_Guarani",
     pages: 380,
   },
   {
@@ -155,7 +155,7 @@ export const BOOKS: Book[] = [
     cover: "📘",
     color: "#1A73E8",
     excerpt: "Era no tempo do rei. Um dos quatro cantos da rua do Ouvidor, o que fica entre a Quitanda, era naquele tempo um lugar de tal qual importância.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000178.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/Mem%C3%B3rias_de_um_Sargento_de_Mil%C3%ADcias",
     pages: 220,
   },
   {
@@ -169,7 +169,7 @@ export const BOOKS: Book[] = [
     cover: "📘",
     color: "#1A73E8",
     excerpt: "Quem do Rio de Janeiro quiser ir por terra à província de Mato Grosso, depois de viajar mais de duzentas léguas pelas do Rio de Janeiro, Minas Gerais e Goiás, tem de atravessar uma comprida e estreita zona quase deserta.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000174.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/Inoc%C3%AAncia",
     pages: 200,
   },
   {
@@ -183,7 +183,7 @@ export const BOOKS: Book[] = [
     cover: "📕",
     color: "#EA4335",
     excerpt: "O conselheiro Vale morreu às sete horas da noite de 25 de abril de 1859. Morreu de apoplexia fulminante, pouco depois de cochilar a sesta — como costumava dizer.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000169.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/Helena",
     pages: 240,
   },
   {
@@ -197,7 +197,7 @@ export const BOOKS: Book[] = [
     cover: "📕",
     color: "#EA4335",
     excerpt: "Rubião fitava a enseada — eram oito horas da manhã. Quem o visse, com os polegares metidos no cordão do chambre, à janela de uma grande casa de Botafogo, cuidaria que ele admirava aquele pedaço de água quieta.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000171.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/Quincas_Borba",
     pages: 290,
   },
   {
@@ -211,7 +211,7 @@ export const BOOKS: Book[] = [
     cover: "📗",
     color: "#34A853",
     excerpt: "Há anos raiou no céu fluminense uma nova estrela. Desde o momento de sua ascensão ninguém lhe disputou o cetro; foi proclamada a rainha dos salões.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000023.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/Senhora",
     pages: 270,
   },
   {
@@ -225,7 +225,7 @@ export const BOOKS: Book[] = [
     cover: "📓",
     color: "#FBBC04",
     excerpt: "O planalto central do Brasil desce, nos litorais do sul, em escarpas inteiriças, altas e abruptas. Assoberba os mares; e desata-se em chapadões nivelados pelos visos das cordilheiras marítimas.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000176.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/Os_Sert%C3%B5es",
     pages: 600,
   },
   {
@@ -239,7 +239,7 @@ export const BOOKS: Book[] = [
     cover: "📒",
     color: "#A142F4",
     excerpt: "Tinham dado onze horas no cuco da sala de jantar. Jorge, depois de ter tirado da estante uma carteira, atirou-se para o balcão, com vagar, a esperar pelo almoço.",
-    sourceUrl: "https://www.dominiopublico.gov.br/download/texto/bv000023.pdf",
+    sourceUrl: "https://pt.wikisource.org/wiki/O_Primo_Bas%C3%ADlio",
     pages: 340,
   },
 ];
