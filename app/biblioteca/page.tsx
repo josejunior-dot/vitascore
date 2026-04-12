@@ -13,6 +13,11 @@ import {
   X,
   Check,
   FileText,
+  Volume2,
+  Play,
+  Pause,
+  Square,
+  Headphones,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -49,6 +54,93 @@ export default function BibliotecaPage() {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [readBooks, setReadBooks] = useState<string[]>([]);
   const [totalMinutesRead, setTotalMinutesRead] = useState(0);
+
+  // TTS (Text-to-Speech)
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [ttsSupported, setTtsSupported] = useState(false);
+
+  useEffect(() => {
+    // Detectar suporte a Web Speech API
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      setTtsSupported(true);
+      // Carregar vozes (algumas plataformas precisam de um trigger)
+      window.speechSynthesis.getVoices();
+    }
+    // Cleanup: parar fala ao desmontar
+    return () => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
+  // Parar fala ao fechar modal
+  useEffect(() => {
+    if (!selectedBook && typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      setIsPlaying(false);
+      setIsPaused(false);
+    }
+  }, [selectedBook]);
+
+  const speakExcerpt = (text: string) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+
+    // Se já estiver tocando, para
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "pt-BR";
+    utterance.rate = 0.92;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    // Tentar pegar voz brasileira
+    const voices = window.speechSynthesis.getVoices();
+    const ptVoice =
+      voices.find((v) => v.lang === "pt-BR") ||
+      voices.find((v) => v.lang.startsWith("pt"));
+    if (ptVoice) utterance.voice = ptVoice;
+
+    utterance.onstart = () => {
+      setIsPlaying(true);
+      setIsPaused(false);
+    };
+    utterance.onend = () => {
+      setIsPlaying(false);
+      setIsPaused(false);
+    };
+    utterance.onerror = () => {
+      setIsPlaying(false);
+      setIsPaused(false);
+    };
+
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const togglePauseResume = () => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    if (isPaused) {
+      window.speechSynthesis.resume();
+      setIsPaused(false);
+    } else {
+      window.speechSynthesis.pause();
+      setIsPaused(true);
+    }
+  };
+
+  const stopSpeaking = () => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    setIsPlaying(false);
+    setIsPaused(false);
+  };
+
+  const searchYouTubeAudiobook = (book: Book) => {
+    const query = encodeURIComponent(`${book.title} ${book.author} audiobook completo`);
+    return `https://www.youtube.com/results?search_query=${query}`;
+  };
 
   useEffect(() => {
     const saved = localStorage.getItem("library-read");
@@ -371,6 +463,46 @@ export default function BibliotecaPage() {
                     </p>
                   </div>
 
+                  {/* Controles de áudio (TTS) */}
+                  {ttsSupported && (
+                    <div className="mb-3">
+                      {!isPlaying ? (
+                        <button
+                          onClick={() => speakExcerpt(selectedBook.excerpt)}
+                          className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#E8F0FE] text-[#1A73E8] text-sm font-semibold mb-3"
+                        >
+                          <Volume2 className="w-4 h-4" />
+                          Ouvir trecho (narração)
+                        </button>
+                      ) : (
+                        <div className="flex gap-2 mb-3">
+                          <button
+                            onClick={togglePauseResume}
+                            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-[#1A73E8] text-white text-sm font-semibold"
+                          >
+                            {isPaused ? (
+                              <>
+                                <Play className="w-4 h-4" />
+                                Continuar
+                              </>
+                            ) : (
+                              <>
+                                <Pause className="w-4 h-4" />
+                                Pausar
+                              </>
+                            )}
+                          </button>
+                          <button
+                            onClick={stopSpeaking}
+                            className="px-4 py-3 rounded-xl bg-[#F1F3F4] text-[#5F6368]"
+                          >
+                            <Square className="w-4 h-4" />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {/* Link para texto completo */}
                   <a
                     href={selectedBook.sourceUrl}
@@ -380,6 +512,17 @@ export default function BibliotecaPage() {
                   >
                     <ExternalLink className="w-4 h-4" />
                     Ler texto completo (gratuito)
+                  </a>
+
+                  {/* Buscar audiolivro completo no YouTube */}
+                  <a
+                    href={searchYouTubeAudiobook(selectedBook)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-[#A142F4] text-[#A142F4] text-sm font-medium mb-3"
+                  >
+                    <Headphones className="w-4 h-4" />
+                    Buscar audiolivro completo
                   </a>
 
                   {/* Marcar como lido */}
