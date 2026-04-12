@@ -17,12 +17,26 @@ import {
   Camera,
   MapPin,
   AlertTriangle,
+  Sparkles,
+  Key,
+  Loader2,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import AppShell from "@/components/layout/AppShell";
 import { DataExporter } from "@/lib/health/data-export";
+import {
+  type AiConfig,
+  type AiProvider,
+  CLAUDE_MODELS,
+  OPENAI_MODELS,
+  DEFAULT_CONFIG,
+  getAiConfig,
+  setAiConfig as persistAiConfig,
+  clearAiConfig,
+  testConnection,
+} from "@/lib/ai/meal-ai";
 
 /* -------------------------------------------------------------------------- */
 /*  Toggle switch component                                                    */
@@ -117,6 +131,16 @@ export default function ConfigPage() {
   const [showTermos, setShowTermos] = useState(false);
   const [showPrivacidade, setShowPrivacidade] = useState(false);
 
+  // --- AI provider config ---
+  const [aiConfig, setAiConfigState] = useState<AiConfig>(DEFAULT_CONFIG);
+  const [showApiKey, setShowApiKey] = useState(false);
+  const [aiSaved, setAiSaved] = useState(false);
+  const [aiTesting, setAiTesting] = useState(false);
+  const [aiTestResult, setAiTestResult] = useState<{
+    ok: boolean;
+    message: string;
+  } | null>(null);
+
   /* ---- Load persisted state ---- */
   useEffect(() => {
     // Notifications
@@ -158,7 +182,49 @@ export default function ConfigPage() {
     // Health status from localStorage
     const hc = localStorage.getItem("health-connected");
     if (hc === "true") setHealthConnected(true);
+
+    // AI config
+    getAiConfig().then((cfg) => setAiConfigState(cfg));
   }, []);
+
+  /* ---- AI config handlers ---- */
+  const handleProviderChange = (provider: AiProvider) => {
+    let model = "";
+    if (provider === "claude") model = CLAUDE_MODELS[0].id;
+    if (provider === "openai") model = OPENAI_MODELS[0].id;
+    setAiConfigState((p) => ({ ...p, provider, model }));
+    setAiTestResult(null);
+  };
+
+  const handleModelChange = (model: string) => {
+    setAiConfigState((p) => ({ ...p, model }));
+    setAiTestResult(null);
+  };
+
+  const handleApiKeyChange = (apiKey: string) => {
+    setAiConfigState((p) => ({ ...p, apiKey }));
+    setAiTestResult(null);
+  };
+
+  const handleSaveAi = async () => {
+    await persistAiConfig(aiConfig);
+    setAiSaved(true);
+    setTimeout(() => setAiSaved(false), 2000);
+  };
+
+  const handleTestAi = async () => {
+    setAiTesting(true);
+    setAiTestResult(null);
+    const result = await testConnection(aiConfig);
+    setAiTestResult(result);
+    setAiTesting(false);
+  };
+
+  const handleDisableAi = async () => {
+    await clearAiConfig();
+    setAiConfigState(DEFAULT_CONFIG);
+    setAiTestResult(null);
+  };
 
   /* ---- Health Connect ---- */
   const handleConnectHealth = async () => {
@@ -465,6 +531,219 @@ export default function ConfigPage() {
                   {insuranceSaved ? "Salvo!" : "Salvar"}
                 </button>
               </div>
+            </div>
+          </motion.section>
+
+          {/* ============================================================== */}
+          {/*  SECTION 3.5: Análise por IA                                    */}
+          {/* ============================================================== */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.17 }}
+          >
+            <p className="text-[10px] font-bold tracking-wider text-[#9AA0A6] uppercase mb-2 px-1">
+              Análise de refeições por IA
+            </p>
+            <div
+              className="rounded-2xl p-4 border"
+              style={{ borderColor: "#DADCE0", backgroundColor: "#FFFFFF" }}
+            >
+              <div className="flex items-start gap-2 mb-3">
+                <Sparkles className="w-5 h-5 text-[#A142F4] flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm font-semibold text-[#202124]">
+                    Modelo de IA para fotos
+                  </p>
+                  <p className="text-[11px] text-[#5F6368] leading-relaxed mt-0.5">
+                    Sem IA configurada, o app usa análise simulada (dados
+                    aleatórios). Configure uma chave real para obter
+                    reconhecimento correto.
+                  </p>
+                </div>
+              </div>
+
+              {/* Provider selector */}
+              <div className="grid grid-cols-3 gap-2 mb-3">
+                {([
+                  { id: "none", label: "Desligado" },
+                  { id: "claude", label: "Claude" },
+                  { id: "openai", label: "OpenAI" },
+                ] as { id: AiProvider; label: string }[]).map((p) => {
+                  const active = aiConfig.provider === p.id;
+                  return (
+                    <button
+                      key={p.id}
+                      onClick={() => handleProviderChange(p.id)}
+                      className={`py-2.5 rounded-xl text-xs font-semibold border transition-all ${
+                        active
+                          ? "bg-[#1A73E8] text-white border-[#1A73E8]"
+                          : "bg-white text-[#5F6368] border-[#DADCE0]"
+                      }`}
+                    >
+                      {p.label}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {aiConfig.provider !== "none" && (
+                <>
+                  {/* Modelo */}
+                  <div className="mb-3">
+                    <label className="text-[11px] font-bold tracking-wider text-[#9AA0A6] uppercase mb-1.5 block">
+                      Modelo
+                    </label>
+                    <div className="flex flex-col gap-1.5">
+                      {(aiConfig.provider === "claude"
+                        ? CLAUDE_MODELS
+                        : OPENAI_MODELS
+                      ).map((m) => {
+                        const active = aiConfig.model === m.id;
+                        return (
+                          <button
+                            key={m.id}
+                            onClick={() => handleModelChange(m.id)}
+                            className={`text-left p-2.5 rounded-xl border transition-all ${
+                              active
+                                ? "border-[#1A73E8] bg-[#E8F0FE]"
+                                : "border-[#DADCE0] bg-white"
+                            }`}
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs font-semibold text-[#202124]">
+                                {m.label}
+                              </span>
+                              <span className="text-[10px] text-[#9AA0A6]">
+                                {m.costHint}
+                              </span>
+                            </div>
+                            <p className="text-[10px] text-[#5F6368] mt-0.5">
+                              {m.hint}
+                            </p>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* API Key */}
+                  <div className="mb-3">
+                    <label className="text-[11px] font-bold tracking-wider text-[#9AA0A6] uppercase mb-1.5 block">
+                      Chave de API
+                    </label>
+                    <div className="relative">
+                      <Key className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9AA0A6]" />
+                      <input
+                        type={showApiKey ? "text" : "password"}
+                        value={aiConfig.apiKey}
+                        onChange={(e) => handleApiKeyChange(e.target.value)}
+                        placeholder={
+                          aiConfig.provider === "claude"
+                            ? "sk-ant-..."
+                            : "sk-..."
+                        }
+                        className="w-full pl-10 pr-16 py-2.5 rounded-xl border border-[#DADCE0] text-xs text-[#202124] bg-[#F8F9FA] focus:outline-none focus:border-[#1A73E8] font-mono"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowApiKey((v) => !v)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-semibold text-[#1A73E8]"
+                      >
+                        {showApiKey ? "Ocultar" : "Mostrar"}
+                      </button>
+                    </div>
+                    <p className="text-[10px] text-[#9AA0A6] mt-1 flex items-start gap-1">
+                      <Shield className="w-3 h-3 flex-shrink-0 mt-0.5" />
+                      Sua chave fica só neste dispositivo. Nunca é enviada a
+                      servidores do SaluFlow.
+                    </p>
+                  </div>
+
+                  {/* Test result */}
+                  {aiTestResult && (
+                    <div
+                      className="rounded-xl p-2.5 mb-3 text-[11px] font-medium flex items-start gap-1.5"
+                      style={{
+                        backgroundColor: aiTestResult.ok ? "#E6F4EA" : "#FCE8E6",
+                        color: aiTestResult.ok ? "#137333" : "#C5221F",
+                      }}
+                    >
+                      {aiTestResult.ok ? (
+                        <Check className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
+                      ) : (
+                        <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
+                      )}
+                      {aiTestResult.message}
+                    </div>
+                  )}
+
+                  {/* Ações */}
+                  <div className="flex gap-2">
+                    <button
+                      onClick={handleTestAi}
+                      disabled={aiTesting || !aiConfig.apiKey}
+                      className="flex-1 py-2.5 rounded-xl text-xs font-semibold border border-[#DADCE0] text-[#1A73E8] disabled:opacity-50 flex items-center justify-center gap-1.5"
+                    >
+                      {aiTesting ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                          Testando...
+                        </>
+                      ) : (
+                        "Testar conexão"
+                      )}
+                    </button>
+                    <button
+                      onClick={handleSaveAi}
+                      disabled={!aiConfig.apiKey || !aiConfig.model}
+                      className="flex-1 py-2.5 rounded-xl text-xs font-semibold text-white disabled:opacity-50"
+                      style={{
+                        backgroundColor: aiSaved ? "#34A853" : "#1A73E8",
+                      }}
+                    >
+                      {aiSaved ? "Salvo!" : "Salvar"}
+                    </button>
+                  </div>
+
+                  <button
+                    onClick={handleDisableAi}
+                    className="w-full text-[11px] text-[#EA4335] font-medium mt-2 py-1"
+                  >
+                    Desligar IA e apagar chave
+                  </button>
+                </>
+              )}
+
+              {/* Guia honesto */}
+              <details className="mt-3 text-[11px] text-[#5F6368]">
+                <summary className="cursor-pointer font-semibold text-[#1A73E8]">
+                  Qual modelo escolher?
+                </summary>
+                <div className="mt-2 space-y-1.5 leading-relaxed">
+                  <p>
+                    <strong>Melhor custo/benefício:</strong> GPT-4o mini ou
+                    Claude Haiku 4.5. Ambos acertam 85-90% das refeições
+                    brasileiras comuns.
+                  </p>
+                  <p>
+                    <strong>Melhor precisão:</strong> GPT-4o ou Claude Sonnet
+                    4.5. Detectam pratos complexos, porções, frituras
+                    escondidas. Custam ~6x mais.
+                  </p>
+                  <p>
+                    <strong>Alta escala (centenas de usuários):</strong>{" "}
+                    GPT-4o mini é o mais barato. Para auditoria pontual, Claude
+                    Sonnet 4.5.
+                  </p>
+                  <p className="text-[#9AA0A6] italic">
+                    Gerar chave: Claude em{" "}
+                    <span className="font-mono">console.anthropic.com</span>,
+                    OpenAI em{" "}
+                    <span className="font-mono">platform.openai.com</span>.
+                  </p>
+                </div>
+              </details>
             </div>
           </motion.section>
 

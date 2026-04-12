@@ -570,25 +570,16 @@ export class MealAnalyzer {
   }
 
   /**
-   * Chama a API de IA para análise real da foto.
-   * Retorna null se a API não estiver configurada ou falhar.
+   * Chama a API de IA (Claude ou OpenAI) para análise real da foto.
+   * Retorna null se nenhum provider estiver configurado ou se a chamada falhar.
    */
   private static async callAiApi(photoBase64: string): Promise<any | null> {
     try {
-      const { getApiUrl } = await import("./api-config");
-      const apiUrl = await getApiUrl();
-      if (!apiUrl) return null;
-
-      const response = await fetch(`${apiUrl}/analyze-meal`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ image: photoBase64 }),
-      });
-
-      if (!response.ok) return null;
-      return await response.json();
-    } catch {
-      return null; // API indisponível, usar mock
+      const { analyzeMealImage } = await import("../ai/meal-ai");
+      return await analyzeMealImage(photoBase64);
+    } catch (err) {
+      console.error("callAiApi failed:", err);
+      return null;
     }
   }
 
