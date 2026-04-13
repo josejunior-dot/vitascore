@@ -82,6 +82,8 @@ export interface AntifraudResult {
   flags: string[];
 }
 
+export type CaloricDensity = "green" | "yellow" | "orange" | "unknown";
+
 export interface MealPhotoAnalysis {
   isFood: boolean;
   hasVegetables: boolean;
@@ -96,7 +98,10 @@ export interface MealPhotoAnalysis {
   description: string;
   mealScore: number;           // 0-100
   confidence: number;          // 0-100
+  caloricDensity: CaloricDensity; // sistema Noom (verde/amarelo/laranja)
+  estimatedCalories: number;      // aproximado, pode ter ±30% de erro
   antifraud: AntifraudResult;  // resultado da verificação anti-fraude
+  editedByUser?: boolean;      // true se o usuário editou manualmente
 }
 
 export interface VerifiedMeal {
@@ -502,6 +507,8 @@ export class MealAnalyzer {
         description: "Foto rejeitada pela verificação anti-fraude: " + antifraud.flags.join("; "),
         mealScore: 0,
         confidence: 0,
+        caloricDensity: "unknown",
+        estimatedCalories: 0,
         antifraud,
       };
     }
@@ -534,6 +541,8 @@ export class MealAnalyzer {
         description: aiResult.description,
         mealScore: aiResult.isFood ? aiResult.mealScore : 0,
         confidence,
+        caloricDensity: aiResult.caloricDensity,
+        estimatedCalories: aiResult.estimatedCalories,
         antifraud,
       };
     }
@@ -580,11 +589,22 @@ export class MealAnalyzer {
     const baseConfidence = rand(75, 95);
     const confidence = Math.round(baseConfidence * (antifraud.score / 100));
 
+    // Mock de densidade calórica baseada nos flags
+    const mockDensity: CaloricDensity =
+      hasVegetables && hasFruit && !isProcessed && !isDeepFried
+        ? "green"
+        : isProcessed || isDeepFried
+          ? "orange"
+          : "yellow";
+    const mockCalories = portionSize === "small" ? rand(250, 400) : portionSize === "large" ? rand(700, 1100) : rand(400, 700);
+
     return {
       isFood: true,
       hasVegetables, hasProtein, hasWholeGrains, hasFruit,
       isProcessed, isDeepFried, portionSize, colorVariety, hydration,
       description, mealScore: score, confidence,
+      caloricDensity: mockDensity,
+      estimatedCalories: mockCalories,
       antifraud,
     };
   }
@@ -654,6 +674,89 @@ export class MealAnalyzer {
 
   static async getTodayMeals(): Promise<VerifiedMeal[]> {
     return (await getStore(todayKey())) ?? [];
+  }
+
+  /**
+   * Atualiza uma refeição já salva (edição manual pelo usuário).
+   * Recalcula o score com base nos novos flags e marca como editedByUser=true.
+   */
+  static async updateMeal(
+    mealId: string,
+    updates: {
+      analysis?: Partial<MealPhotoAnalysis>;
+      manualDescription?: string | null;
+      type?: VerifiedMeal["type"];
+    },
+  ): Promise<VerifiedMeal | null> {
+    const key = todayKey();
+    const meals: VerifiedMeal[] = (await getStore(key)) ?? [];
+    const idx = meals.findIndex((m) => m.id === mealId);
+    if (idx === -1) return null;
+
+    const current = meals[idx];
+    let newAnalysis = current.analysis;
+
+    if (updates.analysis && current.analysis) {
+      const merged: MealPhotoAnalysis = {
+        ...current.analysis,
+        ...updates.analysis,
+        editedByUser: true,
+      };
+      // Recalcula o score quando o usuário muda os flags
+      merged.mealScore = this.recalculateScore(merged);
+      newAnalysis = merged;
+    }
+
+    const updated: VerifiedMeal = {
+      ...current,
+      analysis: newAnalysis,
+      manualDescription:
+        updates.manualDescription !== undefined
+          ? updates.manualDescription
+          : current.manualDescription,
+      type: updates.type ?? current.type,
+      // Reflete os pontos no novo score (se mudou)
+      points:
+        newAnalysis && newAnalysis !== current.analysis
+          ? 15 + Math.round((newAnalysis.mealScore / 100) * 20)
+          : current.points,
+    };
+
+    meals[idx] = updated;
+    await setStore(key, meals);
+    return updated;
+  }
+
+  /**
+   * Remove uma refeição já salva.
+   */
+  static async deleteMeal(mealId: string): Promise<boolean> {
+    const key = todayKey();
+    const meals: VerifiedMeal[] = (await getStore(key)) ?? [];
+    const filtered = meals.filter((m) => m.id !== mealId);
+    if (filtered.length === meals.length) return false;
+    await setStore(key, filtered);
+    return true;
+  }
+
+  /**
+   * Recalcula o score nutricional a partir dos flags.
+   * Usa a mesma fórmula do mock para consistência quando o usuário edita.
+   */
+  private static recalculateScore(a: MealPhotoAnalysis): number {
+    let score = 50;
+    if (a.hasVegetables) score += 12;
+    if (a.hasProtein) score += 8;
+    if (a.hasWholeGrains) score += 8;
+    if (a.hasFruit) score += 5;
+    if (a.isProcessed) score -= 15;
+    if (a.isDeepFried) score -= 12;
+    if (a.portionSize === "adequate") score += 5;
+    if (a.portionSize === "large") score -= 3;
+    if (a.colorVariety >= 4) score += 5;
+    if (a.hydration === "water") score += 5;
+    if (a.hydration === "soda") score -= 8;
+    return Math.max(0, Math.min(100, score));
   }
 
   static async getWeeklyMeals(): Promise<VerifiedMeal[][]> {

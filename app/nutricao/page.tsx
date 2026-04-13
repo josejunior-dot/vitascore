@@ -20,6 +20,10 @@ import {
   Droplets,
   Minus,
   RefreshCw,
+  Pencil,
+  Trash2,
+  X,
+  Flame,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -69,6 +73,13 @@ function getScoreColor(score: number): string {
   return "#FF453A";
 }
 
+const NOOM_COLORS = {
+  green: { bg: "#E6F4EA", fg: "#137333", label: "Baixa densidade" },
+  yellow: { bg: "#FEF7E0", fg: "#9A6700", label: "Média densidade" },
+  orange: { bg: "#FCE8E6", fg: "#C5221F", label: "Alta densidade" },
+  unknown: { bg: "#F1F3F4", fg: "#5F6368", label: "—" },
+};
+
 export default function NutricaoPage() {
   const [meals, setMeals] = useState<VerifiedMeal[]>([]);
   const [loading, setLoading] = useState(true);
@@ -81,6 +92,13 @@ export default function NutricaoPage() {
   const [analyzing, setAnalyzing] = useState(false);
   const [manualDescription, setManualDescription] = useState("");
   const [mode, setMode] = useState<SheetMode>("choose");
+
+  // Edição/exclusão de refeição já registrada
+  const [editingMeal, setEditingMeal] = useState<VerifiedMeal | null>(null);
+  const [editAnalysis, setEditAnalysis] = useState<MealPhotoAnalysis | null>(null);
+  const [editDescription, setEditDescription] = useState("");
+  const [editType, setEditType] = useState<MealType>("cafe");
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
 
   useEffect(() => {
     MealAnalyzer.getTodayMeals().then((m) => {
@@ -148,6 +166,47 @@ export default function NutricaoPage() {
     const updated = await MealAnalyzer.getTodayMeals();
     setMeals(updated);
     resetSheet();
+  };
+
+  const handleOpenEdit = (meal: VerifiedMeal) => {
+    setEditingMeal(meal);
+    setEditAnalysis(meal.analysis ? { ...meal.analysis } : null);
+    setEditDescription(meal.manualDescription ?? "");
+    setEditType(meal.type as MealType);
+  };
+
+  const handleCloseEdit = () => {
+    setEditingMeal(null);
+    setEditAnalysis(null);
+    setEditDescription("");
+  };
+
+  const handleSaveEdit = async () => {
+    if (!editingMeal) return;
+    await MealAnalyzer.updateMeal(editingMeal.id, {
+      analysis: editAnalysis ?? undefined,
+      manualDescription:
+        editingMeal.verificationMethod === "manual" ? editDescription : null,
+      type: editType,
+    });
+    const updated = await MealAnalyzer.getTodayMeals();
+    setMeals(updated);
+    handleCloseEdit();
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!confirmDeleteId) return;
+    await MealAnalyzer.deleteMeal(confirmDeleteId);
+    const updated = await MealAnalyzer.getTodayMeals();
+    setMeals(updated);
+    setConfirmDeleteId(null);
+  };
+
+  const toggleEditFlag = <K extends keyof MealPhotoAnalysis>(key: K) => {
+    setEditAnalysis((prev) => {
+      if (!prev) return prev;
+      return { ...prev, [key]: !prev[key] } as MealPhotoAnalysis;
+    });
   };
 
   const resetSheet = () => {
@@ -349,7 +408,7 @@ export default function NutricaoPage() {
                       )}
 
                       <div className="flex-1 min-w-0">
-                        {/* Title + time */}
+                        {/* Title + time + actions */}
                         <div className="flex items-center gap-2 mb-1">
                           <h3 className="text-sm font-semibold text-[#202124]">
                             {label}
@@ -359,6 +418,27 @@ export default function NutricaoPage() {
                               {time}
                             </span>
                           )}
+                          {entry.analysis?.editedByUser && (
+                            <span className="text-[9px] text-[#1A73E8] font-semibold uppercase tracking-wider">
+                              editado
+                            </span>
+                          )}
+                          <div className="ml-auto flex items-center gap-1">
+                            <button
+                              onClick={() => handleOpenEdit(entry)}
+                              className="p-1.5 rounded-lg text-[#5F6368] hover:bg-[#F1F3F4]"
+                              title="Editar refeição"
+                            >
+                              <Pencil className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              onClick={() => setConfirmDeleteId(entry.id)}
+                              className="p-1.5 rounded-lg text-[#EA4335] hover:bg-[#FCE8E6]"
+                              title="Excluir refeição"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
                         </div>
 
                         {/* Photo verified content */}
@@ -368,7 +448,7 @@ export default function NutricaoPage() {
                               {entry.analysis.description}
                             </p>
 
-                            <div className="flex items-center gap-2 mb-2">
+                            <div className="flex items-center gap-2 mb-2 flex-wrap">
                               {/* Score badge */}
                               <span
                                 className="text-xs font-bold px-2 py-0.5 rounded-full"
@@ -381,6 +461,47 @@ export default function NutricaoPage() {
                               >
                                 {entry.analysis.mealScore}/100
                               </span>
+
+                              {/* Noom Color badge */}
+                              {entry.analysis.caloricDensity &&
+                                entry.analysis.caloricDensity !== "unknown" && (
+                                  <span
+                                    className="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full"
+                                    style={{
+                                      backgroundColor:
+                                        NOOM_COLORS[
+                                          entry.analysis.caloricDensity
+                                        ].bg,
+                                      color:
+                                        NOOM_COLORS[
+                                          entry.analysis.caloricDensity
+                                        ].fg,
+                                    }}
+                                  >
+                                    <span
+                                      className="w-1.5 h-1.5 rounded-full"
+                                      style={{
+                                        backgroundColor:
+                                          NOOM_COLORS[
+                                            entry.analysis.caloricDensity
+                                          ].fg,
+                                      }}
+                                    />
+                                    {
+                                      NOOM_COLORS[
+                                        entry.analysis.caloricDensity
+                                      ].label
+                                    }
+                                  </span>
+                                )}
+
+                              {/* Calorias estimadas */}
+                              {entry.analysis.estimatedCalories > 0 && (
+                                <span className="flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#F1F3F4] text-[#5F6368]">
+                                  <Flame className="w-2.5 h-2.5" />
+                                  ~{entry.analysis.estimatedCalories} kcal
+                                </span>
+                              )}
 
                               {/* Verification badge */}
                               <span className="flex items-center gap-1 text-[11px] text-green-400">
@@ -857,6 +978,315 @@ export default function NutricaoPage() {
                     </button>
                   </div>
                 )}
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+
+        {/* ===================================================== */}
+        {/*  Modal: Editar refeição                                */}
+        {/* ===================================================== */}
+        <AnimatePresence>
+          {editingMeal && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={handleCloseEdit}
+                className="fixed inset-0 bg-black/40 z-[65]"
+              />
+              <motion.div
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{ type: "spring", damping: 28, stiffness: 280 }}
+                className="fixed bottom-0 left-0 right-0 z-[70] mx-auto max-w-md max-h-[90vh] overflow-y-auto bg-white rounded-t-3xl"
+              >
+                <div className="sticky top-0 bg-white border-b border-[#DADCE0] px-5 py-4 flex items-center justify-between">
+                  <h2 className="text-base font-semibold text-[#202124]">
+                    Editar refeição
+                  </h2>
+                  <button onClick={handleCloseEdit} className="p-1 -m-1">
+                    <X className="w-5 h-5 text-[#5F6368]" />
+                  </button>
+                </div>
+
+                <div className="px-5 py-5 flex flex-col gap-5">
+                  {/* Tipo de refeição */}
+                  <div>
+                    <p className="text-[10px] font-bold tracking-wider text-[#9AA0A6] uppercase mb-2">
+                      Tipo
+                    </p>
+                    <div className="grid grid-cols-4 gap-2">
+                      {(["cafe", "almoco", "jantar", "lanche"] as MealType[]).map(
+                        (t) => {
+                          const isActive = editType === t;
+                          return (
+                            <button
+                              key={t}
+                              onClick={() => setEditType(t)}
+                              className={`py-2 rounded-xl text-[11px] font-semibold border ${
+                                isActive
+                                  ? "bg-[#1A73E8] text-white border-[#1A73E8]"
+                                  : "bg-white text-[#5F6368] border-[#DADCE0]"
+                              }`}
+                            >
+                              {mealTypeLabels[t]}
+                            </button>
+                          );
+                        },
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Edição manual de descrição (registro manual) */}
+                  {editingMeal.verificationMethod === "manual" && (
+                    <div>
+                      <p className="text-[10px] font-bold tracking-wider text-[#9AA0A6] uppercase mb-2">
+                        Descrição
+                      </p>
+                      <textarea
+                        value={editDescription}
+                        onChange={(e) => setEditDescription(e.target.value)}
+                        rows={3}
+                        className="w-full p-3 rounded-xl border border-[#DADCE0] text-sm text-[#202124] bg-[#F8F9FA] focus:outline-none focus:border-[#1A73E8] resize-none"
+                      />
+                    </div>
+                  )}
+
+                  {/* Edição da análise (foto IA) */}
+                  {editAnalysis && (
+                    <>
+                      <div>
+                        <p className="text-[10px] font-bold tracking-wider text-[#9AA0A6] uppercase mb-2">
+                          Descrição (corrigir o que a IA identificou)
+                        </p>
+                        <textarea
+                          value={editAnalysis.description}
+                          onChange={(e) =>
+                            setEditAnalysis((p) =>
+                              p ? { ...p, description: e.target.value } : p,
+                            )
+                          }
+                          rows={2}
+                          className="w-full p-3 rounded-xl border border-[#DADCE0] text-sm text-[#202124] bg-[#F8F9FA] focus:outline-none focus:border-[#1A73E8] resize-none"
+                        />
+                      </div>
+
+                      <div>
+                        <p className="text-[10px] font-bold tracking-wider text-[#9AA0A6] uppercase mb-2">
+                          O que tem no prato
+                        </p>
+                        <div className="grid grid-cols-2 gap-2">
+                          {[
+                            { key: "hasVegetables" as const, label: "Vegetais" },
+                            { key: "hasProtein" as const, label: "Proteína" },
+                            { key: "hasWholeGrains" as const, label: "Integral" },
+                            { key: "hasFruit" as const, label: "Fruta" },
+                            { key: "isProcessed" as const, label: "Processado" },
+                            { key: "isDeepFried" as const, label: "Frito" },
+                          ].map((f) => {
+                            const active = editAnalysis[f.key];
+                            return (
+                              <button
+                                key={f.key}
+                                onClick={() => toggleEditFlag(f.key)}
+                                className={`flex items-center justify-between px-3 py-2.5 rounded-xl border text-xs font-medium transition-colors ${
+                                  active
+                                    ? "border-[#1A73E8] bg-[#E8F0FE] text-[#1A73E8]"
+                                    : "border-[#DADCE0] bg-white text-[#5F6368]"
+                                }`}
+                              >
+                                {f.label}
+                                {active ? (
+                                  <CheckCircle2 className="w-4 h-4" />
+                                ) : (
+                                  <div className="w-4 h-4 rounded-full border border-[#DADCE0]" />
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="text-[10px] font-bold tracking-wider text-[#9AA0A6] uppercase mb-2">
+                          Porção
+                        </p>
+                        <div className="grid grid-cols-3 gap-2">
+                          {(
+                            [
+                              { id: "small", label: "Pequena" },
+                              { id: "adequate", label: "Adequada" },
+                              { id: "large", label: "Grande" },
+                            ] as const
+                          ).map((p) => {
+                            const active = editAnalysis.portionSize === p.id;
+                            return (
+                              <button
+                                key={p.id}
+                                onClick={() =>
+                                  setEditAnalysis((prev) =>
+                                    prev ? { ...prev, portionSize: p.id } : prev,
+                                  )
+                                }
+                                className={`py-2 rounded-xl text-xs font-semibold border ${
+                                  active
+                                    ? "bg-[#1A73E8] text-white border-[#1A73E8]"
+                                    : "bg-white text-[#5F6368] border-[#DADCE0]"
+                                }`}
+                              >
+                                {p.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="text-[10px] font-bold tracking-wider text-[#9AA0A6] uppercase mb-2">
+                          Densidade calórica (Noom)
+                        </p>
+                        <div className="grid grid-cols-3 gap-2">
+                          {(["green", "yellow", "orange"] as const).map((c) => {
+                            const active = editAnalysis.caloricDensity === c;
+                            const colors = NOOM_COLORS[c];
+                            return (
+                              <button
+                                key={c}
+                                onClick={() =>
+                                  setEditAnalysis((prev) =>
+                                    prev
+                                      ? { ...prev, caloricDensity: c }
+                                      : prev,
+                                  )
+                                }
+                                className={`py-2 rounded-xl text-[11px] font-semibold border-2 transition-all ${
+                                  active
+                                    ? "shadow-sm"
+                                    : "border-transparent opacity-60"
+                                }`}
+                                style={{
+                                  backgroundColor: colors.bg,
+                                  color: colors.fg,
+                                  borderColor: active ? colors.fg : "transparent",
+                                }}
+                              >
+                                {colors.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="text-[10px] font-bold tracking-wider text-[#9AA0A6] uppercase mb-2">
+                          Calorias estimadas (kcal)
+                        </p>
+                        <input
+                          type="number"
+                          min={0}
+                          max={3000}
+                          value={editAnalysis.estimatedCalories}
+                          onChange={(e) =>
+                            setEditAnalysis((prev) =>
+                              prev
+                                ? {
+                                    ...prev,
+                                    estimatedCalories: Math.max(
+                                      0,
+                                      Math.min(
+                                        3000,
+                                        parseInt(e.target.value) || 0,
+                                      ),
+                                    ),
+                                  }
+                                : prev,
+                            )
+                          }
+                          className="w-full p-3 rounded-xl border border-[#DADCE0] text-sm text-[#202124] bg-[#F8F9FA] focus:outline-none focus:border-[#1A73E8]"
+                        />
+                      </div>
+
+                      <div className="rounded-xl p-3 bg-[#FEF7E0] border border-[#FBBC04]/30">
+                        <p className="text-[11px] text-[#9A6700] flex items-start gap-1.5">
+                          <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
+                          O score será recalculado automaticamente quando você
+                          salvar.
+                        </p>
+                      </div>
+                    </>
+                  )}
+
+                  <div className="flex gap-2 pt-2">
+                    <button
+                      onClick={handleCloseEdit}
+                      className="flex-1 py-3 rounded-xl text-sm font-semibold text-[#5F6368] border border-[#DADCE0]"
+                    >
+                      Cancelar
+                    </button>
+                    <button
+                      onClick={handleSaveEdit}
+                      className="flex-1 py-3 rounded-xl text-sm font-semibold text-white bg-[#1A73E8]"
+                    >
+                      Salvar mudanças
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+
+        {/* ===================================================== */}
+        {/*  Modal: Confirmar exclusão                             */}
+        {/* ===================================================== */}
+        <AnimatePresence>
+          {confirmDeleteId && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setConfirmDeleteId(null)}
+                className="fixed inset-0 bg-black/50 z-[75]"
+              />
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="fixed inset-0 z-[80] flex items-center justify-center px-6 pointer-events-none"
+              >
+                <div className="bg-white rounded-2xl p-5 max-w-xs w-full pointer-events-auto">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-[#FCE8E6] flex items-center justify-center">
+                      <Trash2 className="w-5 h-5 text-[#EA4335]" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[#202124]">
+                        Excluir refeição?
+                      </p>
+                      <p className="text-[11px] text-[#5F6368]">
+                        Essa ação não pode ser desfeita.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setConfirmDeleteId(null)}
+                      className="flex-1 py-2.5 rounded-xl text-xs font-semibold text-[#5F6368] border border-[#DADCE0]"
+                    >
+                      Cancelar
+                    </button>
+                    <button
+                      onClick={handleConfirmDelete}
+                      className="flex-1 py-2.5 rounded-xl text-xs font-semibold text-white bg-[#EA4335]"
+                    >
+                      Excluir
+                    </button>
+                  </div>
+                </div>
               </motion.div>
             </>
           )}

@@ -179,7 +179,9 @@ Schema obrigatório:
   "colorVariety": inteiro de 1 a 5,
   "hydration": "water" | "juice" | "soda" | "none" | "unknown",
   "description": "frase curta em português descrevendo objetivamente o que vê",
-  "mealScore": inteiro de 0 a 100
+  "mealScore": inteiro de 0 a 100,
+  "caloricDensity": "green" | "yellow" | "orange",
+  "estimatedCalories": inteiro (aproximado, em kcal)
 }
 
 Regras RIGOROSAS:
@@ -199,7 +201,17 @@ Regras RIGOROSAS:
   * Prato completo com proteína + vegetal + integral + variedade: 80-95
   * Ultraprocessado dominante: 15-35
 
-IMPORTANTE: Se a foto mostrar APENAS macarrão/massa com molho cremoso, responda hasVegetables=false, hasProtein=false (queijo derretido não é fonte principal), hasWholeGrains=false, hasFruit=false, isProcessed=true (se molho pronto), mealScore entre 30 e 45. NÃO invente ingredientes que não estão visíveis.
+Sistema Noom Color (caloricDensity):
+- "green" = baixa densidade (< 1 kcal/g): frutas, vegetais, sopas, iogurte natural, saladas
+- "yellow" = média densidade (1-2.4 kcal/g): arroz, feijão, carnes magras, pão integral, macarrão
+- "orange" = alta densidade (> 2.4 kcal/g): castanhas, queijos, chocolate, frituras, doces, molhos cremosos
+
+estimatedCalories:
+- Estime as calorias totais do prato em kcal
+- AVISO: esta estimativa é aproximada (±30% de erro), baseada apenas na foto
+- Prato pequeno: 200-400 kcal, médio: 400-700 kcal, grande: 700-1200 kcal
+
+IMPORTANTE: Se a foto mostrar APENAS macarrão/massa com molho cremoso, responda hasVegetables=false, hasProtein=false (queijo derretido não é fonte principal), hasWholeGrains=false, hasFruit=false, isProcessed=true (se molho pronto), mealScore entre 30 e 45, caloricDensity="orange" (molho cremoso é denso), estimatedCalories entre 500 e 800. NÃO invente ingredientes que não estão visíveis.
 
 Responda SOMENTE o JSON.`;
 
@@ -222,6 +234,8 @@ export interface AiMealResult {
   hydration: "water" | "juice" | "soda" | "none" | "unknown";
   description: string;
   mealScore: number;
+  caloricDensity: "green" | "yellow" | "orange" | "unknown";
+  estimatedCalories: number;
 }
 
 function parseJsonLoose(raw: string): AiMealResult | null {
@@ -263,6 +277,13 @@ function parseJsonLoose(raw: string): AiMealResult | null {
         typeof obj.mealScore === "number"
           ? Math.max(0, Math.min(100, Math.round(obj.mealScore)))
           : 50,
+      caloricDensity: ["green", "yellow", "orange"].includes(obj.caloricDensity)
+        ? obj.caloricDensity
+        : "unknown",
+      estimatedCalories:
+        typeof obj.estimatedCalories === "number"
+          ? Math.max(0, Math.min(3000, Math.round(obj.estimatedCalories)))
+          : 0,
     };
   } catch {
     return null;
@@ -456,6 +477,13 @@ async function analyzeWithServer(
       typeof data.mealScore === "number"
         ? Math.max(0, Math.min(100, Math.round(data.mealScore)))
         : 50,
+    caloricDensity: ["green", "yellow", "orange"].includes(data.caloricDensity)
+      ? data.caloricDensity
+      : "unknown",
+    estimatedCalories:
+      typeof data.estimatedCalories === "number"
+        ? Math.max(0, Math.min(3000, Math.round(data.estimatedCalories)))
+        : 0,
   };
 }
 

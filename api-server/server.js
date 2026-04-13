@@ -65,7 +65,9 @@ Schema obrigatório:
   "colorVariety": inteiro de 1 a 5,
   "hydration": "water" | "juice" | "soda" | "none" | "unknown",
   "description": "frase curta em português descrevendo objetivamente o que vê",
-  "mealScore": inteiro de 0 a 100
+  "mealScore": inteiro de 0 a 100,
+  "caloricDensity": "green" | "yellow" | "orange",
+  "estimatedCalories": inteiro (kcal aproximado)
 }
 
 Regras RIGOROSAS:
@@ -85,7 +87,17 @@ Regras RIGOROSAS:
   * Prato completo com proteína + vegetal + integral + variedade: 80-95
   * Ultraprocessado dominante: 15-35
 
-IMPORTANTE: Se a foto mostrar APENAS macarrão/massa com molho cremoso, responda hasVegetables=false, hasProtein=false, hasWholeGrains=false, hasFruit=false, isProcessed=true, mealScore entre 30 e 45. NÃO invente ingredientes que não estão visíveis.
+Sistema Noom Color (caloricDensity):
+- "green" = baixa densidade (< 1 kcal/g): frutas, vegetais, sopas, iogurte natural, saladas
+- "yellow" = média densidade (1-2.4 kcal/g): arroz, feijão, carnes magras, pão integral, macarrão
+- "orange" = alta densidade (> 2.4 kcal/g): castanhas, queijos, chocolate, frituras, doces, molhos cremosos
+
+estimatedCalories:
+- Estime as calorias totais do prato em kcal
+- Esta estimativa é aproximada (±30%), baseada apenas na foto
+- Pequeno: 200-400 kcal, médio: 400-700 kcal, grande: 700-1200 kcal
+
+IMPORTANTE: Se a foto mostrar APENAS macarrão/massa com molho cremoso, responda hasVegetables=false, hasProtein=false, hasWholeGrains=false, hasFruit=false, isProcessed=true, mealScore entre 30 e 45, caloricDensity="orange", estimatedCalories entre 500 e 800. NÃO invente ingredientes que não estão visíveis.
 
 Responda SOMENTE o JSON.`;
 
